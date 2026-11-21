@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Клёв</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: #F4ECFF;
+      background: radial-gradient(circle at 50% 35%, #2A0E5C 0%, #140734 55%, #07021A 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 24px; overflow: hidden;
+    }
+    .logo {
+      width: 180px; height: 180px; border-radius: 50%;
+      box-shadow: 0 0 24px rgba(111, 230, 242, 0.35);
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-size: 34px; font-weight: 800; letter-spacing: 1px;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px rgba(240, 69, 127, 0.6);
+    }
+    .hello { margin-top: 10px; font-size: 20px; color: #6FE6F2; }
+    .hint  { margin-top: 8px; font-size: 15px; color: #B9A8D9; }
+    button {
+      margin-top: 36px; padding: 16px 36px;
+      font-size: 18px; font-weight: 700; color: #FFFFFF;
+      background: #F0457F; border: 2px solid #FF8AB3; border-radius: 16px;
+      box-shadow: 0 0 14px rgba(240, 69, 127, 0.45);
+      cursor: pointer;
+    }
+    button:active { transform: scale(0.96); }
+    .toast { margin-top: 18px; min-height: 22px; font-size: 16px; color: #FFE45C; }
+  </style>
+</head>
+<body>
+  <img class="logo" src="avatar.png" alt="Клёв">
+  <h1>КЛЁВ</h1>
+  <div class="hello" id="hello">Привет, рыбак!</div>
+  <div class="hint">Скоро здесь можно будет рыбачить</div>
+  <button id="cast">Забросить удочку</button>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const tg = window.Telegram && window.Telegram.WebApp;
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      try { tg.setHeaderColor('#140734'); tg.setBackgroundColor('#140734'); } catch (e) {}
+      const user = tg.initDataUnsafe && tg.initDataUnsafe.user;
+      if (user && user.first_name) {
+        document.getElementById('hello').textContent = 'Привет, ' + user.first_name + '!';
+      }
+    }
+
+    document.getElementById('cast').addEventListener('click', function () {
+      if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
+      document.getElementById('toast').textContent = 'Тишина… рыба пока спит. Игра скоро!';
+    });
+  </script>
+</body>
+</html>
