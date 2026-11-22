@@ -8,6 +8,8 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html, body { height: 100%; }
+    html { background: #0E1526; }
+    body { max-width: 480px; margin: 0 auto; box-shadow: 0 0 40px rgba(0,0,0,0.5); }
     body {
       font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       background: #CFEAF7; color: #23323C;
@@ -30,7 +32,22 @@
     .coin { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFE58A, #E3A008); border: 2px solid #B57A00; }
 
     .top { flex-wrap: wrap; gap: 6px; padding: 8px 10px; }
-    .toprow { display: flex; width: 100%; gap: 6px; align-items: center; }
+    .toprow { display: flex; width: 100%; gap: 5px; align-items: center; min-width: 0; }
+    .toprow .chip { padding: 6px 9px; font-size: 14px; flex: none; }
+    .toprow .lvlbox { min-width: 0; }
+    .chip button.ib { font-size: 17px; }
+    #albumBtn { font-size: 13px; gap: 3px; }
+    @media (max-width: 380px) {
+      .top { padding: 6px 6px; }
+      .toprow { gap: 4px; }
+      .toprow .chip { padding: 5px 7px; font-size: 12.5px; gap: 4px; }
+      .coin { width: 14px; height: 14px; }
+      .pearl { width: 13px; height: 13px; }
+      .plus { width: 15px; height: 15px; font-size: 12px; }
+      .chip button.ib { font-size: 15px; }
+      #albumBtn { font-size: 12px; }
+    }
+    @media (max-width: 345px) { #albumCount { display: none; } .plus { display: none; } }
     .lvlbox { flex: 1; display: flex; align-items: center; gap: 8px; background: #243150; border-radius: 20px; padding: 4px 10px 4px 4px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
     .lvl { min-width: 30px; height: 30px; border-radius: 15px; background: #2F7BD9; color: #FFF; font-weight: 900; display: flex; align-items: center; justify-content: center; font-size: 14px; padding: 0 6px; }
     .xpwrap { flex: 1; }
@@ -78,11 +95,11 @@
 
     /* ---------- сцена ---------- */
     .scene { position: relative; flex: 1; overflow: hidden; }
-    .scene svg.bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .scene svg.bg { position: absolute; inset: 0; width: 100%; height: 100%; will-change: transform; transform: translateZ(0); }
     #bobber {
-      position: absolute; width: 34px; height: 64px; left: 50%; top: 60%;
-      transform: translate(-50%, -80%); transition: top 0.6s ease-out, opacity 0.2s;
-      opacity: 0; pointer-events: none;
+      position: absolute; width: 34px; height: 64px; left: 0; top: 0;
+      transform: translate(-50%, -80%); transition: transform 0.6s ease-out, opacity 0.2s;
+      opacity: 0; pointer-events: none; will-change: transform;
     }
     #bobber.show { opacity: 1; }
     #bobber.bob svg { animation: bob 1.6s ease-in-out infinite; }
@@ -115,7 +132,7 @@
     }
     #ripple.go { animation: ripple 1.2s ease-out; }
     @keyframes ripple { 0% { opacity: 1; transform: translate(-50%,-50%) scale(0.2); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1.6); } }
-    #line { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    #line { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; will-change: transform; transform: translateZ(0); }
 
     .bigtext {
       position: absolute; left: 0; right: 0; top: 16%; text-align: center;
@@ -139,8 +156,8 @@
     #powerZone { position: absolute; top: 0; bottom: 0; left: 72%; width: 16%; background: rgba(63,163,77,0.35); border-left: 2px solid #3FA34D; border-right: 2px solid #3FA34D; }
 
     #reelTrack { height: 44px; border-radius: 12px; background: linear-gradient(180deg, #4BA3C7, #2B6F92); }
-    #reelZone { position: absolute; top: 3px; bottom: 3px; left: 0; width: 30%; border-radius: 9px; background: rgba(124,220,120,0.55); border: 3px solid #7CDC78; }
-    #reelFish { position: absolute; top: 50%; width: 40px; height: 22px; transform: translate(-50%, -50%); }
+    #reelZone { position: absolute; top: 3px; bottom: 3px; left: 0; width: 30%; will-change: transform; border-radius: 9px; background: rgba(124,220,120,0.55); border: 3px solid #7CDC78; }
+    #reelFish { position: absolute; top: 50%; left: 0; width: 40px; height: 22px; transform: translate(-50%, -50%); will-change: transform; }
     #reelFish img { width: 100%; height: 100%; }
     .progress { height: 10px; border-radius: 5px; background: #2A3654; overflow: hidden; margin-top: 8px; display: none; }
     .progress.show { display: block; }
@@ -400,33 +417,45 @@ function setLine(show) {
   const p = $('linePath');
   if (!show) { p.setAttribute('d', ''); return; }
   // кончик удочки (300,90) → поплавок. Координаты поплавка переводим в систему viewBox.
-  const scene = $('scene').getBoundingClientRect();
-  const b = bobber.getBoundingClientRect();
-  const scale = Math.max(scene.width / 400, scene.height / 600);
-  const offX = (scene.width - 400 * scale) / 2, offY = (scene.height - 600 * scale) / 2;
-  const bx = (b.left + b.width / 2 - scene.left - offX) / scale;
-  const by = (b.top + 2 - scene.top - offY) / scale;
+  const m = sceneMap();
+  const bx = bobVX;
+  // верх антенны поплавка; при поклёвке и вываживании поплавок притоплен — леска уходит ниже
+  const sink = state === 'reel' ? 16 : state === 'bite' ? 24 : 0;
+  const by = bobVY - (19.2 + 32 * bobK - 2 - sink * bobK) / m.s;
   p.setAttribute('d', `M300 90 Q${(300 + bx) / 2} ${Math.max(by, 90) - 10} ${bx} ${by}`);
 }
 
 /* ================= Вода: круги и брызги ================= */
-let bobX = 50, bobY = 60, bobVX = 200, bobVY = 400, castVY = 400;
+let bobX = 50, bobY = 60, bobVX = 200, bobVY = 400, castVY = 400, bobK = 1;
 // пересчёт координат картинки в проценты сцены (картинка обрезается по краям экрана)
+let _sceneMap = null;
 function sceneMap() {
+  if (_sceneMap) return _sceneMap;
   const r = $('scene').getBoundingClientRect();
   const s = Math.max(r.width / 400, r.height / 600);
-  return { s, ox: (r.width - 400 * s) / 2, oy: (r.height - 600 * s) / 2, w: r.width || 1, h: r.height || 1 };
+  _sceneMap = { s, ox: (r.width - 400 * s) / 2, oy: (r.height - 600 * s) / 2, w: r.width || 1, h: r.height || 1 };
+  if (!r.width) { const m = _sceneMap; _sceneMap = null; return m; }
+  return _sceneMap;
+}
+function visRange() {
+  const m = sceneMap();
+  const top = -m.oy / m.s, bottom = (m.h - m.oy) / m.s, left = -m.ox / m.s, right = (m.w - m.ox) / m.s;
+  // по воде: дальний край пруда ~270, ближний ~505 — но не дальше видимой части экрана
+  const far = Math.max(270, top + 60), near = Math.min(500, bottom - 30);
+  return { top, bottom, left, right, far: Math.min(far, near - 20), near };
 }
 function placeBobber(vx, vy) {
+  const v = visRange();
+  vx = Math.max(v.left + 25, Math.min(v.right - 25, vx));
+  vy = Math.max(v.top + 50, Math.min(v.bottom - 15, vy));
   bobVX = vx; bobVY = vy;
   const m = sceneMap();
   bobX = (m.ox + vx * m.s) / m.w * 100;
   bobY = (m.oy + vy * m.s) / m.h * 100;
-  bobber.style.left = bobX + '%';
-  bobber.style.top = bobY + '%';
-  // дальний поплавок меньше, ближний крупнее
+  // двигаем только через transform — телефону не нужно перерисовывать пруд
   const k = Math.max(0.65, Math.min(1.1, 0.65 + (vy - 260) / 500));
-  bobber.style.transform = `translate(-50%, -80%) scale(${k.toFixed(3)})`;
+  bobK = k;
+  bobber.style.transform = `translate3d(${(m.ox + vx * m.s).toFixed(1)}px, ${(m.oy + vy * m.s).toFixed(1)}px, 0) translate(-50%, -80%) scale(${k.toFixed(3)})`;
 }
 // чем дальше поплавок (выше на экране), тем меньше круги — перспектива
 function depthScale() { return Math.max(0.45, Math.min(1.15, 0.45 + (bobVY - 250) / 300)); }
@@ -460,7 +489,7 @@ setInterval(() => {
   waterAcc += 100;
   if (state === 'waiting' && waterAcc >= 1500) { waterAcc = 0; spawnRipple(95, 1600); }
   else if (state === 'bite' && waterAcc >= 250) { waterAcc = 0; spawnRipple(135, 900); splash(4, 1); }
-  else if (state === 'reel' && waterAcc >= 300) { waterAcc = 0; spawnRipple(115, 900); if (Math.random() < 0.6) splash(3, 0.8); }
+  else if (state === 'reel' && waterAcc >= 450) { waterAcc = 0; spawnRipple(115, 900); if (Math.random() < 0.4) splash(2, 0.8); }
   else if (state === 'idle' || state === 'power' || state === 'result') { if (waterAcc > 2000) waterAcc = 0; }
 }, 100);
 
@@ -483,6 +512,10 @@ function toIdle(msg, subMsg) {
   clearTimers();
   state = 'idle';
   bobber.className = '';
+  // поплавок вылетает от кончика удочки и падает в точку заброса
+  bobber.style.transition = 'none';
+  placeBobber(300, 110);
+  void bobber.offsetWidth;
   bobber.style.transition = '';
   placeBobber(200, castVY);
   bigtext.classList.remove('show');
@@ -519,7 +552,8 @@ function releasePower() {
   perfect = castPower >= 0.72 && castPower <= 0.88;
   // дальность: чем сильнее, тем дальше (выше на экране)
   // по картинке пруда: 500 — у ближнего берега, 270 — у дальнего
-  castVY = 500 - castPower * 230;
+  const vr = visRange();
+  castVY = vr.near - castPower * (vr.near - vr.far);
   bobber.style.transition = '';
   placeBobber(200, castVY);
   ripple.style.top = bobY + '%';
@@ -603,7 +637,7 @@ function startBite() {
 function vibrateBite() { haptic('heavy'); }
 
 /* --- 4. Вываживание --- */
-let reel = null, reelRaf = 0, holding = false;
+let reel = null, reelRaf = 0, holding = false, reelTrackW = 0, lastInside = null;
 function startReel() {
   clearTimers();
   state = 'reel';
@@ -616,6 +650,7 @@ function startReel() {
     progress: 0.3, last: performance.now(), nextTurn: 0,
   };
   $('reelZone').style.width = (R.zone * 100) + '%';
+  reelTrackW = 0; lastInside = null;
   $('reelFishImg').src = 'fish/' + current.id + '.svg';
   $('reelMeter').classList.add('show');
   $('prog').classList.add('show');
@@ -652,15 +687,15 @@ function reelTick(t) {
   const inside = reel.fishX >= reel.zoneX && reel.fishX <= reel.zoneX + reel.zoneW;
   reel.progress += (inside ? 0.32 : -0.16 * (save.gear && gearOn('line') ? 0.8 : 1)) * dt;
 
-  $('reelZone').style.left = (reel.zoneX * 100) + '%';
-  $('reelFish').style.left = (reel.fishX * 100) + '%';
-  $('reelFish').style.transform = `translate(-50%,-50%) scaleX(${dir < 0 ? -1 : 1})`;
-  $('reelZone').style.borderColor = inside ? '#7CDC78' : '#F59E0B';
+  if (!reelTrackW) reelTrackW = $('reelMeter').clientWidth || 300;
+  $('reelZone').style.transform = `translate3d(${(reel.zoneX * reelTrackW).toFixed(1)}px,0,0)`;
+  $('reelFish').style.transform = `translate3d(${(reel.fishX * reelTrackW).toFixed(1)}px,0,0) translate(-50%,-50%) scaleX(${dir < 0 ? -1 : 1})`;
+  if (inside !== lastInside) { lastInside = inside; $('reelZone').style.borderColor = inside ? '#7CDC78' : '#F59E0B'; }
   $('progFill').style.width = Math.max(0, Math.min(1, reel.progress)) * 100 + '%';
 
   // поплавок: чем ближе к поимке, тем ближе к берегу; влево-вправо — куда тянет рыба
   const pr = Math.max(0, Math.min(1, reel.progress));
-  const targetY = castVY + (505 - castVY) * pr;
+  const targetY = castVY + (visRange().near - castVY) * pr;
   const targetX = 200 + (reel.fishX - 0.5) * 160;
   placeBobber(bobVX + (targetX - bobVX) * Math.min(1, dt * 4), bobVY + (targetY - bobVY) * Math.min(1, dt * 5));
   setLine(true);
@@ -906,7 +941,7 @@ function refreshProgress() {
   const gb = gbActive(); if (gb) fx.push(`<span class="fx">${gb.icon} ${fmtTime(save.gb.until - gameNow())}</span>`);
   const b = baitActive(); if (b) fx.push(`<span class="fx">${b.icon} ${b.name.replace('Наживка ', '')}: ${save.baitLeft[b.id]}</span>`);
   if (save.passUntil > gameNow()) fx.push('<span class="fx gold">🎫 Пропуск</span>');
-  $('fxBar').innerHTML = fx.join('');
+  const fxh = fx.join(''); if (fxh !== refreshProgress._fx) { refreshProgress._fx = fxh; $('fxBar').innerHTML = fxh; }
 }
 setInterval(() => { if (save && save.level) refreshProgress(); }, 1000);
 
@@ -1145,7 +1180,9 @@ load(() => syncTime().then(() => {
   const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
   toIdle(user && user.first_name ? 'Привет, ' + user.first_name + '!' : 'Привет, рыбак!');
 }));
-window.addEventListener('resize', () => { placeBobber(bobVX, bobVY); if (state === 'waiting' || state === 'bite' || state === 'reel') setLine(true); });
+// сцена меняет размер (панель снизу растёт при вываживании) — пересчитываем позицию поплавка
+try { new ResizeObserver(() => { _sceneMap = null; placeBobber(bobVX, bobVY); if (state === 'waiting' || state === 'bite' || state === 'reel') setLine(true); }).observe($('scene')); } catch (e) {}
+window.addEventListener('resize', () => { _sceneMap = null; placeBobber(bobVX, bobVY); if (state === 'waiting' || state === 'bite' || state === 'reel') setLine(true); });
 </script>
 </body>
 </html>
