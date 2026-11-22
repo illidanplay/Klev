@@ -248,6 +248,9 @@ const JUNK_LIST = [
   { id: 'koryaga', name: 'Коряга',           r: 'junk', min: 0.3, max: 3.0, price: 1 },
 ];
 const JUNK_CHANCE = 0.05;
+
+// ===== ТЕСТ: ловятся только легендарные (золотая рыбка и царь-щука). Чтобы отключить — поставить false =====
+const TEST_ONLY_LEGENDARY = true;
 const BAD_LUCK_LIMIT = 40; // столько забросов без редкой и выше — и следующая гарантированно редкая+
 
 /* ================= Сохранение ================= */
@@ -462,6 +465,7 @@ function startWaiting(msg) {
 /* --- 3. Клёв --- */
 function pickFish() {
   save.casts++;
+  if (TEST_ONLY_LEGENDARY) { const L = FISH.filter(f => f.r === 'legendary'); return L[Math.floor(Math.random() * L.length)]; }
   if (Math.random() < JUNK_CHANCE) return JUNK_LIST[Math.floor(Math.random() * JUNK_LIST.length)];
   const guaranteed = save.sinceRare >= BAD_LUCK_LIMIT;
   let pool = FISH.map(f => {
