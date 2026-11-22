@@ -77,7 +77,22 @@
     .row.tap { cursor: pointer; }
     .row.tap:active { transform: scale(0.98); }
     .row .tx .cnt { display: inline-block; margin: 0 0 0 4px; padding: 1px 7px; border-radius: 9px; background: #2F7BD9; color: #FFFFFF; font-size: 12px; font-weight: 800; vertical-align: 1px; }
-    .card.shop { text-align: left; }
+    .card.shop { text-align: left; background: linear-gradient(180deg, #1C2740 0%, #141C31 100%); color: #EEF2FA; box-shadow: 0 10px 40px rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.08); }
+    .card.shop .tab { background: #243150; color: #C8D2E6; }
+    .card.shop .tab.on { background: #2F7BD9; color: #FFFFFF; }
+    .card.shop .row { background: #243150; }
+    .card.shop .row.act { border-color: #3FA34D; background: #1F3A35; }
+    .card.shop .row .tx span { color: #9AA8C2; }
+    .card.shop .row .tx .st { color: #7CDC78; font-weight: 700; }
+    .card.shop .row .tx .cnt { color: #FFFFFF; }
+    .card.shop .ok { color: #7CDC78; }
+    .card.shop .buy.poor { background: #4A5878; color: #C8D2E6; }
+    .card.shop .buy:disabled { background: #34405E; color: #8A96B0; }
+    .card.shop .buy.off { background: #4A5878; }
+    .card.shop .note { background: #3A3320; color: #FFD98A; }
+    .card.shop .sec { color: #C8D2E6; }
+    .card.shop .empty { color: #9AA8C2; }
+    .btns { display: flex; flex-direction: column; gap: 6px; }
     .card.shop h2 { text-align: center; }
     .state { font-size: 12px; font-weight: 800; color: #2F7BD9; white-space: nowrap; }
     .row.act .state { color: #3FA34D; }
@@ -814,25 +829,27 @@ const LEVEL_REWARDS = {
 };
 const PRED = ['shchuka', 'sudak', 'som', 'tsar_shchuka'];
 const ITEMS = [
-  { id: 'gb_bread', icon: '🍞', name: 'Прикормка «Хлебная»',        cat: 'Прикормки', cur: 'pearl', price: 20,  type: 'gb', minutes: 15, wait: [1000, 2500], desc: '15 минут: поклёвка через 1–2,5 с' },
-  { id: 'gb_kasha', icon: '🥣', name: 'Прикормка «Каша с анисом»',  cat: 'Прикормки', cur: 'pearl', price: 45,  type: 'gb', minutes: 30, wait: [800, 2000],  boost: { uncommon: 1.15 }, desc: '30 минут: поклёвка через 0,8–2 с, необычные +15%' },
-  { id: 'gb_ded',   icon: '🧺', name: 'Прикормка «Дедова фирменная»', cat: 'Прикормки', cur: 'pearl', price: 90, type: 'gb', minutes: 60, wait: [500, 1500], boost: { rare: 1.2, epic: 1.2, legendary: 1.2 }, desc: '60 минут: поклёвка через 0,5–1,5 с, редкие и выше +20%' },
-  { id: 'worm',     icon: '🪱', name: 'Наживка «Червь»',     cat: 'Наживки', cur: 'coin',  price: 7,   type: 'bait', boost: { uncommon: 1.1 }, desc: '10 забросов: необычные клюют на 10% чаще' },
-  { id: 'oparysh',  icon: '🐛', name: 'Наживка «Опарыш»',    cat: 'Наживки', cur: 'coin',  price: 15,  type: 'bait', noJunk: true, desc: '10 забросов: мусор не попадается' },
-  { id: 'kukuruza', icon: '🌽', name: 'Наживка «Кукуруза»',  cat: 'Наживки', cur: 'pearl', price: 30,  type: 'bait', boostIds: { karas_serebr: 2, karas_zolot: 2, karp: 2, karp_zerk: 2 }, desc: '10 забросов: караси и карпы клюют вдвое чаще' },
-  { id: 'motyl',    icon: '🔴', name: 'Наживка «Мотыль»',    cat: 'Наживки', cur: 'pearl', price: 40,  type: 'bait', boost: { rare: 1.5, epic: 1.5, legendary: 1.5 }, desc: '10 забросов: редкие и выше клюют в 1,5 раза чаще' },
-  { id: 'zhivets',  icon: '🐟', name: 'Наживка «Живец»',     cat: 'Наживки', cur: 'pearl', price: 80,  type: 'bait', boost: { common: 0.3 }, boostIds: { shchuka: 2, sudak: 2, som: 2, tsar_shchuka: 2 }, heavy: PRED, desc: '10 забросов: хищник клюёт вдвое чаще и крупнее, мелочь почти не берёт' },
-  { id: 'vypolzok', icon: '🪱', name: 'Наживка «Выползок»',  cat: 'Наживки', cur: 'pearl', price: 120, type: 'bait', boost: { epic: 2, legendary: 2 }, desc: '10 забросов: эпические и легендарные клюют вдвое чаще' },
-  { id: 'line',     icon: '🧵', name: 'Леска «Крепкая»',     cat: 'Снасти', cur: 'coin', price: 50, type: 'gear', desc: 'Навсегда: шкала улова убывает на 20% медленнее' },
-  { id: 'hook',     icon: '🪝', name: 'Крючок «Острый»',     cat: 'Снасти', cur: 'coin', price: 40, type: 'gear', desc: 'Навсегда: на подсечку на 0,3 с больше' },
-  { id: 'energy',   icon: '⚡', name: 'Полная энергия',      cat: 'Энергия', cur: 'pearl', price: 20, type: 'energy', desc: 'Сразу заполняет энергию до максимума. Не чаще раза в сутки' },
-  { id: 'pass',     icon: '🎫', name: 'Рыбацкий пропуск, 30 дней', cat: 'Энергия', cur: 'pearl', price: 600, type: 'pass', desc: 'Каждый день «Мотыль» и «Хлебная» прикормка, монеты ×1,2' },
-  { id: 'fl_pero',  icon: '🪶', name: 'Поплавок «Гусиное перо»', cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Скоро' },
-  { id: 'fl_cork',  icon: '🟤', name: 'Поплавок «Пробковый»',    cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Скоро' },
-  { id: 'fl_glow',  icon: '✨', name: 'Поплавок «Светящийся»',   cat: 'Внешний вид', cur: 'pearl', price: 150, type: 'soon', desc: 'Скоро' },
-  { id: 'rod_dark', icon: '🎋', name: 'Удочка «Тёмный бамбук»',  cat: 'Внешний вид', cur: 'pearl', price: 150, type: 'soon', desc: 'Скоро' },
-  { id: 'rod_glue', icon: '🎋', name: 'Удочка «Клеёная»',        cat: 'Внешний вид', cur: 'pearl', price: 250, type: 'soon', desc: 'Скоро' },
-  { id: 'rod_ded',  icon: '🎋', name: 'Удочка «Дедовская»',      cat: 'Внешний вид', cur: 'pearl', price: 400, type: 'soon', desc: 'Скоро' },
+  { id: 'gb_bread', icon: '🍞', name: 'Прикормка «Хлебная»',          cat: 'Прикормки', cur: 'pearl', price: 20, type: 'gb', minutes: 15, wait: [1000, 2500], desc: '15 минут: поклёвка через 1–2,5 с вместо обычных 1,8–5,3 с' },
+  { id: 'gb_kasha', icon: '🥣', name: 'Прикормка «Каша с анисом»',    cat: 'Прикормки', cur: 'pearl', price: 45, type: 'gb', minutes: 30, wait: [800, 2000],  boost: { uncommon: 1.15 }, desc: '30 минут: поклёвка через 0,8–2 с, необычные виды +15% к шансу клёва' },
+  { id: 'gb_ded',   icon: '🧺', name: 'Прикормка «Дедова фирменная»', cat: 'Прикормки', cur: 'pearl', price: 90, type: 'gb', minutes: 60, wait: [500, 1500],  boost: { rare: 1.2, epic: 1.2, legendary: 1.2 }, desc: '60 минут: поклёвка через 0,5–1,5 с, редкие виды и выше +20% к шансу клёва' },
+  { id: 'worm',     icon: '🪱', name: 'Наживка «Червь»',     cat: 'Наживки', cur: 'coin',  price: 7,   type: 'bait', boost: { uncommon: 1.1 }, desc: '10 забросов: необычные виды +10% к шансу клёва' },
+  { id: 'oparysh',  icon: '🐛', name: 'Наживка «Опарыш»',    cat: 'Наживки', cur: 'coin',  price: 15,  type: 'bait', noJunk: true, desc: '10 забросов: мусор не попадается, всегда клюёт рыба' },
+  { id: 'kukuruza', icon: '🌽', name: 'Наживка «Кукуруза»',  cat: 'Наживки', cur: 'pearl', price: 30,  type: 'bait', boostIds: { karas_serebr: 2, karas_zolot: 2, karp: 2, karp_zerk: 2 }, desc: '10 забросов: карась серебряный, карась золотой, карп и зеркальный карп +100% к шансу клёва' },
+  { id: 'motyl',    icon: '🔴', name: 'Наживка «Мотыль»',    cat: 'Наживки', cur: 'pearl', price: 40,  type: 'bait', boost: { rare: 1.5, epic: 1.5, legendary: 1.5 }, desc: '10 забросов: редкие виды и выше +50% к шансу клёва' },
+  { id: 'zhivets',  icon: '🐟', name: 'Наживка «Живец»',     cat: 'Наживки', cur: 'pearl', price: 80,  type: 'bait', boost: { common: 0.3 }, boostIds: { shchuka: 2, sudak: 2, som: 2, tsar_shchuka: 2 }, heavy: PRED, desc: '10 забросов: щука, судак, сом и царь-щука +100% к шансу клёва и попадаются крупнее; обычные виды −70% к шансу клёва' },
+  { id: 'vypolzok', icon: '🪱', name: 'Наживка «Выползок»',  cat: 'Наживки', cur: 'pearl', price: 120, type: 'bait', boost: { epic: 2, legendary: 2 }, desc: '10 забросов: эпические и легендарные виды +100% к шансу клёва' },
+  { id: 'line',     icon: '🧵', name: 'Леска «Крепкая»',     cat: 'Снасти', cur: 'coin', price: 50, type: 'gear', desc: 'Навсегда, пока надета: когда рыба вне зелёной зоны, шкала улова убывает на 20% медленнее. Не действует в турнирах' },
+  { id: 'hook',     icon: '🪝', name: 'Крючок «Острый»',     cat: 'Снасти', cur: 'coin', price: 40, type: 'gear', desc: 'Навсегда, пока надет: на подсечку на 0,3 с больше. Не действует в турнирах' },
+  { id: 'energy',   icon: '⚡', name: 'Полная энергия',      cat: 'Энергия', cur: 'pearl', price: 20, type: 'energy', desc: 'Сразу заполняет энергию до максимума твоего уровня. Можно купить 1 раз в сутки' },
+  { id: 'pass7',    icon: '🎫', name: 'Рыбацкий пропуск, 7 дней',  cat: 'Энергия', cur: 'pearl', price: 250,  type: 'pass', days: 7,  desc: '7 дней: каждый день 1 «Мотыль» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
+  { id: 'pass14',   icon: '🎫', name: 'Рыбацкий пропуск, 14 дней', cat: 'Энергия', cur: 'pearl', price: 500,  type: 'pass', days: 14, desc: '14 дней: каждый день 1 «Мотыль» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
+  { id: 'pass',     icon: '🎫', name: 'Рыбацкий пропуск, 30 дней', cat: 'Энергия', cur: 'pearl', price: 1000, type: 'pass', days: 30, desc: '30 дней: каждый день 1 «Мотыль» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
+  { id: 'fl_pero',  icon: '🪶', name: 'Поплавок «Гусиное перо»', cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Другой поплавок на воде. Скоро' },
+  { id: 'fl_cork',  icon: '🟤', name: 'Поплавок «Пробковый»',    cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Другой поплавок на воде. Скоро' },
+  { id: 'fl_glow',  icon: '✨', name: 'Поплавок «Светящийся»',   cat: 'Внешний вид', cur: 'pearl', price: 150, type: 'soon', desc: 'Другой поплавок на воде. Скоро' },
+  { id: 'rod_dark', icon: '🎋', name: 'Удочка «Тёмный бамбук»',  cat: 'Внешний вид', cur: 'pearl', price: 150, type: 'soon', desc: 'Другая удочка на экране. Скоро' },
+  { id: 'rod_glue', icon: '🎋', name: 'Удочка «Клеёная»',        cat: 'Внешний вид', cur: 'pearl', price: 250, type: 'soon', desc: 'Другая удочка на экране. Скоро' },
+  { id: 'rod_ded',  icon: '🎋', name: 'Удочка «Дедовская»',      cat: 'Внешний вид', cur: 'pearl', price: 400, type: 'soon', desc: 'Другая удочка на экране, с медными кольцами. Скоро' },
 ];
 const PACKS = [ { name: 'Горсть', stars: 50, pearls: 50 }, { name: 'Кошель', stars: 250, pearls: 250 }, { name: 'Сундук', stars: 500, pearls: 500 }, { name: 'Клад', stars: 1000, pearls: 1000 } ];
 const ITEM = Object.fromEntries(ITEMS.map(i => [i.id, i]));
@@ -843,10 +860,12 @@ function todayStr(d) { d = d || new Date(gameNow()); return d.getFullYear() + '-
 function biteTime() { const h = new Date(gameNow()).getHours(); return BITE_TIMES.find(b => h >= b.from && h < b.to) || null; }
 function gbActive() { return save.gb && save.gb.until > gameNow() ? ITEM[save.gb.id] : null; }
 function baitActive() { return save.bait && save.bait.id && (save.baitLeft[save.bait.id] || 0) > 0 ? ITEM[save.bait.id] : null; }
+function fmtDate(t) { const d = new Date(t); return String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+function passLeft() { const ms = save.passUntil - gameNow(); if (ms <= 0) return ''; return ms >= 86400000 ? Math.ceil(ms / 86400000) + ' дн.' : Math.ceil(ms / 3600000) + ' ч'; }
 function fmtTime(ms) { const s = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
 
 function initProgress() {
-  const d = { level: 1, xp: 0, energy: null, energyTs: gameNow(), pearls: 0, inv: {}, gear: {}, gearOn: {}, energyBuyDay: '', baitLeft: {}, bait: null, gb: null,
+  const d = { level: 1, xp: 0, energy: null, energyTs: gameNow(), pearls: 0, inv: {}, gear: {}, gearOn: {}, gbLeft: {}, energyBuyDay: '', baitLeft: {}, bait: null, gb: null,
               passUntil: 0, passDay: '', streak: { day: '', count: 0 }, flags: {} };
   for (const k in d) if (save[k] === undefined) save[k] = d[k];
   if (save.energy === null) save.energy = maxEnergy(save.level);
@@ -940,7 +959,7 @@ function refreshProgress() {
   const bt = biteTime(); if (bt) fx.push(`<span class="fx gold">☀ ${bt.name}: опыт ×${bt.mult}</span>`);
   const gb = gbActive(); if (gb) fx.push(`<span class="fx">${gb.icon} ${fmtTime(save.gb.until - gameNow())}</span>`);
   const b = baitActive(); if (b) fx.push(`<span class="fx">${b.icon} ${b.name.replace('Наживка ', '')}: ${save.baitLeft[b.id]}</span>`);
-  if (save.passUntil > gameNow()) fx.push('<span class="fx gold">🎫 Пропуск</span>');
+  if (save.passUntil > gameNow()) fx.push('<span class="fx gold">🎫 Пропуск: ' + passLeft() + '</span>');
   const fxh = fx.join(''); if (fxh !== refreshProgress._fx) { refreshProgress._fx = fxh; $('fxBar').innerHTML = fxh; }
 }
 setInterval(() => { if (save && save.level) refreshProgress(); }, 1000);
@@ -964,7 +983,7 @@ function openShop(tab) {
       else if (it.type === 'gear' && save.gear[it.id]) btn = '<button class="buy" disabled>Есть ✓</button>';
       else if (it.type === 'energy' && save.energyBuyDay === todayStr()) btn = '<button class="buy" disabled>Завтра</button>';
       else btn = `<button class="buy${canPay(it) ? '' : ' poor'}" data-buy="${it.id}">${priceTag(it)}</button>`;
-      const have = save.inv[it.id] ? ` · в рюкзаке: ${save.inv[it.id]}` : '';
+      const have = (save.inv[it.id] ? ` · в рюкзаке: ${save.inv[it.id]}` : '') + (it.type === 'pass' && save.passUntil > gameNow() ? `<br><b class="ok">Твой пропуск активен до ${fmtDate(save.passUntil)} (осталось ${passLeft()})</b>` : '');
       return `<div class="row"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${it.desc}${have}</span></div>${btn}</div>`;
     }).join('');
   }
@@ -978,37 +997,48 @@ function buy(id) {
   if (it.cur === 'coin') save.coins = Math.round((save.coins - it.price) * 100) / 100; else save.pearls -= it.price;
   if (it.type === 'gear') { save.gear[id] = true; toast(it.name + ' — теперь твоя'); }
   else if (it.type === 'energy') { save.energyBuyDay = todayStr(); updateEnergy(); save.energy = Math.max(save.energy, maxEnergy(save.level)); toast('Энергия полная!'); }
-  else if (it.type === 'pass') { save.passUntil = Math.max(gameNow(), save.passUntil) + 30 * 86400000; save.passDay = ''; dailyCheck(); toast('Пропуск активен на 30 дней'); }
+  else if (it.type === 'pass') { save.passUntil = Math.max(gameNow(), save.passUntil) + it.days * 86400000; save.passDay = ''; dailyCheck(); toast('Пропуск активен до ' + fmtDate(save.passUntil)); }
   else { save.inv[id] = (save.inv[id] || 0) + 1; toast(it.name + ' — в рюкзаке'); }
   haptic('success'); persist(); refreshTop(); refreshProgress(); openShop();
 }
 
 /* --- рюкзак --- */
-// показываем только то, что есть; нажатие на строку — активировать / снять
 function gearOn(id) { return save.gear[id] && save.gearOn[id] !== false; }
+function gbLeftMs(id) { return (save.gbLeft && save.gbLeft[id]) || 0; }
+function btn(label, act, cls) { return `<button class="buy${cls ? ' ' + cls : ''}" data-act="${act}">${label}</button>`; }
 function openBag() {
+  if (!save.gbLeft) save.gbLeft = {};
   const rows = [];
   const badge = (n) => n > 0 ? `<span class="cnt">×${n}</span>` : '';
+  const row = (it, on, n, status, buttons) =>
+    `<div class="row${on ? ' act' : ''}"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name} ${badge(n)}</b><span>${it.desc}</span>${status ? `<span class="st">${status}</span>` : ''}</div><div class="btns">${buttons}</div></div>`;
+  // пропуск
+  if (save.passUntil > gameNow()) {
+    rows.push('<div class="sec">Пропуск</div>');
+    rows.push(`<div class="row act"><div class="ic">🎫</div><div class="tx"><b>Рыбацкий пропуск</b><span>Каждый день 1 «Мотыль» и 1 прикормка «Хлебная», монеты за улов ×1,2</span><span class="st">Активен до ${fmtDate(save.passUntil)} · осталось ${passLeft()}</span></div></div>`);
+  }
   // прикормки
   const gbA = gbActive();
-  const gbs = ITEMS.filter(it => it.type === 'gb' && ((save.inv[it.id] || 0) > 0 || (gbA && gbA.id === it.id)));
+  const gbs = ITEMS.filter(it => it.type === 'gb' && ((save.inv[it.id] || 0) > 0 || (gbA && gbA.id === it.id) || gbLeftMs(it.id) > 0));
   rows.push('<div class="sec">Прикормки</div>');
   if (!gbs.length) rows.push('<div class="empty">Нет прикормки. Купи в магазине 🛒</div>');
   gbs.forEach(it => {
-    const on = gbA && gbA.id === it.id, n = save.inv[it.id] || 0;
-    const st = on ? `Действует ещё ${fmtTime(save.gb.until - gameNow())}` + (n ? ' · нажми, чтобы продлить' : '') : it.desc;
-    const act = n ? `data-act="gb:${it.id}"` : '';
-    rows.push(`<div class="row tap${on ? ' act' : ''}" ${act}><div class="ic">${it.icon}</div><div class="tx"><b>${it.name} ${badge(n)}</b><span>${st}</span></div><span class="state">${on ? 'Активна' : 'Высыпать'}</span></div>`);
+    const on = gbA && gbA.id === it.id, n = save.inv[it.id] || 0, paused = gbLeftMs(it.id);
+    let st = '', b = '';
+    if (on) { st = 'Действует ещё ' + fmtTime(save.gb.until - gameNow()); b = (n ? btn('Продлить', 'gb:' + it.id) : '') + btn('Снять', 'gboff:' + it.id, 'off'); }
+    else if (paused) { st = 'Снята, осталось ' + fmtTime(paused); b = btn('Высыпать', 'gb:' + it.id); }
+    else b = btn('Высыпать', 'gb:' + it.id);
+    rows.push(row(it, on, n, st, b));
   });
   // наживки
   const bA = baitActive();
   const baits = ITEMS.filter(it => it.type === 'bait' && ((save.inv[it.id] || 0) > 0 || (save.baitLeft[it.id] || 0) > 0));
   rows.push('<div class="sec">Наживки</div>');
-  if (!baits.length) rows.push('<div class="empty">Нет наживки — ловишь на простого червя. Купи в магазине 🛒</div>');
+  if (!baits.length) rows.push('<div class="empty">Нет наживки — ловишь на простую. Купи в магазине 🛒</div>');
   baits.forEach(it => {
     const on = bA && bA.id === it.id, n = save.inv[it.id] || 0, left = save.baitLeft[it.id] || 0;
-    const st = (left ? `На крючке: ${left} забросов` : 'Пачка на 10 забросов') + (on ? '' : ' · ' + it.desc.replace('10 забросов: ', ''));
-    rows.push(`<div class="row tap${on ? ' act' : ''}" data-act="bait:${it.id}"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name} ${badge(n)}</b><span>${st}</span></div><span class="state">${on ? 'Насажена' : 'Насадить'}</span></div>`);
+    const st = on ? `На крючке: осталось ${left} забросов` : (left ? `Снята, осталось ${left} забросов` : '');
+    rows.push(row(it, on, n, st, on ? btn('Снять', 'baitoff:' + it.id, 'off') : btn('Насадить', 'bait:' + it.id)));
   });
   // снасти
   const gear = ITEMS.filter(it => it.type === 'gear' && save.gear[it.id]);
@@ -1016,27 +1046,34 @@ function openBag() {
   if (!gear.length) rows.push('<div class="empty">Пока простая снасть. Леска и крючок есть в магазине 🛒</div>');
   gear.forEach(it => {
     const on = gearOn(it.id);
-    rows.push(`<div class="row tap${on ? ' act' : ''}" data-act="gear:${it.id}"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div><span class="state">${on ? 'Надета' : 'Надеть'}</span></div>`);
+    rows.push(row(it, on, 0, on ? 'Надета' : 'Снята', on ? btn('Снять', 'gear:' + it.id, 'off') : btn('Надеть', 'gear:' + it.id)));
   });
   $('bagList').innerHTML = rows.join('');
   $('bagModal').classList.add('show');
 }
 let confirmReplace = null;
+function pauseGb() {
+  const cur = gbActive();
+  if (cur) { save.gbLeft[cur.id] = save.gb.until - gameNow(); }
+  save.gb = null;
+}
 function useGb(id) {
-  if (!save.inv[id]) return;
+  if (!save.gbLeft) save.gbLeft = {};
   const it = ITEM[id], cur = gbActive();
-  if (cur && cur.id === id) { save.inv[id]--; save.gb.until += it.minutes * 60000; toast(it.name + ': +' + it.minutes + ' минут'); }
-  else {
-    if (cur && confirmReplace !== id) { confirmReplace = id; toast('Сейчас действует «' + cur.name.replace('Прикормка ', '') + '». Нажми ещё раз, чтобы заменить'); return; }
-    confirmReplace = null;
-    save.inv[id]--; save.gb = { id, until: gameNow() + it.minutes * 60000 };
-    toast(it.name + ' — клюёт быстрее!');
+  if (cur && cur.id === id) {                       // продлить действующую
+    if (!save.inv[id]) return;
+    save.inv[id]--; save.gb.until += it.minutes * 60000; toast(it.name + ': +' + it.minutes + ' минут');
+  } else {
+    if (cur) pauseGb();                            // другая прикормка не сгорает — ставится на паузу
+    if (gbLeftMs(id) > 0) { save.gb = { id, until: gameNow() + save.gbLeft[id] }; save.gbLeft[id] = 0; toast(it.name + ' — снова действует'); }
+    else { if (!save.inv[id]) return; save.inv[id]--; save.gb = { id, until: gameNow() + it.minutes * 60000 }; toast(it.name + ' — клюёт быстрее!'); }
   }
   haptic('light'); persist(); refreshProgress(); openBag();
 }
+function gbOff() { if (!save.gbLeft) save.gbLeft = {}; pauseGb(); toast('Прикормка снята, оставшееся время сохранено'); haptic('light'); persist(); refreshProgress(); openBag(); }
 function toggleBait(id) {
   const cur = baitActive();
-  if (cur && cur.id === id) { save.bait = null; toast('Наживка снята'); }
+  if (cur && cur.id === id) { save.bait = null; toast('Наживка снята, остаток забросов сохранён'); }
   else {
     if (!(save.baitLeft[id] > 0)) { if (!save.inv[id]) return; save.inv[id]--; save.baitLeft[id] = 10; }
     save.bait = { id }; toast(ITEM[id].name + ' на крючке');
@@ -1126,7 +1163,8 @@ $('shopList').addEventListener('click', (e) => {
 $('bagList').addEventListener('click', (e) => {
   const r = e.target.closest('[data-act]'); if (!r) return;
   const [kind, id] = r.dataset.act.split(':');
-  if (kind === 'gb') useGb(id); else if (kind === 'bait') toggleBait(id); else if (kind === 'gear') toggleGear(id);
+  if (kind === 'gb') useGb(id); else if (kind === 'gboff') gbOff();
+  else if (kind === 'bait' || kind === 'baitoff') toggleBait(id); else if (kind === 'gear') toggleGear(id);
 });
 $('energy').parentElement.parentElement.addEventListener('click', () => openShop('Энергия'));
 
