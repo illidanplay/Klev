@@ -41,6 +41,23 @@
     #bobber.bob svg { animation: bob 1.6s ease-in-out infinite; }
     #bobber.nibble svg { animation: nibble 0.35s ease-in-out 2; }
     #bobber.bite svg { animation: bite 0.25s ease-in-out infinite; }
+    #bobber.reel svg { animation: reelshake 0.32s ease-in-out infinite; }
+    @keyframes reelshake { 0%,100% { transform: translateY(14px) rotate(-16deg); } 50% { transform: translateY(19px) rotate(-6deg); } }
+    .rip {
+      position: absolute; border-radius: 50%; border: 2.5px solid rgba(255,255,255,0.85);
+      transform: translate(-50%, -50%) scale(0.25); opacity: 0; pointer-events: none;
+      animation: rip 1.2s ease-out forwards;
+    }
+    @keyframes rip { 0% { opacity: 0.9; transform: translate(-50%,-50%) scale(0.25); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1); } }
+    .drop {
+      position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #EAF8FF;
+      pointer-events: none; animation: drop 0.55s ease-out forwards;
+    }
+    @keyframes drop {
+      0% { transform: translate(-50%,-50%); opacity: 1; }
+      60% { transform: translate(calc(-50% + var(--dx) * 0.7), calc(-50% + var(--dy))); opacity: 1; }
+      100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) * 0.3)); opacity: 0; }
+    }
     @keyframes bob { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(4px) rotate(3deg); } }
     @keyframes nibble { 0%,100% { transform: translateY(0); } 50% { transform: translateY(9px); } }
     @keyframes bite { 0%,100% { transform: translateY(20px) rotate(-12deg); } 50% { transform: translateY(28px) rotate(10deg); } }
@@ -108,6 +125,7 @@
     .card h2 { font-size: 24px; }
     .card .w { font-size: 18px; color: #3A4A55; margin-top: 4px; }
     .card .rew { margin-top: 8px; font-size: 16px; font-weight: 700; color: #B57A00; }
+    .card .troph { display: none; margin-top: 6px; font-size: 16px; font-weight: 900; color: #FFFFFF; background: #3FA34D; border-radius: 12px; padding: 6px 12px; }
     .card .rec { margin-top: 4px; font-size: 14px; font-weight: 700; color: #3FA34D; min-height: 18px; }
     .card button.main { margin-top: 16px; width: 100%; padding: 16px; border: none; border-radius: 14px; font-size: 18px; font-weight: 800; color: #FFFFFF; background: #2F7BD9; box-shadow: 0 4px 0 #1F5AA6; cursor: pointer; }
 
@@ -120,6 +138,8 @@
     .cell.locked img { filter: brightness(0); opacity: 0.25; }
     .cell .n { font-size: 14px; font-weight: 700; margin-top: 4px; }
     .cell .b { font-size: 12px; color: #7A8A95; }
+    .cell .t { margin-top: 5px; font-size: 12px; font-weight: 700; color: #7A8A95; background: #E6EEF2; border-radius: 8px; padding: 3px 4px; }
+    .cell .t.done { color: #FFFFFF; background: #3FA34D; }
   </style>
 </head>
 <body>
@@ -210,6 +230,7 @@
       <div class="w" id="cWeight">0,8 кг</div>
       <div class="rew" id="cReward">+10 монет</div>
       <div class="rec" id="cRecord"></div>
+      <div class="troph" id="cTrophy">🏆 ТРОФЕЙ!</div>
       <button class="main" id="cAgain">Забросить ещё</button>
     </div>
   </div>
@@ -231,23 +252,23 @@ const RARITY = {
   common:    { name: 'Обычная',     color: '#8A8F98', zone: 0.34, speed: 0.22, chaos: 0.5 },
   uncommon:  { name: 'Необычная',   color: '#3FA34D', zone: 0.30, speed: 0.30, chaos: 0.7 },
   rare:      { name: 'Редкая',      color: '#2F7BD9', zone: 0.26, speed: 0.38, chaos: 0.9 },
-  epic:      { name: 'Эпическая',   color: '#8B4FD6', zone: 0.25, speed: 0.40, chaos: 1.0 },
-  legendary: { name: 'Легендарная', color: '#E3A008', zone: 0.25, speed: 0.42, chaos: 1.05 },
+  epic:      { name: 'Эпическая',   color: '#8B4FD6', zone: 0.24, speed: 0.43, chaos: 1.05 },
+  legendary: { name: 'Легендарная', color: '#E3A008', zone: 0.23, speed: 0.48, chaos: 1.18 },
 };
 
 // chance — относительный шанс, min/max — вес в кг, price — монет за кг (минимум 1)
 const FISH = [
-  { id: 'karas',    name: 'Карась',         r: 'common',    chance: 20, min: 0.2, max: 1.2, price: 10 },
-  { id: 'plotva',   name: 'Плотва',         r: 'common',    chance: 20, min: 0.1, max: 0.6, price: 14 },
-  { id: 'okun',     name: 'Окунь',          r: 'common',    chance: 20, min: 0.1, max: 1.5, price: 12 },
-  { id: 'leshch',   name: 'Лещ',            r: 'uncommon',  chance: 12, min: 0.5, max: 3.0, price: 12 },
-  { id: 'lin',      name: 'Линь',           r: 'uncommon',  chance: 12, min: 0.4, max: 2.5, price: 14 },
-  { id: 'sudak',    name: 'Судак',          r: 'rare',      chance: 4,  min: 1.0, max: 6.0, price: 15 },
-  { id: 'shchuka',  name: 'Щука',           r: 'rare',      chance: 4,  min: 1.0, max: 8.0, price: 12 },
-  { id: 'forel',    name: 'Форель',         r: 'rare',      chance: 3,  min: 0.5, max: 4.0, price: 20 },
-  { id: 'som',      name: 'Сом',            r: 'epic',      chance: 2,  min: 5.0, max: 40,  price: 6 },
-  { id: 'osetr',    name: 'Осётр',          r: 'epic',      chance: 2,  min: 3.0, max: 25,  price: 9 },
-  { id: 'zolotaya', name: 'Золотая рыбка',  r: 'legendary', chance: 1,  min: 0.1, max: 0.5, price: 600 },
+  { id: 'karas',    name: 'Карась',         r: 'common',    chance: 20, min: 0.2, max: 1.2, price: 10, trophy: 1.0 },
+  { id: 'plotva',   name: 'Плотва',         r: 'common',    chance: 20, min: 0.1, max: 0.6, price: 14, trophy: 0.5 },
+  { id: 'okun',     name: 'Окунь',          r: 'common',    chance: 20, min: 0.1, max: 1.5, price: 12, trophy: 1.2 },
+  { id: 'leshch',   name: 'Лещ',            r: 'uncommon',  chance: 12, min: 0.5, max: 3.0, price: 12, trophy: 2.5 },
+  { id: 'lin',      name: 'Линь',           r: 'uncommon',  chance: 12, min: 0.4, max: 2.5, price: 14, trophy: 2.0 },
+  { id: 'sudak',    name: 'Судак',          r: 'rare',      chance: 4,  min: 1.0, max: 6.0, price: 15, trophy: 5 },
+  { id: 'shchuka',  name: 'Щука',           r: 'rare',      chance: 4,  min: 1.0, max: 8.0, price: 12, trophy: 7 },
+  { id: 'forel',    name: 'Форель',         r: 'rare',      chance: 3,  min: 0.5, max: 4.0, price: 20, trophy: 3.5 },
+  { id: 'som',      name: 'Сом',            r: 'epic',      chance: 2,  min: 5.0, max: 40,  price: 6, trophy: 25 },
+  { id: 'osetr',    name: 'Осётр',          r: 'epic',      chance: 2,  min: 3.0, max: 25,  price: 9, trophy: 18 },
+  { id: 'zolotaya', name: 'Золотая рыбка',  r: 'legendary', chance: 1,  min: 0.1, max: 0.5, price: 600, trophy: 0.4 },
 ];
 const JUNK = { id: 'sapog', name: 'Старый сапог', r: 'junk', min: 1.0, max: 1.6, price: 1 };
 const JUNK_CHANCE = 0.05;
@@ -290,6 +311,7 @@ function haptic(kind) {
     else tg.HapticFeedback.impactOccurred(kind);
   } catch (e) {}
 }
+function fmtTrophy(w) { return String(Math.round(w * 100) / 100).replace('.', ',') + ' кг'; }
 function fmtKg(w) { return (w < 10 ? w.toFixed(2) : w.toFixed(1)).replace('.', ',') + ' кг'; }
 function plural(n, a, b, c) { n = Math.abs(n) % 100; const n1 = n % 10; if (n > 10 && n < 20) return c; if (n1 > 1 && n1 < 5) return b; if (n1 === 1) return a; return c; }
 
@@ -312,6 +334,49 @@ function setLine(show) {
   p.setAttribute('d', `M300 90 Q${(300 + bx) / 2} ${Math.max(by, 90) - 10} ${bx} ${by}`);
 }
 
+/* ================= Вода: круги и брызги ================= */
+let bobX = 50, bobY = 60, castY = 60;
+function placeBobber(x, y) {
+  bobX = x; bobY = y;
+  bobber.style.left = x + '%';
+  bobber.style.top = y + '%';
+}
+// чем дальше поплавок (выше на экране), тем меньше круги — перспектива
+function depthScale() { return Math.max(0.45, Math.min(1.15, 0.45 + (bobY - 40) / 45)); }
+function spawnRipple(size, dur) {
+  const k = depthScale();
+  const r = document.createElement('div');
+  r.className = 'rip';
+  r.style.left = bobX + '%'; r.style.top = bobY + '%';
+  r.style.width = (size * k) + 'px'; r.style.height = (size * k * 0.24) + 'px';
+  r.style.animationDuration = dur + 'ms';
+  $('scene').appendChild(r);
+  setTimeout(() => r.remove(), dur + 60);
+}
+function splash(n, power) {
+  const k = depthScale();
+  for (let i = 0; i < n; i++) {
+    const d = document.createElement('div');
+    d.className = 'drop';
+    d.style.left = bobX + '%'; d.style.top = bobY + '%';
+    const sz = (3 + Math.random() * 4) * k;
+    d.style.width = sz + 'px'; d.style.height = sz + 'px';
+    d.style.setProperty('--dx', ((Math.random() - 0.5) * 60 * power * k) + 'px');
+    d.style.setProperty('--dy', (-(12 + Math.random() * 26) * power * k) + 'px');
+    $('scene').appendChild(d);
+    setTimeout(() => d.remove(), 600);
+  }
+}
+// фоновый цикл: вода реагирует на поплавок в зависимости от этапа
+let waterAcc = 0;
+setInterval(() => {
+  waterAcc += 100;
+  if (state === 'waiting' && waterAcc >= 1500) { waterAcc = 0; spawnRipple(95, 1600); }
+  else if (state === 'bite' && waterAcc >= 250) { waterAcc = 0; spawnRipple(135, 900); splash(4, 1); }
+  else if (state === 'reel' && waterAcc >= 300) { waterAcc = 0; spawnRipple(115, 900); if (Math.random() < 0.6) splash(3, 0.8); }
+  else if (state === 'idle' || state === 'power' || state === 'result') { if (waterAcc > 2000) waterAcc = 0; }
+}, 100);
+
 /* ================= Игра ================= */
 let state = 'idle';
 let timers = [];
@@ -331,6 +396,8 @@ function toIdle(msg, subMsg) {
   clearTimers();
   state = 'idle';
   bobber.className = '';
+  bobber.style.transition = '';
+  placeBobber(50, castY);
   bigtext.classList.remove('show');
   setLine(false);
   $('powerMeter').classList.remove('show');
@@ -365,12 +432,16 @@ function releasePower() {
   perfect = castPower >= 0.72 && castPower <= 0.88;
   // дальность: чем сильнее, тем дальше (выше на экране)
   const top = 82 - castPower * 40;   // % высоты сцены
-  bobber.style.top = top + '%';
+  castY = top;
+  bobber.style.transition = '';
+  placeBobber(50, top);
   ripple.style.top = top + '%';
+  ripple.style.left = '50%';
   bobber.className = 'show';
   haptic('light');
   later(() => {
     ripple.classList.remove('go'); void ripple.offsetWidth; ripple.classList.add('go');
+    splash(6, 1);
     bobber.className = 'show bob';
     setLine(true);
   }, 450);
@@ -388,7 +459,7 @@ function startWaiting(msg) {
   // ложные поклёвки
   const nibbles = Math.floor(Math.random() * 3);
   for (let i = 0; i < nibbles; i++) {
-    later(() => { if (state === 'waiting') { bobber.className = 'show nibble'; haptic('light'); later(() => { if (state === 'waiting') bobber.className = 'show bob'; }, 750); } },
+    later(() => { if (state === 'waiting') { bobber.className = 'show nibble'; haptic('light'); spawnRipple(60, 900); splash(2, 0.5); later(() => { if (state === 'waiting') bobber.className = 'show bob'; }, 750); } },
           600 + Math.random() * (wait - 1200));
   }
   later(startBite, wait);
@@ -414,6 +485,8 @@ function pickFish() {
 function startBite() {
   state = 'bite';
   current = pickFish();
+  $('reelFishImg').src = 'fish/' + current.id + '.svg';
+  $('cImg').src = 'fish/' + current.id + '.svg';
   bobber.className = 'show bite';
   bigtext.textContent = 'КЛЮЁТ!';
   bigtext.classList.add('show');
@@ -428,8 +501,10 @@ function startBite() {
 // Вибрация при поклёвке: серия сильных толчков, пока рыба на крючке
 function vibrateBite() {
   try { if (navigator.vibrate) navigator.vibrate([180, 70, 180, 70, 260]); } catch (e) {}
-  const pulse = () => { if (state === 'bite') { haptic('heavy'); later(pulse, 160); } };
-  pulse();
+  haptic('warning');
+  let n = 0;
+  const pulse = () => { if (state === 'bite' && n < 8) { n++; haptic(n % 2 ? 'heavy' : 'rigid'); later(pulse, 120); } };
+  later(pulse, 120);
 }
 
 /* --- 4. Вываживание --- */
@@ -450,6 +525,9 @@ function startReel() {
   $('reelFishImg').src = 'fish/' + current.id + '.svg';
   $('reelMeter').classList.add('show');
   $('prog').classList.add('show');
+  bobber.className = 'show reel';
+  bobber.style.transition = 'none';
+  splash(8, 1.2);
   status.textContent = 'Тащи!';
   sub.textContent = 'Держи кнопку — зона вправо, отпусти — влево. Держи рыбу в зелёной зоне';
   setButton('Держи', 'green');
@@ -478,13 +556,20 @@ function reelTick(t) {
   if (reel.zoneX > 1 - reel.zoneW) { reel.zoneX = 1 - reel.zoneW; reel.zoneV = Math.min(0, reel.zoneV) * 0.3; }
 
   const inside = reel.fishX >= reel.zoneX && reel.fishX <= reel.zoneX + reel.zoneW;
-  reel.progress += (inside ? 0.34 : -0.15) * dt;
+  reel.progress += (inside ? 0.32 : -0.16) * dt;
 
   $('reelZone').style.left = (reel.zoneX * 100) + '%';
   $('reelFish').style.left = (reel.fishX * 100) + '%';
   $('reelFish').style.transform = `translate(-50%,-50%) scaleX(${dir < 0 ? -1 : 1})`;
   $('reelZone').style.borderColor = inside ? '#7CDC78' : '#F59E0B';
   $('progFill').style.width = Math.max(0, Math.min(1, reel.progress)) * 100 + '%';
+
+  // поплавок: чем ближе к поимке, тем ближе к берегу; влево-вправо — куда тянет рыба
+  const pr = Math.max(0, Math.min(1, reel.progress));
+  const targetY = castY + (90 - castY) * pr;
+  const targetX = 50 + (reel.fishX - 0.5) * 40;
+  placeBobber(bobX + (targetX - bobX) * Math.min(1, dt * 4), bobY + (targetY - bobY) * Math.min(1, dt * 5));
+  setLine(true);
 
   if (reel.progress >= 1) { cancelAnimationFrame(reelRaf); caught(); return; }
   if (reel.progress <= 0) { cancelAnimationFrame(reelRaf); escaped('Рыба сорвалась!'); return; }
@@ -527,6 +612,10 @@ function caught() {
   $('cName').textContent = f.name;
   $('cWeight').textContent = fmtKg(w);
   $('cReward').textContent = '+' + reward + ' ' + plural(reward, 'монета', 'монеты', 'монет');
+  const isTrophy = isFish && f.trophy && w >= f.trophy;
+  const firstTrophy = isTrophy && !(prev && prev.best >= f.trophy);
+  $('cTrophy').style.display = isTrophy ? 'inline-block' : 'none';
+  $('cTrophy').textContent = firstTrophy ? '🏆 ТРОФЕЙ ЗАКРЫТ!' : '🏆 ТРОФЕЙ!';
   $('cRecord').textContent = isRecord ? 'Новый личный рекорд!' : (f.r === 'junk' ? 'Ну хоть не пусто 🙂' : '');
   $('catchModal').classList.add('show');
   toIdle('Готов к забросу');
@@ -567,11 +656,13 @@ function openAlbum() {
     el.style.borderColor = c ? R.color : 'transparent';
     el.innerHTML = `<img src="fish/${f.id}.svg" alt=""><div class="n">${c ? f.name : '???'}</div>` +
       `<div class="b" style="color:${R.color}">${R.name}</div>` +
-      (c ? `<div class="b">Рекорд: ${fmtKg(c.best)} · поймано ${c.count}</div>` : '');
+      (c ? `<div class="b">Рекорд: ${fmtKg(c.best)} · поймано ${c.count}</div>` : '') +
+      `<div class="t${c && c.best >= f.trophy ? ' done' : ''}">${c && c.best >= f.trophy ? '✓ ' : '🏆 '}Трофей: ${fmtTrophy(f.trophy)}</div>`;
     grid.appendChild(el);
   });
   const n = FISH.filter(f => save.caught[f.id]).length;
-  $('albumInfo').textContent = 'Собрано ' + n + ' из ' + FISH.length;
+  const tr = FISH.filter(f => save.caught[f.id] && save.caught[f.id].best >= f.trophy).length;
+  $('albumInfo').textContent = 'Собрано ' + n + ' из ' + FISH.length + ' · Трофеев ' + tr + ' из ' + FISH.length;
   $('albumModal').classList.add('show');
 }
 $('albumBtn').addEventListener('click', openAlbum);
@@ -584,8 +675,14 @@ if (tg) {
   try { tg.setHeaderColor('#FFFFFF'); tg.setBackgroundColor('#CFEAF7'); } catch (e) {}
   try { tg.disableVerticalSwipes && tg.disableVerticalSwipes(); } catch (e) {}
 }
-// предзагрузка картинок
-FISH.concat([JUNK]).forEach(f => { const i = new Image(); i.src = 'fish/' + f.id + '.svg'; });
+// предзагрузка картинок: держим их в памяти и заранее декодируем, чтобы рыба появлялась мгновенно
+const IMG_CACHE = {};
+FISH.concat([JUNK]).forEach(f => {
+  const i = new Image();
+  i.src = 'fish/' + f.id + '.svg';
+  if (i.decode) i.decode().catch(() => {});
+  IMG_CACHE[f.id] = i;
+});
 
 load(() => {
   refreshTop();
