@@ -417,18 +417,26 @@ function startBite() {
   bobber.className = 'show bite';
   bigtext.textContent = 'КЛЮЁТ!';
   bigtext.classList.add('show');
-  haptic('heavy');
+  vibrateBite();
   status.textContent = 'Клюёт! Подсекай!';
   sub.textContent = '';
   setButton('ПОДСЕЧЬ!', 'hot');
-  const windowMs = current.r === 'legendary' || current.r === 'epic' ? 900 : 1100;
+  const windowMs = 1000 + Math.random() * 1000;   // каждый раз случайно: от 1 до 2 секунд
   later(() => { if (state === 'bite') escaped('Не успел подсечь…'); }, windowMs);
+}
+
+// Вибрация при поклёвке: серия сильных толчков, пока рыба на крючке
+function vibrateBite() {
+  try { if (navigator.vibrate) navigator.vibrate([180, 70, 180, 70, 260]); } catch (e) {}
+  const pulse = () => { if (state === 'bite') { haptic('heavy'); later(pulse, 160); } };
+  pulse();
 }
 
 /* --- 4. Вываживание --- */
 let reel = null, reelRaf = 0, holding = false;
 function startReel() {
   clearTimers();
+  try { if (navigator.vibrate) navigator.vibrate(0); } catch (e) {}
   state = 'reel';
   bigtext.classList.remove('show');
   haptic('medium');
