@@ -29,6 +29,45 @@
     .chip button { all: unset; cursor: pointer; display: flex; align-items: center; gap: 6px; }
     .coin { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFE58A, #E3A008); border: 2px solid #B57A00; }
 
+    .top { flex-wrap: wrap; gap: 6px; padding: 8px 10px; }
+    .toprow { display: flex; width: 100%; gap: 6px; align-items: center; }
+    .lvlbox { flex: 1; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border-radius: 20px; padding: 4px 10px 4px 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+    .lvl { min-width: 30px; height: 30px; border-radius: 15px; background: #2F7BD9; color: #FFF; font-weight: 900; display: flex; align-items: center; justify-content: center; font-size: 14px; padding: 0 6px; }
+    .xpwrap { flex: 1; }
+    .xpbar { height: 8px; border-radius: 4px; background: #E6EEF2; overflow: hidden; }
+    #xpFill { height: 100%; width: 0; background: linear-gradient(90deg, #7CC6E8, #2F7BD9); transition: width 0.4s; }
+    #xpText { font-size: 11px; color: #7A8A95; margin-top: 2px; }
+    .chip.en { flex-direction: column; align-items: flex-start; gap: 0; padding: 4px 12px; }
+    .chip.en small { font-size: 10px; color: #7A8A95; font-weight: 600; min-height: 12px; }
+    .chip button.ib { font-size: 18px; }
+    .pearl { display: inline-block; width: 16px; height: 16px; border-radius: 50%; vertical-align: -3px; background: radial-gradient(circle at 35% 30%, #FFFFFF, #F3E6F0 45%, #C9B3C8); border: 1.5px solid #9C8AA0; }
+    .pearl.big { width: 30px; height: 30px; }
+    .sp { flex: 1; }
+    #fxBar { position: absolute; left: 8px; top: 8px; right: 8px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 1; pointer-events: none; }
+    .fx { background: rgba(255,255,255,0.88); border-radius: 12px; padding: 3px 9px; font-size: 12px; font-weight: 700; color: #3A4A55; }
+    .fx.gold { background: #FFE9A8; color: #7A5200; }
+    #toast { position: fixed; left: 50%; top: 92px; transform: translate(-50%, -10px); background: rgba(20,30,40,0.9); color: #FFF; padding: 10px 16px; border-radius: 14px; font-size: 14px; font-weight: 600; opacity: 0; transition: all 0.25s; z-index: 30; max-width: 90%; text-align: center; pointer-events: none; }
+    #toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .shop { max-height: 88vh; display: flex; flex-direction: column; text-align: left; }
+    .shop h2 { text-align: center; margin-bottom: 8px; }
+    .tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; }
+    .tab { flex: none; border: none; border-radius: 14px; padding: 7px 12px; background: #EEF3F6; font-weight: 700; font-size: 13px; color: #3A4A55; }
+    .tab.on { background: #2F7BD9; color: #FFF; }
+    .list { overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+    .row { display: flex; align-items: center; gap: 10px; background: #F5F8FA; border-radius: 14px; padding: 10px; border: 2px solid transparent; }
+    .row.act { border-color: #3FA34D; background: #EEF8EF; }
+    .row .ic { font-size: 26px; width: 36px; text-align: center; }
+    .row .tx { flex: 1; display: flex; flex-direction: column; font-size: 14px; }
+    .row .tx span { font-size: 12px; color: #6A7A85; margin-top: 2px; }
+    .buy { border: none; border-radius: 12px; padding: 9px 12px; background: #2F7BD9; color: #FFF; font-weight: 800; font-size: 14px; white-space: nowrap; }
+    .buy.poor { background: #B7C3CC; }
+    .buy:disabled { background: #D6DEE3; color: #7A8A95; }
+    .note { font-size: 13px; color: #7A5200; background: #FFF4D6; border-radius: 12px; padding: 8px 10px; margin-bottom: 4px; }
+    .sec { font-weight: 800; font-size: 14px; margin-top: 6px; color: #3A4A55; }
+    .empty { font-size: 13px; color: #7A8A95; padding: 4px 2px; }
+    #luBody div { font-size: 17px; font-weight: 700; margin-top: 8px; }
+    .cxp { margin-top: 4px; font-size: 13px; color: #2F7BD9; font-weight: 700; }
+
     /* ---------- сцена ---------- */
     .scene { position: relative; flex: 1; overflow: hidden; }
     .scene svg.bg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -145,11 +184,22 @@
 <body>
 
   <div class="top">
-    <div class="chip"><div class="coin"></div><span id="coins">0</span></div>
-    <div class="chip"><button id="albumBtn">📖 <span id="albumCount">0/15</span></button></div>
+    <div class="toprow">
+      <div class="lvlbox"><div class="lvl" id="lvl">1</div><div class="xpwrap"><div class="xpbar"><div id="xpFill"></div></div><div id="xpText">0/10</div></div></div>
+      <div class="chip en"><span>⚡ <span id="energy">25/25</span></span><small id="energyTimer"></small></div>
+    </div>
+    <div class="toprow">
+      <div class="chip"><div class="coin"></div><span id="coins">0</span></div>
+      <div class="chip"><span class="pearl"></span><span id="pearls">0</span></div>
+      <div class="sp"></div>
+      <div class="chip"><button class="ib" id="bagBtn">🎒</button></div>
+      <div class="chip"><button class="ib" id="shopBtn">🛒</button></div>
+      <div class="chip"><button id="albumBtn">📖 <span id="albumCount">0/15</span></button></div>
+    </div>
   </div>
 
   <div class="scene" id="scene">
+    <div id="fxBar"></div>
     <svg class="bg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice"><defs>
       <linearGradient id="skyb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7B98C"/><stop offset="1" stop-color="#FCE6CF"/></linearGradient>
       <linearGradient id="watb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7EA9C4"/><stop offset="1" stop-color="#2E5C7A"/></linearGradient>
@@ -187,6 +237,37 @@
     <button id="action">Забросить</button>
   </div>
 
+  <div id="toast"></div>
+
+  <!-- новый уровень -->
+  <div class="modal" id="levelModal">
+    <div class="card">
+      <div style="font-size:44px">🎉</div>
+      <h2 id="luTitle">Уровень 2!</h2>
+      <div id="luBody"></div>
+      <button class="main" id="luOk">Отлично!</button>
+    </div>
+  </div>
+
+  <!-- магазин -->
+  <div class="modal" id="shopModal">
+    <div class="card shop">
+      <h2>Магазин</h2>
+      <div class="tabs" id="shopTabs"></div>
+      <div class="list" id="shopList"></div>
+      <button class="main" id="shopClose">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- рюкзак -->
+  <div class="modal" id="bagModal">
+    <div class="card shop">
+      <h2>Рюкзак</h2>
+      <div class="list" id="bagList"></div>
+      <button class="main" id="bagClose">Закрыть</button>
+    </div>
+  </div>
+
   <!-- карточка улова -->
   <div class="modal" id="catchModal">
     <div class="card">
@@ -197,6 +278,7 @@
       <div class="rew" id="cReward">+10 монет</div>
       <div class="rec" id="cRecord"></div>
       <div class="troph" id="cTrophy">🏆 ТРОФЕЙ!</div>
+      <div class="cxp" id="cXp"></div>
       <button class="main" id="cAgain">Забросить ещё</button>
     </div>
   </div>
@@ -452,9 +534,9 @@ function startWaiting(msg) {
   sub.textContent = perfect ? 'Шанс на редкую рыбу выше. Ждём клёва…' : 'Ждём клёва… Не подсекай раньше времени';
   setButton('Ждём…');
   action.classList.add('wait');
-  const wait = 1800 + Math.random() * 3500;
+  const wait = waitTime();
   // ложные поклёвки
-  const nibbles = Math.floor(Math.random() * 3);
+  const nibbles = wait > 1600 ? Math.floor(Math.random() * 3) : 0;
   for (let i = 0; i < nibbles; i++) {
     later(() => { if (state === 'waiting') { bobber.className = 'show nibble'; haptic('light'); spawnRipple(60, 900); splash(2, 0.5); later(() => { if (state === 'waiting') bobber.className = 'show bob'; }, 750); } },
           600 + Math.random() * (wait - 1200));
@@ -466,18 +548,31 @@ function startWaiting(msg) {
 function pickFish() {
   save.casts++;
   if (TEST_ONLY_LEGENDARY) { const L = FISH.filter(f => f.r === 'legendary'); return L[Math.floor(Math.random() * L.length)]; }
-  if (Math.random() < JUNK_CHANCE) return JUNK_LIST[Math.floor(Math.random() * JUNK_LIST.length)];
+  const bait = consumeBait();
+  castHeavy = false;
+  if (!(bait && bait.noJunk) && Math.random() < JUNK_CHANCE) return JUNK_LIST[Math.floor(Math.random() * JUNK_LIST.length)];
   const guaranteed = save.sinceRare >= BAD_LUCK_LIMIT;
   let pool = FISH.map(f => {
     let c = f.chance;
     if (perfect && f.r !== 'common') c *= 1.4;
+    c *= fishMultiplierWith(f, bait);
     if (guaranteed && (f.r === 'common' || f.r === 'uncommon')) c = 0;
     return { f, c };
   });
   const total = pool.reduce((s, p) => s + p.c, 0);
   let x = Math.random() * total;
-  for (const p of pool) { x -= p.c; if (x <= 0) return p.f; }
-  return pool[0].f;
+  let chosen = pool[0].f;
+  for (const p of pool) { x -= p.c; if (x <= 0) { chosen = p.f; break; } }
+  castHeavy = !!(bait && bait.heavy && bait.heavy.includes(chosen.id));
+  return chosen;
+}
+function fishMultiplierWith(f, bait) {
+  let m = 1;
+  const gb = gbActive();
+  if (gb && gb.boost && gb.boost[f.r]) m *= gb.boost[f.r];
+  if (bait && bait.boost && bait.boost[f.r]) m *= bait.boost[f.r];
+  if (bait && bait.boostIds && bait.boostIds[f.id]) m *= bait.boostIds[f.id];
+  return m;
 }
 
 function startBite() {
@@ -492,7 +587,7 @@ function startBite() {
   status.textContent = 'Клюёт! Подсекай!';
   sub.textContent = '';
   setButton('ПОДСЕЧЬ!', 'hot');
-  const windowMs = 1000 + Math.random() * 1000;   // каждый раз случайно: от 1 до 2 секунд
+  const windowMs = 1000 + Math.random() * 1000 + (save.gear && save.gear.hook ? 300 : 0);   // 1–2 с, крючок «Острый» +0,3 с
   later(() => { if (state === 'bite') escaped('Не успел подсечь…'); }, windowMs);
 }
 
@@ -547,7 +642,7 @@ function reelTick(t) {
   if (reel.zoneX > 1 - reel.zoneW) { reel.zoneX = 1 - reel.zoneW; reel.zoneV = Math.min(0, reel.zoneV) * 0.3; }
 
   const inside = reel.fishX >= reel.zoneX && reel.fishX <= reel.zoneX + reel.zoneW;
-  reel.progress += (inside ? 0.32 : -0.16) * dt;
+  reel.progress += (inside ? 0.32 : -0.16 * (save.gear && save.gear.line ? 0.8 : 1)) * dt;
 
   $('reelZone').style.left = (reel.zoneX * 100) + '%';
   $('reelFish').style.left = (reel.fishX * 100) + '%';
@@ -573,7 +668,8 @@ function reelTick(t) {
    После этого трофей может попасться снова, но редко (~4%). */
 const TROPHY_FROM = 5, TROPHY_TO = 35;
 function rollWeight(f) {
-  const k = Math.pow(Math.random(), 1.8);
+  let k = Math.pow(Math.random(), 1.8);
+  if (castHeavy) k = 0.5 + 0.5 * k;
   if (!f.trophy) return f.min + (f.max - f.min) * k;
   if (!save.trophyN) save.trophyN = {};
   if (!save.trophyN[f.id]) save.trophyN[f.id] = TROPHY_FROM + Math.floor(Math.random() * (TROPHY_TO - TROPHY_FROM + 1));
@@ -593,6 +689,7 @@ function coinsFor(f, w) {
   const rel = Math.max(0, Math.min(1, (w - f.min) / (f.max - f.min)));
   let c = f.price * (0.5 + 1.5 * rel);
   if (f.trophy && w >= f.trophy) c *= 1.5;
+  if (save.passUntil > Date.now()) c *= 1.2;
   return Math.round(c * 100) / 100;   // две цифры после запятой
 }
 
@@ -635,15 +732,284 @@ function caught() {
   const firstTrophy = isTrophy && !(prev && prev.best >= f.trophy);
   $('cTrophy').style.display = isTrophy ? 'inline-block' : 'none';
   $('cTrophy').textContent = firstTrophy ? '🏆 ТРОФЕЙ ЗАКРЫТ!' : '🏆 ТРОФЕЙ!';
+  const xpRes = catchXp(f, isNew, firstTrophy);
+  if (xpRes.xp) addXp(xpRes.xp);
+  if (isFish && !save.flags.pondDone && FISH.every(x => save.caught[x.id])) { save.flags.pondDone = true; save.pearls += 50; xpRes.lines.push('+50 жемчуга за всю коллекцию!'); }
+  $('cXp').innerHTML = xpRes.lines.join('<br>');
+  persist(); refreshTop(); refreshProgress();
   $('cRecord').textContent = isRecord ? 'Новый личный рекорд!' : (f.r === 'junk' ? 'Ну хоть не пусто 🙂' : '');
   $('catchModal').classList.add('show');
   toIdle('Готов к забросу');
 }
 
+/* ================= Прогресс: энергия, опыт, уровни, магазин ================= */
+// Цифры — из таблицы «Пруд у деревни — рыбы», вкладки «Опыт и энергия» и «Магазин»
+const PROG = { E1: 25, ESTEP: 1, REGEN_MIN: 4, XP_BASE: 10, XP_POW: 1.6, TROPHY_XP: 20 };
+const XP_BY_R    = { common: 1, uncommon: 3, rare: 8, epic: 20, legendary: 50, junk: 0 };
+const FIRST_XP   = { common: 8, uncommon: 12, rare: 20, epic: 32, legendary: 40, junk: 0 };
+const BITE_TIMES = [ { name: 'Утренняя зорька', from: 6, to: 8, mult: 2 }, { name: 'Вечерняя зорька', from: 18, to: 20, mult: 2 } ];
+const LEVEL_REWARDS = {
+  5:  { items: { motyl: 3 }, text: 'Наживка «Мотыль» ×3' },
+  8:  { text: 'Можно открыть Речушку (скоро)' },
+  13: { text: 'Можно открыть Горное озеро (скоро)' },
+  15: { text: 'Поплавок «Гусиное перо» (скоро)' },
+  25: { items: { gb_ded: 1 }, text: 'Прикормка «Дедова фирменная»' },
+  30: { text: 'Удочка «Тёмный бамбук» (скоро)' },
+};
+const PRED = ['shchuka', 'sudak', 'som', 'tsar_shchuka'];
+const ITEMS = [
+  { id: 'gb_bread', icon: '🍞', name: 'Прикормка «Хлебная»',        cat: 'Прикормки', cur: 'pearl', price: 20,  type: 'gb', minutes: 15, wait: [1000, 2500], desc: '15 минут: поклёвка через 1–2,5 с' },
+  { id: 'gb_kasha', icon: '🥣', name: 'Прикормка «Каша с анисом»',  cat: 'Прикормки', cur: 'pearl', price: 45,  type: 'gb', minutes: 30, wait: [800, 2000],  boost: { uncommon: 1.15 }, desc: '30 минут: поклёвка через 0,8–2 с, необычные +15%' },
+  { id: 'gb_ded',   icon: '🧺', name: 'Прикормка «Дедова фирменная»', cat: 'Прикормки', cur: 'pearl', price: 90, type: 'gb', minutes: 60, wait: [500, 1500], boost: { rare: 1.2, epic: 1.2, legendary: 1.2 }, desc: '60 минут: поклёвка через 0,5–1,5 с, редкие и выше +20%' },
+  { id: 'worm',     icon: '🪱', name: 'Наживка «Червь»',     cat: 'Наживки', cur: 'coin',  price: 7,   type: 'bait', boost: { uncommon: 1.1 }, desc: '10 забросов: необычные клюют на 10% чаще' },
+  { id: 'oparysh',  icon: '🐛', name: 'Наживка «Опарыш»',    cat: 'Наживки', cur: 'coin',  price: 15,  type: 'bait', noJunk: true, desc: '10 забросов: мусор не попадается' },
+  { id: 'kukuruza', icon: '🌽', name: 'Наживка «Кукуруза»',  cat: 'Наживки', cur: 'pearl', price: 30,  type: 'bait', boostIds: { karas_serebr: 2, karas_zolot: 2, karp: 2, karp_zerk: 2 }, desc: '10 забросов: караси и карпы клюют вдвое чаще' },
+  { id: 'motyl',    icon: '🔴', name: 'Наживка «Мотыль»',    cat: 'Наживки', cur: 'pearl', price: 40,  type: 'bait', boost: { rare: 1.5, epic: 1.5, legendary: 1.5 }, desc: '10 забросов: редкие и выше клюют в 1,5 раза чаще' },
+  { id: 'zhivets',  icon: '🐟', name: 'Наживка «Живец»',     cat: 'Наживки', cur: 'pearl', price: 80,  type: 'bait', boost: { common: 0.3 }, boostIds: { shchuka: 2, sudak: 2, som: 2, tsar_shchuka: 2 }, heavy: PRED, desc: '10 забросов: хищник клюёт вдвое чаще и крупнее, мелочь почти не берёт' },
+  { id: 'vypolzok', icon: '🪱', name: 'Наживка «Выползок»',  cat: 'Наживки', cur: 'pearl', price: 120, type: 'bait', boost: { epic: 2, legendary: 2 }, desc: '10 забросов: эпические и легендарные клюют вдвое чаще' },
+  { id: 'line',     icon: '🧵', name: 'Леска «Крепкая»',     cat: 'Снасти', cur: 'coin', price: 50, type: 'gear', desc: 'Навсегда: шкала улова убывает на 20% медленнее' },
+  { id: 'hook',     icon: '🪝', name: 'Крючок «Острый»',     cat: 'Снасти', cur: 'coin', price: 40, type: 'gear', desc: 'Навсегда: на подсечку на 0,3 с больше' },
+  { id: 'energy',   icon: '⚡', name: 'Полная энергия',      cat: 'Энергия', cur: 'pearl', price: 20, type: 'energy', desc: 'Сразу заполняет энергию до максимума' },
+  { id: 'pass',     icon: '🎫', name: 'Рыбацкий пропуск, 30 дней', cat: 'Энергия', cur: 'pearl', price: 600, type: 'pass', desc: 'Каждый день «Мотыль» и «Хлебная» прикормка, монеты ×1,2' },
+  { id: 'fl_pero',  icon: '🪶', name: 'Поплавок «Гусиное перо»', cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Скоро' },
+  { id: 'fl_cork',  icon: '🟤', name: 'Поплавок «Пробковый»',    cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Скоро' },
+  { id: 'fl_glow',  icon: '✨', name: 'Поплавок «Светящийся»',   cat: 'Внешний вид', cur: 'pearl', price: 150, type: 'soon', desc: 'Скоро' },
+  { id: 'rod_dark', icon: '🎋', name: 'Удочка «Тёмный бамбук»',  cat: 'Внешний вид', cur: 'pearl', price: 150, type: 'soon', desc: 'Скоро' },
+  { id: 'rod_glue', icon: '🎋', name: 'Удочка «Клеёная»',        cat: 'Внешний вид', cur: 'pearl', price: 250, type: 'soon', desc: 'Скоро' },
+  { id: 'rod_ded',  icon: '🎋', name: 'Удочка «Дедовская»',      cat: 'Внешний вид', cur: 'pearl', price: 400, type: 'soon', desc: 'Скоро' },
+];
+const PACKS = [ { name: 'Горсть', stars: 50, pearls: 50 }, { name: 'Кошель', stars: 250, pearls: 250 }, { name: 'Сундук', stars: 500, pearls: 500 }, { name: 'Клад', stars: 1000, pearls: 1000 } ];
+const ITEM = Object.fromEntries(ITEMS.map(i => [i.id, i]));
+
+function needXp(L) { return Math.round(PROG.XP_BASE * Math.pow(L, PROG.XP_POW)); }
+function maxEnergy(L) { return PROG.E1 + (L - 1) * PROG.ESTEP; }
+function todayStr(d) { d = d || new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+function biteTime() { const h = new Date().getHours(); return BITE_TIMES.find(b => h >= b.from && h < b.to) || null; }
+function gbActive() { return save.gb && save.gb.until > Date.now() ? ITEM[save.gb.id] : null; }
+function baitActive() { return save.bait && save.bait.id && (save.baitLeft[save.bait.id] || 0) > 0 ? ITEM[save.bait.id] : null; }
+function fmtTime(ms) { const s = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+
+function initProgress() {
+  const d = { level: 1, xp: 0, energy: null, energyTs: Date.now(), pearls: 0, inv: {}, gear: {}, baitLeft: {}, bait: null, gb: null,
+              passUntil: 0, passDay: '', streak: { day: '', count: 0 }, flags: {} };
+  for (const k in d) if (save[k] === undefined) save[k] = d[k];
+  if (save.energy === null) save.energy = maxEnergy(save.level);
+}
+
+/* --- энергия --- */
+function updateEnergy() {
+  const now = Date.now(), max = maxEnergy(save.level), step = PROG.REGEN_MIN * 60000;
+  if (save.energy >= max) { save.energyTs = now; return; }
+  const gained = Math.floor((now - save.energyTs) / step);
+  if (gained > 0) {
+    save.energy = Math.min(max, save.energy + gained);
+    save.energyTs = save.energy >= max ? now : save.energyTs + gained * step;
+  }
+}
+function spendEnergy() {
+  updateEnergy();
+  if (save.energy < 1) return false;
+  if (save.energy >= maxEnergy(save.level)) save.energyTs = Date.now();
+  save.energy -= 1;
+  return true;
+}
+function nextEnergyIn() { return PROG.REGEN_MIN * 60000 - (Date.now() - save.energyTs); }
+
+/* --- опыт и уровни --- */
+let pendingLevels = [];
+function addXp(n) {
+  save.xp += n;
+  while (save.xp >= needXp(save.level)) {
+    save.xp -= needXp(save.level);
+    save.level++;
+    updateEnergy();
+    const add = maxEnergy(save.level);
+    save.energy += add;                                 // к текущей добавляется полный максимум нового уровня
+    const coins = save.level * 10;
+    save.coins = Math.round((save.coins + coins) * 100) / 100;
+    const r = LEVEL_REWARDS[save.level];
+    if (r && r.items) for (const id in r.items) save.inv[id] = (save.inv[id] || 0) + r.items[id];
+    pendingLevels.push({ level: save.level, energy: add, coins, text: r ? r.text : '' });
+  }
+}
+function showLevelUp() {
+  if (!pendingLevels.length) return false;
+  const all = pendingLevels; pendingLevels = [];
+  const last = all[all.length - 1];
+  const energy = all.reduce((s, x) => s + x.energy, 0), coins = all.reduce((s, x) => s + x.coins, 0);
+  const extras = all.filter(x => x.text).map(x => x.text);
+  $('luTitle').textContent = 'Уровень ' + last.level + '!';
+  $('luBody').innerHTML = `<div>⚡ +${energy} энергии</div><div>🪙 +${coins} монет</div>` + extras.map(t => `<div>🎁 ${t}</div>`).join('');
+  $('levelModal').classList.add('show');
+  haptic('success');
+  return true;
+}
+
+/* --- ежедневное: серия входов и пропуск --- */
+function dailyCheck() {
+  const t = todayStr(), y = todayStr(new Date(Date.now() - 86400000));
+  const msgs = [];
+  if (save.streak.day !== t) {
+    save.streak.count = save.streak.day === y ? save.streak.count + 1 : 1;
+    save.streak.day = t;
+    if (save.streak.count % 7 === 0) { save.pearls += 10; msgs.push('7 дней подряд! +10 жемчуга'); }
+  }
+  if (save.passUntil > Date.now() && save.passDay !== t) {
+    save.passDay = t;
+    save.inv.motyl = (save.inv.motyl || 0) + 1;
+    save.inv.gb_bread = (save.inv.gb_bread || 0) + 1;
+    msgs.push('Пропуск: «Мотыль» и «Хлебная» в рюкзаке');
+  }
+  if (msgs.length) { persist(); toast(msgs.join(' · ')); }
+}
+
+/* --- отображение --- */
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2600);
+}
+function refreshProgress() {
+  updateEnergy();
+  const need = needXp(save.level);
+  $('lvl').textContent = save.level;
+  $('xpFill').style.width = Math.min(100, save.xp / need * 100) + '%';
+  $('xpText').textContent = save.xp + '/' + need;
+  const max = maxEnergy(save.level);
+  $('energy').textContent = save.energy + '/' + max;
+  $('energyTimer').textContent = save.energy < max ? '+1 через ' + fmtTime(nextEnergyIn()) : '';
+  $('pearls').textContent = save.pearls;
+  // активные эффекты на сцене
+  const fx = [];
+  const bt = biteTime(); if (bt) fx.push(`<span class="fx gold">☀ ${bt.name}: опыт ×${bt.mult}</span>`);
+  const gb = gbActive(); if (gb) fx.push(`<span class="fx">${gb.icon} ${fmtTime(save.gb.until - Date.now())}</span>`);
+  const b = baitActive(); if (b) fx.push(`<span class="fx">${b.icon} ${b.name.replace('Наживка ', '')}: ${save.baitLeft[b.id]}</span>`);
+  if (save.passUntil > Date.now()) fx.push('<span class="fx gold">🎫 Пропуск</span>');
+  $('fxBar').innerHTML = fx.join('');
+}
+setInterval(() => { if (save && save.level) refreshProgress(); }, 1000);
+
+/* --- магазин --- */
+let shopTab = 'Прикормки';
+function canPay(it) { return it.cur === 'coin' ? save.coins >= it.price : save.pearls >= it.price; }
+function priceTag(it) { return (it.cur === 'coin' ? '🪙 ' : '<span class="pearl"></span> ') + it.price; }
+function openShop(tab) {
+  if (tab) shopTab = tab;
+  const tabs = ['Прикормки', 'Наживки', 'Снасти', 'Энергия', 'Внешний вид', 'Жемчуг'];
+  $('shopTabs').innerHTML = tabs.map(t => `<button class="tab${t === shopTab ? ' on' : ''}" data-tab="${t}">${t}</button>`).join('');
+  let html = '';
+  if (shopTab === 'Жемчуг') {
+    html += '<div class="note">Оплата Stars подключится позже. Сейчас пакеты выдаются бесплатно, чтобы попробовать магазин.</div>';
+    html += PACKS.map((p, i) => `<div class="row"><div class="ic"><span class="pearl big"></span></div><div class="tx"><b>${p.name}</b><span>${p.pearls} жемчуга · ${p.stars} ⭐</span></div><button class="buy" data-pack="${i}">Получить (тест)</button></div>`).join('');
+  } else {
+    html += ITEMS.filter(it => it.cat === shopTab).map(it => {
+      let btn;
+      if (it.type === 'soon') btn = '<button class="buy" disabled>Скоро</button>';
+      else if (it.type === 'gear' && save.gear[it.id]) btn = '<button class="buy" disabled>Есть ✓</button>';
+      else btn = `<button class="buy${canPay(it) ? '' : ' poor'}" data-buy="${it.id}">${priceTag(it)}</button>`;
+      const have = save.inv[it.id] ? ` · в рюкзаке: ${save.inv[it.id]}` : '';
+      return `<div class="row"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${it.desc}${have}</span></div>${btn}</div>`;
+    }).join('');
+  }
+  $('shopList').innerHTML = html;
+  $('shopModal').classList.add('show');
+}
+function buy(id) {
+  const it = ITEM[id];
+  if (!canPay(it)) { toast(it.cur === 'coin' ? 'Не хватает монет' : 'Не хватает жемчуга'); haptic('error'); return; }
+  if (it.cur === 'coin') save.coins = Math.round((save.coins - it.price) * 100) / 100; else save.pearls -= it.price;
+  if (it.type === 'gear') { save.gear[id] = true; toast(it.name + ' — теперь твоя'); }
+  else if (it.type === 'energy') { updateEnergy(); save.energy = Math.max(save.energy, maxEnergy(save.level)); toast('Энергия полная!'); }
+  else if (it.type === 'pass') { save.passUntil = Math.max(Date.now(), save.passUntil) + 30 * 86400000; save.passDay = ''; dailyCheck(); toast('Пропуск активен на 30 дней'); }
+  else { save.inv[id] = (save.inv[id] || 0) + 1; toast(it.name + ' — в рюкзаке'); }
+  haptic('success'); persist(); refreshTop(); refreshProgress(); openShop();
+}
+
+/* --- рюкзак --- */
+function openBag() {
+  const rows = [];
+  const gb = gbActive();
+  rows.push('<div class="sec">Прикормка</div>');
+  rows.push(gb ? `<div class="row act"><div class="ic">${gb.icon}</div><div class="tx"><b>${gb.name}</b><span>Действует ещё ${fmtTime(save.gb.until - Date.now())}</span></div></div>` : '<div class="empty">Сейчас не действует</div>');
+  ITEMS.filter(it => it.type === 'gb' && save.inv[it.id]).forEach(it => rows.push(`<div class="row"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name} ×${save.inv[it.id]}</b><span>${it.desc}</span></div><button class="buy" data-use="${it.id}">Высыпать</button></div>`));
+  rows.push('<div class="sec">Наживка</div>');
+  const baits = ITEMS.filter(it => it.type === 'bait' && (save.inv[it.id] || save.baitLeft[it.id]));
+  if (!baits.length) rows.push('<div class="empty">Нет наживки — без неё обычный клёв. Купи в магазине</div>');
+  baits.forEach(it => {
+    const left = save.baitLeft[it.id] || 0, packs = save.inv[it.id] || 0;
+    const on = save.bait && save.bait.id === it.id && left > 0;
+    const info = (left ? `Осталось ${left} забросов` : '') + (packs ? (left ? ' · ' : '') + `запас ×${packs}` : '');
+    const btn = on ? '<button class="buy" data-unbait="1">Снять</button>' : `<button class="buy" data-bait="${it.id}">Насадить</button>`;
+    rows.push(`<div class="row${on ? ' act' : ''}"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${info}</span></div>${btn}</div>`);
+  });
+  rows.push('<div class="sec">Снасти</div>');
+  const gear = ITEMS.filter(it => it.type === 'gear' && save.gear[it.id]);
+  rows.push(gear.length ? gear.map(it => `<div class="row act"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div></div>`).join('') : '<div class="empty">Пока только простая снасть</div>');
+  $('bagList').innerHTML = rows.join('');
+  $('bagModal').classList.add('show');
+}
+function useGb(id) {
+  if (!save.inv[id]) return;
+  const it = ITEM[id];
+  if (gbActive() && !confirmReplace) { confirmReplace = id; toast('Новая прикормка заменит текущую. Нажми ещё раз'); return; }
+  confirmReplace = null;
+  save.inv[id]--; save.gb = { id, until: Date.now() + it.minutes * 60000 };
+  persist(); refreshProgress(); openBag(); toast(it.name + ' — клюёт быстрее!');
+}
+let confirmReplace = null;
+function setBait(id) {
+  if (!(save.baitLeft[id] > 0)) {
+    if (!save.inv[id]) return;
+    save.inv[id]--; save.baitLeft[id] = (save.baitLeft[id] || 0) + 10;
+  }
+  save.bait = { id };
+  persist(); refreshProgress(); openBag(); toast(ITEM[id].name + ' на крючке');
+}
+
+/* --- влияние на рыбалку --- */
+let castHeavy = false;
+function fishMultiplier(f) {
+  let m = 1;
+  const gb = gbActive(), b = baitActive();
+  if (gb && gb.boost && gb.boost[f.r]) m *= gb.boost[f.r];
+  if (b && b.boost && b.boost[f.r]) m *= b.boost[f.r];
+  if (b && b.boostIds && b.boostIds[f.id]) m *= b.boostIds[f.id];
+  return m;
+}
+function consumeBait() {
+  const b = baitActive();
+  if (!b) return null;
+  save.baitLeft[b.id]--;
+  if (save.baitLeft[b.id] <= 0) { save.baitLeft[b.id] = 0; if (save.inv[b.id]) { save.inv[b.id]--; save.baitLeft[b.id] = 10; } else { save.bait = null; toast(b.name + ' закончилась'); } }
+  return b;
+}
+function waitTime() {
+  const gb = gbActive();
+  if (gb) return gb.wait[0] + Math.random() * (gb.wait[1] - gb.wait[0]);
+  return 1800 + Math.random() * 3500;
+}
+// опыт за улов; возвращает строки для карточки
+function catchXp(f, isNew, firstTrophy) {
+  if (f.r === 'junk') return { xp: 0, lines: [] };
+  const bt = biteTime();
+  let base = XP_BY_R[f.r] * (bt ? bt.mult : 1);
+  let xp = base;
+  const lines = ['+' + base + ' опыта' + (bt ? ' (зорька ×' + bt.mult + ')' : '')];
+  if (isNew) { xp += FIRST_XP[f.r]; lines.push('+' + FIRST_XP[f.r] + ' за новый вид'); }
+  if (firstTrophy) { xp += PROG.TROPHY_XP; lines.push('+' + PROG.TROPHY_XP + ' за трофей'); save.pearls += 5; lines.push('+5 жемчуга за первый трофей'); }
+  return { xp, lines };
+}
+
 /* ================= Управление кнопкой ================= */
 function onDown(e) {
   e.preventDefault();
-  if (state === 'idle') startPower();
+  if (state === 'idle') {
+    if (!spendEnergy()) {
+      status.textContent = 'Энергия закончилась';
+      sub.textContent = '+1 через ' + fmtTime(nextEnergyIn()) + ' · или пополни в магазине 🛒';
+      haptic('error'); refreshProgress(); return;
+    }
+    persist(); refreshProgress(); startPower();
+  }
   else if (state === 'power') releasePower();
   else if (state === 'waiting') { escaped('Рано подсёк — рыба испугалась'); }
   else if (state === 'bite') startReel();
@@ -660,7 +1026,23 @@ action.addEventListener('pointercancel', onUp);
 action.addEventListener('pointerleave', (e) => { if (state === 'reel') onUp(e); });
 action.addEventListener('contextmenu', (e) => e.preventDefault());
 
-$('cAgain').addEventListener('click', () => { $('catchModal').classList.remove('show'); });
+$('cAgain').addEventListener('click', () => { $('catchModal').classList.remove('show'); showLevelUp(); });
+$('luOk').addEventListener('click', () => $('levelModal').classList.remove('show'));
+$('shopBtn').addEventListener('click', () => openShop());
+$('bagBtn').addEventListener('click', () => { confirmReplace = null; openBag(); });
+$('shopClose').addEventListener('click', () => $('shopModal').classList.remove('show'));
+$('bagClose').addEventListener('click', () => $('bagModal').classList.remove('show'));
+$('shopTabs').addEventListener('click', (e) => { const t = e.target.closest('[data-tab]'); if (t) openShop(t.dataset.tab); });
+$('shopList').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-buy]'); if (b) return buy(b.dataset.buy);
+  const p = e.target.closest('[data-pack]'); if (p) { const pk = PACKS[+p.dataset.pack]; save.pearls += pk.pearls; persist(); refreshProgress(); toast('+' + pk.pearls + ' жемчуга (тест)'); openShop(); }
+});
+$('bagList').addEventListener('click', (e) => {
+  const u = e.target.closest('[data-use]'); if (u) return useGb(u.dataset.use);
+  const b = e.target.closest('[data-bait]'); if (b) return setBait(b.dataset.bait);
+  if (e.target.closest('[data-unbait]')) { save.bait = null; persist(); refreshProgress(); openBag(); }
+});
+$('energy').parentElement.parentElement.addEventListener('click', () => openShop('Энергия'));
 
 /* ================= Коллекция ================= */
 function openAlbum() {
@@ -705,7 +1087,10 @@ FISH.concat(JUNK_LIST).forEach(f => {
 
 load(() => {
   migrate();
+  initProgress();
+  dailyCheck();
   refreshTop();
+  refreshProgress();
   const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
   toIdle(user && user.first_name ? 'Привет, ' + user.first_name + '!' : 'Привет, рыбак!');
 });
