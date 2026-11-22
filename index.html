@@ -146,48 +146,14 @@
 
   <div class="top">
     <div class="chip"><div class="coin"></div><span id="coins">0</span></div>
-    <div class="chip"><button id="albumBtn">📖 <span id="albumCount">0/11</span></button></div>
+    <div class="chip"><button id="albumBtn">📖 <span id="albumCount">0/15</span></button></div>
   </div>
 
   <div class="scene" id="scene">
-    <svg class="bg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#9FD6F2"/><stop offset="1" stop-color="#E4F4FB"/>
-        </linearGradient>
-        <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#5FB3D6"/><stop offset="1" stop-color="#1F6E95"/>
-        </linearGradient>
-      </defs>
-      <rect width="400" height="230" fill="url(#sky)"/>
-      <!-- облака -->
-      <g fill="#FFFFFF" opacity="0.9">
-        <ellipse cx="80" cy="70" rx="40" ry="14"/><ellipse cx="105" cy="62" rx="26" ry="14"/>
-        <ellipse cx="300" cy="105" rx="46" ry="13"/><ellipse cx="275" cy="98" rx="24" ry="12"/>
-      </g>
-      <!-- дальний лес -->
-      <path d="M0 230 L0 185 Q20 160 40 180 Q55 150 75 175 Q95 145 115 172 Q135 155 150 178 Q170 150 195 176 Q215 158 235 180 Q255 148 280 174 Q300 156 320 180 Q345 150 365 176 Q385 160 400 178 L400 230 Z" fill="#5E9A55"/>
-      <path d="M0 230 L0 205 Q30 190 60 204 Q100 188 140 205 Q180 192 220 206 Q260 190 300 204 Q340 192 400 206 L400 230 Z" fill="#4C8545"/>
-      <!-- вода -->
-      <rect y="228" width="400" height="372" fill="url(#water)"/>
-      <g stroke="#FFFFFF" stroke-width="2" opacity="0.25" stroke-linecap="round">
-        <line x1="40" y1="260" x2="90" y2="260"/><line x1="250" y1="275" x2="320" y2="275"/>
-        <line x1="120" y1="330" x2="190" y2="330"/><line x1="280" y1="380" x2="350" y2="380"/>
-        <line x1="30" y1="420" x2="110" y2="420"/><line x1="190" y1="470" x2="270" y2="470"/>
-      </g>
-      <!-- камыши -->
-      <g fill="#3F7A3A">
-        <path d="M0 600 L0 420 Q12 470 18 600 Z"/><path d="M14 600 Q20 450 34 390 Q30 480 32 600 Z"/>
-        <path d="M30 600 Q44 500 60 450 Q50 520 48 600 Z"/>
-        <path d="M400 600 L400 400 Q386 460 382 600 Z"/><path d="M386 600 Q378 470 362 420 Q368 500 368 600 Z"/>
-      </g>
-      <g fill="#7A5230">
-        <rect x="27" y="380" width="9" height="34" rx="4.5"/><rect x="359" y="410" width="9" height="34" rx="4.5"/>
-      </g>
-      <!-- удочка -->
-      <path d="M420 640 L300 90" stroke="#5B3A1E" stroke-width="9" stroke-linecap="round"/>
-      <path d="M420 640 L372 420" stroke="#2E2E2E" stroke-width="13" stroke-linecap="round"/>
-    </svg>
+    <svg class="bg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice"><defs>
+      <linearGradient id="skyb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7B98C"/><stop offset="1" stop-color="#FCE6CF"/></linearGradient>
+      <linearGradient id="watb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7EA9C4"/><stop offset="1" stop-color="#2E5C7A"/></linearGradient>
+    </defs><rect width="400" height="240" fill="url(#skyb)"/><circle cx="300" cy="205" r="41.6" fill="#FFE3A0" opacity="0.25"/><circle cx="300" cy="205" r="26" fill="#FFE3A0"/><g fill="#FFFFFF" opacity="0.7"><ellipse cx="90" cy="100" rx="36.0" ry="10.8"/><ellipse cx="109.8" cy="92.8" rx="21.6" ry="11.700000000000001"/></g><path d="M0,215 Q40,170 90,190 Q140,160 200,184 Q260,158 310,186 Q360,166 400,190 L400,240 L0,240 Z" fill="#6E8C6A"/><path d="M0,240 L0,214 Q100,200 200,210 Q300,198 400,212 L400,240 Z" fill="#86A276"/><ellipse cx="50" cy="184.56" rx="13.440000000000001" ry="17.28" fill="#6E9A4A"/><ellipse cx="52.88" cy="180.72" rx="10.56" ry="13.440000000000001" fill="#86AE5A"/><rect x="48.32" y="193.2" width="3.3600000000000003" height="28.799999999999997" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="48.32" y="213.5" width="1.9" height="2" fill="#2E2E2E"/><rect x="48.32" y="209.7" width="1.9" height="2" fill="#2E2E2E"/><rect x="48.32" y="203.3" width="1.9" height="2" fill="#2E2E2E"/><rect x="48.32" y="198.4" width="1.9" height="2" fill="#2E2E2E"/><ellipse cx="265" cy="181.44" rx="14.560000000000002" ry="18.72" fill="#6E9A4A"/><ellipse cx="268.12" cy="177.28" rx="11.44" ry="14.560000000000002" fill="#86AE5A"/><rect x="263.18" y="190.8" width="3.6400000000000006" height="31.2" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="263.18" y="215.8" width="2.1" height="2" fill="#2E2E2E"/><rect x="263.18" y="208.3" width="2.1" height="2" fill="#2E2E2E"/><rect x="263.18" y="200.7" width="2.1" height="2" fill="#2E2E2E"/><rect x="263.18" y="196.1" width="2.1" height="2" fill="#2E2E2E"/><path d="M345,168 L359.0,198.8 L351.72,198.8 L362.92,224 L327.08,224 L338.28,198.8 L331.0,198.8 Z" fill="#3E6A44"/><rect x="70" y="198.72" width="44" height="27.28" fill="#9A6634" stroke="#4A2E14" stroke-width="1.2"/><line x1="70" y1="204.2" x2="114" y2="204.2" stroke="#7A4E26" stroke-width="1"/><line x1="70" y1="209.6" x2="114" y2="209.6" stroke="#7A4E26" stroke-width="1"/><line x1="70" y1="215.1" x2="114" y2="215.1" stroke="#7A4E26" stroke-width="1"/><line x1="70" y1="220.5" x2="114" y2="220.5" stroke="#7A4E26" stroke-width="1"/><rect x="100.8" y="183.012" width="3.96" height="9.24" fill="#8A4B3A" stroke="#4A2E14" stroke-width="1"/><g fill="#FFFFFF" opacity="0.6"><circle cx="104.78" cy="177.088" r="2.2"/><circle cx="109.78" cy="170.088" r="2.8600000000000003"/><circle cx="116.78" cy="162.088" r="3.52"/></g><path d="M66.48,198.72 L92.0,180.24 L117.52000000000001,198.72 Z" fill="#5E5E66" stroke="#3E3E44" stroke-width="1.4" stroke-linejoin="round"/><circle cx="92.0" cy="191.6976" r="2.6399999999999997" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.2"/><rect x="79.68" y="206.3584" width="7.04" height="9.8208" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M77.68,206.3584 L83.2,202.92112 L88.72000000000001,206.3584" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="83.2" y1="206.3584" x2="83.2" y2="216.17919999999998" stroke="#FFFFFF" stroke-width="1"/><rect x="77.68" y="216.17919999999998" width="11.04" height="2.5" fill="#FFFFFF"/><rect x="97.28" y="206.3584" width="7.04" height="9.8208" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M95.28,206.3584 L100.8,202.92112 L106.32000000000001,206.3584" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="100.8" y1="206.3584" x2="100.8" y2="216.17919999999998" stroke="#FFFFFF" stroke-width="1"/><rect x="95.28" y="216.17919999999998" width="11.04" height="2.5" fill="#FFFFFF"/><rect x="140" y="193.0" width="50" height="31.0" fill="#9A6634" stroke="#4A2E14" stroke-width="1.2"/><line x1="140" y1="199.2" x2="190" y2="199.2" stroke="#7A4E26" stroke-width="1"/><line x1="140" y1="205.4" x2="190" y2="205.4" stroke="#7A4E26" stroke-width="1"/><line x1="140" y1="211.6" x2="190" y2="211.6" stroke="#7A4E26" stroke-width="1"/><line x1="140" y1="217.8" x2="190" y2="217.8" stroke="#7A4E26" stroke-width="1"/><rect x="175.0" y="175.15" width="4.5" height="10.5" fill="#8A4B3A" stroke="#4A2E14" stroke-width="1"/><g fill="#FFFFFF" opacity="0.6"><circle cx="179.25" cy="169.1" r="2.5"/><circle cx="184.25" cy="162.1" r="3.25"/><circle cx="191.25" cy="154.1" r="4.0"/></g><path d="M136.0,193.0 L165.0,172.0 L194.0,193.0 Z" fill="#5E5E66" stroke="#3E3E44" stroke-width="1.4" stroke-linejoin="round"/><circle cx="165.0" cy="185.02" r="3.0" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.2"/><rect x="151.0" y="201.68" width="8.0" height="11.16" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M149.0,201.68 L155.0,197.774 L161.0,201.68" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="155.0" y1="201.68" x2="155.0" y2="212.84" stroke="#FFFFFF" stroke-width="1"/><rect x="149.0" y="212.84" width="12.0" height="2.5" fill="#FFFFFF"/><rect x="171.0" y="201.68" width="8.0" height="11.16" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M169.0,201.68 L175.0,197.774 L181.0,201.68" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="175.0" y1="201.68" x2="175.0" y2="212.84" stroke="#FFFFFF" stroke-width="1"/><rect x="169.0" y="212.84" width="12.0" height="2.5" fill="#FFFFFF"/><rect x="215" y="199.96" width="42" height="26.04" fill="#9A6634" stroke="#4A2E14" stroke-width="1.2"/><line x1="215" y1="205.2" x2="257" y2="205.2" stroke="#7A4E26" stroke-width="1"/><line x1="215" y1="210.4" x2="257" y2="210.4" stroke="#7A4E26" stroke-width="1"/><line x1="215" y1="215.6" x2="257" y2="215.6" stroke="#7A4E26" stroke-width="1"/><line x1="215" y1="220.8" x2="257" y2="220.8" stroke="#7A4E26" stroke-width="1"/><rect x="244.4" y="184.966" width="3.78" height="8.82" fill="#8A4B3A" stroke="#4A2E14" stroke-width="1"/><g fill="#FFFFFF" opacity="0.6"><circle cx="248.29" cy="179.084" r="2.1"/><circle cx="253.29" cy="172.084" r="2.73"/><circle cx="260.28999999999996" cy="164.084" r="3.36"/></g><path d="M211.64,199.96 L236.0,182.32 L260.36,199.96 Z" fill="#7A3A2E" stroke="#3E3E44" stroke-width="1.4" stroke-linejoin="round"/><circle cx="236.0" cy="193.2568" r="2.52" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.2"/><rect x="224.24" y="207.2512" width="6.72" height="9.3744" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M222.24,207.2512 L227.60000000000002,203.97016000000002 L232.96,207.2512" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="227.60000000000002" y1="207.2512" x2="227.60000000000002" y2="216.62560000000002" stroke="#FFFFFF" stroke-width="1"/><rect x="222.24" y="216.62560000000002" width="10.719999999999999" height="2.5" fill="#FFFFFF"/><rect x="241.04" y="207.2512" width="6.72" height="9.3744" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M239.04,207.2512 L244.4,203.97016000000002 L249.76,207.2512" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="244.4" y1="207.2512" x2="244.4" y2="216.62560000000002" stroke="#FFFFFF" stroke-width="1"/><rect x="239.04" y="216.62560000000002" width="10.719999999999999" height="2.5" fill="#FFFFFF"/><line x1="60" y1="224" x2="260" y2="224" stroke="#8C6A42" stroke-width="1.5"/><line x1="60" y1="227.5" x2="260" y2="227.5" stroke="#8C6A42" stroke-width="1.5"/><path d="M60,230 L60,221 L61.2,219 L62.4,221 L62.4,230 Z" fill="#8C6A42"/><path d="M66,230 L66,221 L67.2,219 L68.4,221 L68.4,230 Z" fill="#8C6A42"/><path d="M72,230 L72,221 L73.2,219 L74.4,221 L74.4,230 Z" fill="#8C6A42"/><path d="M78,230 L78,221 L79.2,219 L80.4,221 L80.4,230 Z" fill="#8C6A42"/><path d="M84,230 L84,221 L85.2,219 L86.4,221 L86.4,230 Z" fill="#8C6A42"/><path d="M90,230 L90,221 L91.2,219 L92.4,221 L92.4,230 Z" fill="#8C6A42"/><path d="M96,230 L96,221 L97.2,219 L98.4,221 L98.4,230 Z" fill="#8C6A42"/><path d="M102,230 L102,221 L103.2,219 L104.4,221 L104.4,230 Z" fill="#8C6A42"/><path d="M108,230 L108,221 L109.2,219 L110.4,221 L110.4,230 Z" fill="#8C6A42"/><path d="M114,230 L114,221 L115.2,219 L116.4,221 L116.4,230 Z" fill="#8C6A42"/><path d="M120,230 L120,221 L121.2,219 L122.4,221 L122.4,230 Z" fill="#8C6A42"/><path d="M126,230 L126,221 L127.2,219 L128.4,221 L128.4,230 Z" fill="#8C6A42"/><path d="M132,230 L132,221 L133.2,219 L134.4,221 L134.4,230 Z" fill="#8C6A42"/><path d="M138,230 L138,221 L139.2,219 L140.4,221 L140.4,230 Z" fill="#8C6A42"/><path d="M144,230 L144,221 L145.2,219 L146.4,221 L146.4,230 Z" fill="#8C6A42"/><path d="M150,230 L150,221 L151.2,219 L152.4,221 L152.4,230 Z" fill="#8C6A42"/><path d="M156,230 L156,221 L157.2,219 L158.4,221 L158.4,230 Z" fill="#8C6A42"/><path d="M162,230 L162,221 L163.2,219 L164.4,221 L164.4,230 Z" fill="#8C6A42"/><path d="M168,230 L168,221 L169.2,219 L170.4,221 L170.4,230 Z" fill="#8C6A42"/><path d="M174,230 L174,221 L175.2,219 L176.4,221 L176.4,230 Z" fill="#8C6A42"/><path d="M180,230 L180,221 L181.2,219 L182.4,221 L182.4,230 Z" fill="#8C6A42"/><path d="M186,230 L186,221 L187.2,219 L188.4,221 L188.4,230 Z" fill="#8C6A42"/><path d="M192,230 L192,221 L193.2,219 L194.4,221 L194.4,230 Z" fill="#8C6A42"/><path d="M198,230 L198,221 L199.2,219 L200.4,221 L200.4,230 Z" fill="#8C6A42"/><path d="M204,230 L204,221 L205.2,219 L206.4,221 L206.4,230 Z" fill="#8C6A42"/><path d="M210,230 L210,221 L211.2,219 L212.4,221 L212.4,230 Z" fill="#8C6A42"/><path d="M216,230 L216,221 L217.2,219 L218.4,221 L218.4,230 Z" fill="#8C6A42"/><path d="M222,230 L222,221 L223.2,219 L224.4,221 L224.4,230 Z" fill="#8C6A42"/><path d="M228,230 L228,221 L229.2,219 L230.4,221 L230.4,230 Z" fill="#8C6A42"/><path d="M234,230 L234,221 L235.2,219 L236.4,221 L236.4,230 Z" fill="#8C6A42"/><path d="M240,230 L240,221 L241.2,219 L242.4,221 L242.4,230 Z" fill="#8C6A42"/><path d="M246,230 L246,221 L247.2,219 L248.4,221 L248.4,230 Z" fill="#8C6A42"/><path d="M252,230 L252,221 L253.2,219 L254.4,221 L254.4,230 Z" fill="#8C6A42"/><path d="M258,230 L258,221 L259.2,219 L260.4,221 L260.4,230 Z" fill="#8C6A42"/><rect x="0" y="226" width="400" height="374" fill="#86A276"/><path d="M0,226 L400,226 L400,600 L0,600 Z" fill="#6E8C6A" opacity="0.25"/><path d="M200,234 C282,232 332,240 352,262 C378,292 386,350 386,410 C386,482 342,536 262,547 C222,552 178,552 138,547 C58,536 14,482 14,410 C14,350 22,292 48,262 C68,240 118,232 200,234 Z" fill="#D9C49C" transform="translate(200 390) scale(1.035 1.04) translate(-200 -390)"/><path d="M200,234 C282,232 332,240 352,262 C378,292 386,350 386,410 C386,482 342,536 262,547 C222,552 178,552 138,547 C58,536 14,482 14,410 C14,350 22,292 48,262 C68,240 118,232 200,234 Z" fill="url(#watb)"/><path d="M200,234 C282,232 332,240 352,262 C378,292 386,350 386,410 C386,482 342,536 262,547 C222,552 178,552 138,547 C58,536 14,482 14,410 C14,350 22,292 48,262 C68,240 118,232 200,234 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.35"/><g fill="#6A4A2A" opacity="0.14"><rect x="72" y="238" width="40" height="3" rx="1.5"/><rect x="76" y="245" width="32" height="3" rx="1.5"/><rect x="80" y="252" width="24" height="2.5" rx="1.2"/></g><g fill="#6A4A2A" opacity="0.14"><rect x="142" y="238" width="46" height="3" rx="1.5"/><rect x="146" y="245" width="38" height="3" rx="1.5"/><rect x="150" y="252" width="30" height="2.5" rx="1.2"/></g><g fill="#6A4A2A" opacity="0.14"><rect x="217" y="238" width="38" height="3" rx="1.5"/><rect x="221" y="245" width="30" height="3" rx="1.5"/><rect x="225" y="252" width="22" height="2.5" rx="1.2"/></g><g fill="#FFE3A0" opacity="0.45"><rect x="260" y="252" width="80" height="4" rx="2"/><rect x="272" y="266" width="56" height="4" rx="2"/><rect x="284" y="280" width="32" height="3" rx="1.5"/></g><g stroke="#FFFFFF" stroke-width="2" opacity="0.22" stroke-linecap="round"><line x1="120" y1="300" x2="180" y2="300"/><line x1="230" y1="340" x2="290" y2="340"/><line x1="150" y1="420" x2="220" y2="420"/><line x1="200" y1="500" x2="270" y2="500"/></g><g fill="#FFFFFF" opacity="0.35"><ellipse cx="120" cy="240" rx="150" ry="14"/><ellipse cx="300" cy="250" rx="160" ry="12"/><ellipse cx="200" cy="268" rx="190" ry="10" opacity="0.6"/></g><g fill="#6E8C6A"><ellipse cx="0" cy="290" rx="34" ry="30"/><ellipse cx="400" cy="300" rx="30" ry="34"/><ellipse cx="60" cy="560" rx="70" ry="30"/><ellipse cx="350" cy="565" rx="80" ry="30"/></g><path d="M24.951858508367565,470 Q24.17158950765604,437.61940907131213 22.350961839329152,416.03234845218685" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M33.41568015438478,470 Q30.80885330982366,436.32859038292844 24.726257339181043,413.8809839715474" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="23.095199620701415" y="411.8809839715474" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M38.0526719662195,470 Q36.60879605218754,432.97448973959206 33.23975225277965,408.29081623265347" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M45.937323844186785,470 Q45.75890488932147,430.46898580551425 45.34259399463575,404.1149763425238" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M55.345845805097554,470 Q56.18025464836253,438.6945651742025 58.12720861598079,417.82427529033754" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="55.34907233489247" y="415.82427529033754" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M59.60246569609409,470 Q61.81073753895387,436.1838071727626 66.96337183896003,413.639678621271" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M378.4916067795588,470 Q380.262768172953,437.7182673546455 384.39547809087276,416.1971122577425" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M372.7698011351082,470 Q375.3037511151007,437.745460523745 381.21630106841656,416.2424342062417" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="377.8716510750857" y="414.2424342062417" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M362.11602091313443,470 Q364.7761612151243,441.69503377695526 370.98315525310073,422.8250562949255" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M357.5958982125477,470 Q355.27513400046655,435.42703291879104 349.8600175056106,412.37838819798503" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M349.8762761911287,470 Q350.13884134654427,444.84935121027445 350.7514933758473,428.08225201712406" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="348.16397165737544" y="426.08225201712406" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M47.295331059332646,284 Q48.20093789757177,270.5290707407761 50.31402052012972,261.5484512346268" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M53.28974514667017,284 Q52.483878648145684,267.3872028448574 50.60352348492188,256.312004741429" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M60.231995699098825,284 Q57.45696964975073,267.6193244171743 50.98190886793852,256.6988740286239" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M68.73458273464955,284 Q66.27886081471274,271.1899797436311 60.54884300152685,262.6499662393852" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M351.85202943126006,284 Q349.6832659063468,268.71377463981645 344.6228176815492,258.52295773302745" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M346.46624739994536,284 Q346.4829398802586,271.70748995869803 346.5218890009895,263.5124832644967" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M339.59319188012773,284 Q339.91881468919746,271.10055247898674 340.67860124369344,262.5009207983112" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M331.46660017073447,284 Q330.7407177971071,271.4262905536439 329.0469922586432,263.04381758940656" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M149.8095182140393,552 Q152.35478171818167,535.1922573295832 158.2937298945139,523.9870955493053" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M156.8626002803991,552 Q157.3869092534985,535.6160152118118 158.61029685739703,524.6933586863531" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="155.93552719969725" y="522.6933586863531" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M162.73864137541952,552 Q163.51793769672034,535.5828255054189 165.33629577975555,524.6380425090315" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M172.1719074900798,552 Q170.99231506582694,538.9919525971695 168.23993274257032,530.3199209952826" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M176.36268214996736,552 Q177.5233130452148,533.1533005995639 180.23145180079214,520.5888343326064" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="177.34457483570966" y="518.5888343326064" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M426.7,557.8 L301.6,89.6 L298.4,90.4 L409.3,562.2 Z" fill="#D9B86A" stroke="#6B4E1E" stroke-width="1.5" stroke-linejoin="round"/><line x1="418.7" y1="549.8" x2="302.9" y2="99.3" stroke="#FFF3C8" stroke-width="2" opacity="0.6"/><line x1="390.0" y1="417.2" x2="375.2" y2="420.8" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="388.7" y1="414.5" x2="375.1" y2="417.9" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="364.9" y1="323.5" x2="353.1" y2="326.5" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="363.6" y1="320.8" x2="353.0" y2="323.5" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="342.4" y1="239.2" x2="333.1" y2="241.6" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="341.1" y1="236.6" x2="333.0" y2="238.6" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="322.4" y1="164.3" x2="315.4" y2="166.1" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="321.1" y1="161.7" x2="315.3" y2="163.1" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><path d="M428.2,557.4 L409.3,482.2 L388.9,487.4 L407.8,562.6 Z" fill="#B98A5A" stroke="#5A3A1A" stroke-width="1.5"/><path d="M407.6,482.7 L400.7,456.9 L384.6,461.0 L390.7,486.9 Z" fill="#8A1A10" stroke="#3A0A06" stroke-width="0.8"/><line x1="407.3" y1="481.5" x2="390.4" y2="485.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.9" y1="480.3" x2="390.1" y2="484.6" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.6" y1="479.2" x2="389.8" y2="483.4" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.3" y1="478.0" x2="389.6" y2="482.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.0" y1="476.8" x2="389.3" y2="481.0" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.7" y1="475.7" x2="389.0" y2="479.8" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.4" y1="474.5" x2="388.7" y2="478.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.1" y1="473.3" x2="388.4" y2="477.5" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.8" y1="472.1" x2="388.2" y2="476.3" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.4" y1="471.0" x2="387.9" y2="475.1" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.1" y1="469.8" x2="387.6" y2="473.9" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.8" y1="468.6" x2="387.3" y2="472.8" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.5" y1="467.5" x2="387.1" y2="471.6" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.2" y1="466.3" x2="386.8" y2="470.4" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.9" y1="465.1" x2="386.5" y2="469.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.6" y1="463.9" x2="386.2" y2="468.1" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.3" y1="462.8" x2="386.0" y2="466.9" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.9" y1="461.6" x2="385.7" y2="465.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.6" y1="460.4" x2="385.4" y2="464.5" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.3" y1="459.3" x2="385.1" y2="463.3" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.0" y1="458.1" x2="384.8" y2="462.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><path d="M368.7,337.6 L366.2,328.2 L354.2,331.2 L356.4,340.6 Z" fill="#8A1A10" stroke="#3A0A06" stroke-width="0.6"/><circle cx="300.6" cy="92.4" r="2.2" fill="none" stroke="#555" stroke-width="1.2"/></svg>
 
     <svg id="line" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice">
       <path id="linePath" d="" stroke="#FFFFFF" stroke-width="1.6" fill="none" opacity="0.9"/>
@@ -257,20 +223,30 @@ const RARITY = {
 };
 
 // chance — относительный шанс, min/max — вес в кг, price — монет за кг (минимум 1)
+// Данные из таблицы «Пруд у деревни — рыбы». chance — относительный шанс, вес в кг, price — монет за рыбу среднего размера
+// (форель и осётр убраны из пруда — вернутся в следующих водоёмах)
 const FISH = [
-  { id: 'karas',    name: 'Карась',         r: 'common',    chance: 20, min: 0.2, max: 1.2, price: 10, trophy: 1.0 },
-  { id: 'plotva',   name: 'Плотва',         r: 'common',    chance: 20, min: 0.1, max: 0.6, price: 14, trophy: 0.5 },
-  { id: 'okun',     name: 'Окунь',          r: 'common',    chance: 20, min: 0.1, max: 1.5, price: 12, trophy: 1.2 },
-  { id: 'leshch',   name: 'Лещ',            r: 'uncommon',  chance: 12, min: 0.5, max: 3.0, price: 12, trophy: 2.5 },
-  { id: 'lin',      name: 'Линь',           r: 'uncommon',  chance: 12, min: 0.4, max: 2.5, price: 14, trophy: 2.0 },
-  { id: 'sudak',    name: 'Судак',          r: 'rare',      chance: 4,  min: 1.0, max: 6.0, price: 15, trophy: 5 },
-  { id: 'shchuka',  name: 'Щука',           r: 'rare',      chance: 4,  min: 1.0, max: 8.0, price: 12, trophy: 7 },
-  { id: 'forel',    name: 'Форель',         r: 'rare',      chance: 3,  min: 0.5, max: 4.0, price: 20, trophy: 3.5 },
-  { id: 'som',      name: 'Сом',            r: 'epic',      chance: 2,  min: 5.0, max: 40,  price: 6, trophy: 25 },
-  { id: 'osetr',    name: 'Осётр',          r: 'epic',      chance: 2,  min: 3.0, max: 25,  price: 9, trophy: 18 },
-  { id: 'zolotaya', name: 'Золотая рыбка',  r: 'legendary', chance: 1,  min: 0.1, max: 0.5, price: 600, trophy: 0.4 },
+  { id: 'karas_serebr', name: 'Карась серебряный', r: 'common',    chance: 100, min: 0.10, max: 2.6, price: 2,   trophy: 1.8 },
+  { id: 'plotva',       name: 'Плотва',            r: 'common',    chance: 100, min: 0.05, max: 0.8, price: 2, trophy: 0.6 },
+  { id: 'okun',         name: 'Окунь',             r: 'common',    chance: 100, min: 0.05, max: 1.5, price: 2, trophy: 1.1 },
+  { id: 'ersh',         name: 'Ёрш',               r: 'common',    chance: 100, min: 0.02, max: 0.8, price: 2,   trophy: 0.45 },
+  { id: 'ukleyka',      name: 'Уклейка',           r: 'common',    chance: 100, min: 0.02, max: 0.2, price: 2,  trophy: 0.14 },
+  { id: 'karas_zolot',  name: 'Карась золотой',    r: 'uncommon',  chance: 50,  min: 0.20, max: 2.5, price: 5, trophy: 2 },
+  { id: 'lin',          name: 'Линь',              r: 'uncommon',  chance: 50,  min: 0.30, max: 3.0, price: 5, trophy: 2.5 },
+  { id: 'leshch',       name: 'Лещ',               r: 'uncommon',  chance: 50,  min: 0.50, max: 3.6, price: 5, trophy: 3 },
+  { id: 'karp',         name: 'Карп',              r: 'uncommon',  chance: 50,  min: 1.00, max: 12,  price: 5, trophy: 9 },
+  { id: 'shchuka',      name: 'Щука',              r: 'rare',      chance: 25,  min: 0.30, max: 8,   price: 12, trophy: 5 },
+  { id: 'sudak',        name: 'Судак',             r: 'rare',      chance: 25,  min: 0.30, max: 8,   price: 12, trophy: 5 },
+  { id: 'som',          name: 'Сом',               r: 'epic',      chance: 13,  min: 2.00, max: 40,  price: 30, trophy: 25 },
+  { id: 'karp_zerk',    name: 'Зеркальный карп',   r: 'epic',      chance: 13,  min: 1.50, max: 20,  price: 30, trophy: 15 },
+  { id: 'tsar_shchuka', name: 'Царь-щука',         r: 'legendary', chance: 5,   min: 10,   max: 20,  price: 80,   trophy: 15 },
+  { id: 'zolotaya',     name: 'Золотая рыбка',     r: 'legendary', chance: 5,   min: 0.10, max: 0.5, price: 80,  trophy: 0.35 },
 ];
-const JUNK = { id: 'sapog', name: 'Старый сапог', r: 'junk', min: 1.0, max: 1.6, price: 1 };
+const JUNK_LIST = [
+  { id: 'sapog',   name: 'Старый сапог',     r: 'junk', min: 1.0, max: 1.6, price: 1 },
+  { id: 'banka',   name: 'Консервная банка', r: 'junk', min: 0.1, max: 0.3, price: 1 },
+  { id: 'koryaga', name: 'Коряга',           r: 'junk', min: 0.3, max: 3.0, price: 1 },
+];
 const JUNK_CHANCE = 0.05;
 const BAD_LUCK_LIMIT = 40; // столько забросов без редкой и выше — и следующая гарантированно редкая+
 
@@ -287,6 +263,11 @@ function persist() {
 function applyLoaded(str) {
   if (!str) return;
   try { const s = JSON.parse(str); if (s && typeof s.coins === 'number') save = Object.assign(save, s); } catch (e) {}
+}
+// старый «Карась» из первой версии теперь «Карась золотой»
+function migrate() {
+  if (save.caught && save.caught.karas && !save.caught.karas_zolot) { save.caught.karas_zolot = save.caught.karas; delete save.caught.karas; }
+  if (save.trophyN && save.trophyN.karas && !save.trophyN.karas_zolot) { save.trophyN.karas_zolot = save.trophyN.karas; delete save.trophyN.karas; }
 }
 function load(done) {
   try { applyLoaded(localStorage.getItem(SAVE_KEY)); } catch (e) {}
@@ -311,12 +292,13 @@ function haptic(kind) {
     else tg.HapticFeedback.impactOccurred(kind);
   } catch (e) {}
 }
+function fmtCoins(n) { return (Math.round(n * 100) / 100).toFixed(2).replace('.', ','); }
 function fmtTrophy(w) { return String(Math.round(w * 100) / 100).replace('.', ',') + ' кг'; }
 function fmtKg(w) { return (w < 10 ? w.toFixed(2) : w.toFixed(1)).replace('.', ',') + ' кг'; }
 function plural(n, a, b, c) { n = Math.abs(n) % 100; const n1 = n % 10; if (n > 10 && n < 20) return c; if (n1 > 1 && n1 < 5) return b; if (n1 === 1) return a; return c; }
 
 function refreshTop() {
-  $('coins').textContent = save.coins;
+  $('coins').textContent = fmtCoins(save.coins);
   const n = FISH.filter(f => save.caught[f.id]).length;
   $('albumCount').textContent = n + '/' + FISH.length;
 }
@@ -335,14 +317,26 @@ function setLine(show) {
 }
 
 /* ================= Вода: круги и брызги ================= */
-let bobX = 50, bobY = 60, castY = 60;
-function placeBobber(x, y) {
-  bobX = x; bobY = y;
-  bobber.style.left = x + '%';
-  bobber.style.top = y + '%';
+let bobX = 50, bobY = 60, bobVX = 200, bobVY = 400, castVY = 400;
+// пересчёт координат картинки в проценты сцены (картинка обрезается по краям экрана)
+function sceneMap() {
+  const r = $('scene').getBoundingClientRect();
+  const s = Math.max(r.width / 400, r.height / 600);
+  return { s, ox: (r.width - 400 * s) / 2, oy: (r.height - 600 * s) / 2, w: r.width || 1, h: r.height || 1 };
+}
+function placeBobber(vx, vy) {
+  bobVX = vx; bobVY = vy;
+  const m = sceneMap();
+  bobX = (m.ox + vx * m.s) / m.w * 100;
+  bobY = (m.oy + vy * m.s) / m.h * 100;
+  bobber.style.left = bobX + '%';
+  bobber.style.top = bobY + '%';
+  // дальний поплавок меньше, ближний крупнее
+  const k = Math.max(0.65, Math.min(1.1, 0.65 + (vy - 260) / 500));
+  bobber.style.transform = `translate(-50%, -80%) scale(${k.toFixed(3)})`;
 }
 // чем дальше поплавок (выше на экране), тем меньше круги — перспектива
-function depthScale() { return Math.max(0.45, Math.min(1.15, 0.45 + (bobY - 40) / 45)); }
+function depthScale() { return Math.max(0.45, Math.min(1.15, 0.45 + (bobVY - 250) / 300)); }
 function spawnRipple(size, dur) {
   const k = depthScale();
   const r = document.createElement('div');
@@ -397,7 +391,7 @@ function toIdle(msg, subMsg) {
   state = 'idle';
   bobber.className = '';
   bobber.style.transition = '';
-  placeBobber(50, castY);
+  placeBobber(200, castVY);
   bigtext.classList.remove('show');
   setLine(false);
   $('powerMeter').classList.remove('show');
@@ -431,12 +425,12 @@ function releasePower() {
   $('powerMeter').classList.remove('show');
   perfect = castPower >= 0.72 && castPower <= 0.88;
   // дальность: чем сильнее, тем дальше (выше на экране)
-  const top = 82 - castPower * 40;   // % высоты сцены
-  castY = top;
+  // по картинке пруда: 500 — у ближнего берега, 270 — у дальнего
+  castVY = 500 - castPower * 230;
   bobber.style.transition = '';
-  placeBobber(50, top);
-  ripple.style.top = top + '%';
-  ripple.style.left = '50%';
+  placeBobber(200, castVY);
+  ripple.style.top = bobY + '%';
+  ripple.style.left = bobX + '%';
   bobber.className = 'show';
   haptic('light');
   later(() => {
@@ -468,7 +462,7 @@ function startWaiting(msg) {
 /* --- 3. Клёв --- */
 function pickFish() {
   save.casts++;
-  if (Math.random() < JUNK_CHANCE) return JUNK;
+  if (Math.random() < JUNK_CHANCE) return JUNK_LIST[Math.floor(Math.random() * JUNK_LIST.length)];
   const guaranteed = save.sinceRare >= BAD_LUCK_LIMIT;
   let pool = FISH.map(f => {
     let c = f.chance;
@@ -499,19 +493,12 @@ function startBite() {
 }
 
 // Вибрация при поклёвке: серия сильных толчков, пока рыба на крючке
-function vibrateBite() {
-  try { if (navigator.vibrate) navigator.vibrate([180, 70, 180, 70, 260]); } catch (e) {}
-  haptic('warning');
-  let n = 0;
-  const pulse = () => { if (state === 'bite' && n < 8) { n++; haptic(n % 2 ? 'heavy' : 'rigid'); later(pulse, 120); } };
-  later(pulse, 120);
-}
+function vibrateBite() { haptic('heavy'); }
 
 /* --- 4. Вываживание --- */
 let reel = null, reelRaf = 0, holding = false;
 function startReel() {
   clearTimers();
-  try { if (navigator.vibrate) navigator.vibrate(0); } catch (e) {}
   state = 'reel';
   bigtext.classList.remove('show');
   haptic('medium');
@@ -566,14 +553,43 @@ function reelTick(t) {
 
   // поплавок: чем ближе к поимке, тем ближе к берегу; влево-вправо — куда тянет рыба
   const pr = Math.max(0, Math.min(1, reel.progress));
-  const targetY = castY + (90 - castY) * pr;
-  const targetX = 50 + (reel.fishX - 0.5) * 40;
-  placeBobber(bobX + (targetX - bobX) * Math.min(1, dt * 4), bobY + (targetY - bobY) * Math.min(1, dt * 5));
+  const targetY = castVY + (505 - castVY) * pr;
+  const targetX = 200 + (reel.fishX - 0.5) * 160;
+  placeBobber(bobVX + (targetX - bobVX) * Math.min(1, dt * 4), bobVY + (targetY - bobVY) * Math.min(1, dt * 5));
   setLine(true);
 
   if (reel.progress >= 1) { cancelAnimationFrame(reelRaf); caught(); return; }
   if (reel.progress <= 0) { cancelAnimationFrame(reelRaf); escaped('Рыба сорвалась!'); return; }
   reelRaf = requestAnimationFrame(reelTick);
+}
+
+/* --- Вес рыбы и трофеи ---
+   Для каждой рыбы при первой поимке тайно выбирается номер N от 5 до 35.
+   До N-й поимки рыба всегда легче трофейного веса, на N-й — гарантированно трофейная.
+   После этого трофей может попасться снова, но редко (~4%). */
+const TROPHY_FROM = 5, TROPHY_TO = 35;
+function rollWeight(f) {
+  const k = Math.pow(Math.random(), 1.8);
+  if (!f.trophy) return f.min + (f.max - f.min) * k;
+  if (!save.trophyN) save.trophyN = {};
+  if (!save.trophyN[f.id]) save.trophyN[f.id] = TROPHY_FROM + Math.floor(Math.random() * (TROPHY_TO - TROPHY_FROM + 1));
+  const prev = save.caught[f.id];
+  const catchNo = (prev ? prev.count : 0) + 1;
+  const hasTrophy = prev && prev.best >= f.trophy;
+  const below = () => f.min + (f.trophy * 0.97 - f.min) * k;
+  const above = () => f.trophy + (f.max - f.trophy) * Math.pow(Math.random(), 1.6);
+  if (!hasTrophy) return catchNo >= save.trophyN[f.id] ? above() : below();
+  return Math.random() < 0.04 ? above() : below();
+}
+
+/* Монеты: цена рыбы × размер. Самая мелкая даёт половину цены, самая крупная — вдвое больше,
+   трофей ещё ×1,5. Так мелкая, но редкая рыба стоит больше крупной обычной. */
+function coinsFor(f, w) {
+  if (f.r === 'junk') return f.price;
+  const rel = Math.max(0, Math.min(1, (w - f.min) / (f.max - f.min)));
+  let c = f.price * (0.5 + 1.5 * rel);
+  if (f.trophy && w >= f.trophy) c *= 1.5;
+  return Math.round(c * 100) / 100;   // две цифры после запятой
 }
 
 /* --- 5. Результат --- */
@@ -591,16 +607,15 @@ function caught() {
   const f = current;
   const R = RARITY[f.r];
   // вес: чаще ближе к минимуму, иногда трофей
-  const k = Math.pow(Math.random(), 1.8);
-  const w = f.min + (f.max - f.min) * k;
-  const reward = Math.max(1, Math.round(w * f.price));
+  const w = rollWeight(f);
+  const reward = coinsFor(f, w);
 
   const isFish = f.r !== 'junk';
   const prev = save.caught[f.id];
   const isNew = isFish && !prev;
   const isRecord = isFish && prev && w > prev.best;
   if (isFish) save.caught[f.id] = { count: (prev ? prev.count : 0) + 1, best: Math.max(w, prev ? prev.best : 0) };
-  save.coins += reward;
+  save.coins = Math.round((save.coins + reward) * 100) / 100;
   if (f.r === 'rare' || f.r === 'epic' || f.r === 'legendary') save.sinceRare = 0; else save.sinceRare++;
   persist();
   refreshTop();
@@ -611,7 +626,7 @@ function caught() {
   $('cImg').src = 'fish/' + f.id + '.svg';
   $('cName').textContent = f.name;
   $('cWeight').textContent = fmtKg(w);
-  $('cReward').textContent = '+' + reward + ' ' + plural(reward, 'монета', 'монеты', 'монет');
+  $('cReward').textContent = '+' + fmtCoins(reward) + ' ' + (Number.isInteger(reward) ? plural(reward, 'монета', 'монеты', 'монет') : 'монеты');
   const isTrophy = isFish && f.trophy && w >= f.trophy;
   const firstTrophy = isTrophy && !(prev && prev.best >= f.trophy);
   $('cTrophy').style.display = isTrophy ? 'inline-block' : 'none';
@@ -672,12 +687,12 @@ $('albumClose').addEventListener('click', () => $('albumModal').classList.remove
 if (tg) {
   tg.ready();
   tg.expand();
-  try { tg.setHeaderColor('#FFFFFF'); tg.setBackgroundColor('#CFEAF7'); } catch (e) {}
+  try { tg.setHeaderColor('#FFFFFF'); tg.setBackgroundColor('#F7B98C'); } catch (e) {}
   try { tg.disableVerticalSwipes && tg.disableVerticalSwipes(); } catch (e) {}
 }
 // предзагрузка картинок: держим их в памяти и заранее декодируем, чтобы рыба появлялась мгновенно
 const IMG_CACHE = {};
-FISH.concat([JUNK]).forEach(f => {
+FISH.concat(JUNK_LIST).forEach(f => {
   const i = new Image();
   i.src = 'fish/' + f.id + '.svg';
   if (i.decode) i.decode().catch(() => {});
@@ -685,11 +700,12 @@ FISH.concat([JUNK]).forEach(f => {
 });
 
 load(() => {
+  migrate();
   refreshTop();
   const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
   toIdle(user && user.first_name ? 'Привет, ' + user.first_name + '!' : 'Привет, рыбак!');
 });
-window.addEventListener('resize', () => { if (state === 'waiting' || state === 'bite') setLine(true); });
+window.addEventListener('resize', () => { placeBobber(bobVX, bobVY); if (state === 'waiting' || state === 'bite' || state === 'reel') setLine(true); });
 </script>
 </body>
 </html>
