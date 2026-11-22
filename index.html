@@ -18,31 +18,32 @@
     /* ---------- верхняя панель ---------- */
     .top {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 14px; background: rgba(255,255,255,0.75);
-      border-bottom: 1px solid rgba(0,0,0,0.06); z-index: 2;
+      padding: 10px 14px; background: linear-gradient(180deg, #121A2E 0%, #1C2740 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 2; color: #EEF2FA;
     }
     .chip {
       display: flex; align-items: center; gap: 6px;
-      background: #FFFFFF; border-radius: 20px; padding: 6px 12px;
-      font-weight: 700; font-size: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      background: #243150; border-radius: 20px; padding: 6px 12px; color: #EEF2FA;
+      font-weight: 700; font-size: 15px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
     }
     .chip button { all: unset; cursor: pointer; display: flex; align-items: center; gap: 6px; }
     .coin { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFE58A, #E3A008); border: 2px solid #B57A00; }
 
     .top { flex-wrap: wrap; gap: 6px; padding: 8px 10px; }
     .toprow { display: flex; width: 100%; gap: 6px; align-items: center; }
-    .lvlbox { flex: 1; display: flex; align-items: center; gap: 8px; background: #FFFFFF; border-radius: 20px; padding: 4px 10px 4px 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+    .lvlbox { flex: 1; display: flex; align-items: center; gap: 8px; background: #243150; border-radius: 20px; padding: 4px 10px 4px 4px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
     .lvl { min-width: 30px; height: 30px; border-radius: 15px; background: #2F7BD9; color: #FFF; font-weight: 900; display: flex; align-items: center; justify-content: center; font-size: 14px; padding: 0 6px; }
     .xpwrap { flex: 1; }
-    .xpbar { height: 8px; border-radius: 4px; background: #E6EEF2; overflow: hidden; }
+    .xpbar { height: 8px; border-radius: 4px; background: #121A2E; overflow: hidden; }
     #xpFill { height: 100%; width: 0; background: linear-gradient(90deg, #7CC6E8, #2F7BD9); transition: width 0.4s; }
-    #xpText { font-size: 11px; color: #7A8A95; margin-top: 2px; }
+    #xpText { font-size: 11px; color: #9AA8C2; margin-top: 2px; }
     .chip.en { flex-direction: column; align-items: flex-start; gap: 0; padding: 4px 12px; }
-    .chip.en small { font-size: 10px; color: #7A8A95; font-weight: 600; min-height: 12px; }
+    .chip.en small { font-size: 10px; color: #9AA8C2; font-weight: 600; min-height: 12px; }
     .chip button.ib { font-size: 18px; }
     .pearl { display: inline-block; width: 16px; height: 16px; border-radius: 50%; vertical-align: -3px; background: radial-gradient(circle at 35% 30%, #FFFFFF, #F3E6F0 45%, #C9B3C8); border: 1.5px solid #9C8AA0; }
     .pearl.big { width: 30px; height: 30px; }
     .sp { flex: 1; }
+    .plus { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 9px; background: #3FA34D; color: #FFF; font-size: 14px; line-height: 1; }
     #fxBar { position: absolute; left: 8px; top: 8px; right: 8px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 1; pointer-events: none; }
     .fx { background: rgba(255,255,255,0.88); border-radius: 12px; padding: 3px 9px; font-size: 12px; font-weight: 700; color: #3A4A55; }
     .fx.gold { background: #FFE9A8; color: #7A5200; }
@@ -50,12 +51,19 @@
     #toast.show { opacity: 1; transform: translate(-50%, 0); }
     .shop { max-height: 88vh; display: flex; flex-direction: column; text-align: left; }
     .shop h2 { text-align: center; margin-bottom: 8px; }
-    .tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; }
-    .tab { flex: none; border: none; border-radius: 14px; padding: 7px 12px; background: #EEF3F6; font-weight: 700; font-size: 13px; color: #3A4A55; }
+    .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding-bottom: 8px; }
+    .tab { border: none; border-radius: 12px; padding: 8px 4px; text-align: center; background: #EEF3F6; font-weight: 700; font-size: 13px; color: #3A4A55; }
     .tab.on { background: #2F7BD9; color: #FFF; }
     .list { overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
     .row { display: flex; align-items: center; gap: 10px; background: #F5F8FA; border-radius: 14px; padding: 10px; border: 2px solid transparent; }
     .row.act { border-color: #3FA34D; background: #EEF8EF; }
+    .row.tap { cursor: pointer; }
+    .row.tap:active { transform: scale(0.98); }
+    .row .tx .cnt { display: inline-block; margin: 0 0 0 4px; padding: 1px 7px; border-radius: 9px; background: #2F7BD9; color: #FFFFFF; font-size: 12px; font-weight: 800; vertical-align: 1px; }
+    .card.shop { text-align: left; }
+    .card.shop h2 { text-align: center; }
+    .state { font-size: 12px; font-weight: 800; color: #2F7BD9; white-space: nowrap; }
+    .row.act .state { color: #3FA34D; }
     .row .ic { font-size: 26px; width: 36px; text-align: center; }
     .row .tx { flex: 1; display: flex; flex-direction: column; font-size: 14px; }
     .row .tx span { font-size: 12px; color: #6A7A85; margin-top: 2px; }
@@ -119,13 +127,13 @@
 
     /* ---------- нижняя панель ---------- */
     .panel {
-      background: #FFFFFF; border-radius: 22px 22px 0 0; padding: 16px 18px 22px;
-      box-shadow: 0 -4px 16px rgba(0,0,0,0.08); z-index: 2;
+      background: linear-gradient(180deg, #1C2740 0%, #121A2E 100%); border-radius: 22px 22px 0 0; padding: 16px 18px 22px;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.25); z-index: 2; border-top: 1px solid rgba(255,255,255,0.08);
     }
-    #status { text-align: center; font-size: 16px; font-weight: 600; min-height: 22px; color: #3A4A55; }
-    #sub { text-align: center; font-size: 13px; color: #7A8A95; min-height: 18px; margin-top: 4px; }
+    #status { text-align: center; font-size: 16px; font-weight: 600; min-height: 22px; color: #EEF2FA; }
+    #sub { text-align: center; font-size: 13px; color: #9AA8C2; min-height: 18px; margin-top: 4px; }
 
-    .meter { position: relative; height: 26px; border-radius: 13px; background: #E6EEF2; margin: 14px 0 4px; overflow: hidden; display: none; }
+    .meter { position: relative; height: 26px; border-radius: 13px; background: #2A3654; margin: 14px 0 4px; overflow: hidden; display: none; }
     .meter.show { display: block; }
     #powerFill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, #7CC6E8, #2F7BD9); }
     #powerZone { position: absolute; top: 0; bottom: 0; left: 72%; width: 16%; background: rgba(63,163,77,0.35); border-left: 2px solid #3FA34D; border-right: 2px solid #3FA34D; }
@@ -134,7 +142,7 @@
     #reelZone { position: absolute; top: 3px; bottom: 3px; left: 0; width: 30%; border-radius: 9px; background: rgba(124,220,120,0.55); border: 3px solid #7CDC78; }
     #reelFish { position: absolute; top: 50%; width: 40px; height: 22px; transform: translate(-50%, -50%); }
     #reelFish img { width: 100%; height: 100%; }
-    .progress { height: 10px; border-radius: 5px; background: #E6EEF2; overflow: hidden; margin-top: 8px; display: none; }
+    .progress { height: 10px; border-radius: 5px; background: #2A3654; overflow: hidden; margin-top: 8px; display: none; }
     .progress.show { display: block; }
     #progFill { height: 100%; width: 30%; background: linear-gradient(90deg, #F59E0B, #3FA34D); transition: width 0.08s linear; }
 
@@ -190,7 +198,7 @@
     </div>
     <div class="toprow">
       <div class="chip"><div class="coin"></div><span id="coins">0</span></div>
-      <div class="chip"><span class="pearl"></span><span id="pearls">0</span></div>
+      <div class="chip"><button id="pearlBtn"><span class="pearl"></span><span id="pearls">0</span><b class="plus">+</b></button></div>
       <div class="sp"></div>
       <div class="chip"><button class="ib" id="bagBtn">🎒</button></div>
       <div class="chip"><button class="ib" id="shopBtn">🛒</button></div>
@@ -587,7 +595,7 @@ function startBite() {
   status.textContent = 'Клюёт! Подсекай!';
   sub.textContent = '';
   setButton('ПОДСЕЧЬ!', 'hot');
-  const windowMs = 1000 + Math.random() * 1000 + (save.gear && save.gear.hook ? 300 : 0);   // 1–2 с, крючок «Острый» +0,3 с
+  const windowMs = 1000 + Math.random() * 1000 + (save.gear && gearOn('hook') ? 300 : 0);   // 1–2 с, крючок «Острый» +0,3 с
   later(() => { if (state === 'bite') escaped('Не успел подсечь…'); }, windowMs);
 }
 
@@ -642,7 +650,7 @@ function reelTick(t) {
   if (reel.zoneX > 1 - reel.zoneW) { reel.zoneX = 1 - reel.zoneW; reel.zoneV = Math.min(0, reel.zoneV) * 0.3; }
 
   const inside = reel.fishX >= reel.zoneX && reel.fishX <= reel.zoneX + reel.zoneW;
-  reel.progress += (inside ? 0.32 : -0.16 * (save.gear && save.gear.line ? 0.8 : 1)) * dt;
+  reel.progress += (inside ? 0.32 : -0.16 * (save.gear && gearOn('line') ? 0.8 : 1)) * dt;
 
   $('reelZone').style.left = (reel.zoneX * 100) + '%';
   $('reelFish').style.left = (reel.fishX * 100) + '%';
@@ -689,7 +697,7 @@ function coinsFor(f, w) {
   const rel = Math.max(0, Math.min(1, (w - f.min) / (f.max - f.min)));
   let c = f.price * (0.5 + 1.5 * rel);
   if (f.trophy && w >= f.trophy) c *= 1.5;
-  if (save.passUntil > Date.now()) c *= 1.2;
+  if (save.passUntil > gameNow()) c *= 1.2;
   return Math.round(c * 100) / 100;   // две цифры после запятой
 }
 
@@ -742,6 +750,19 @@ function caught() {
   toIdle('Готов к забросу');
 }
 
+/* ================= Время с сервера =================
+   Берём время из ответа сервера (заголовок Date), а дальше отсчитываем по внутренним часам
+   страницы, которые не зависят от часов телефона. Перевод часов на телефоне ничего не даёт. */
+let timeBase = Date.now(), perfBase = performance.now(), timeSynced = false;
+function gameNow() { return timeBase + (performance.now() - perfBase); }
+function syncTime() {
+  const req = fetch(location.href.split('#')[0].split('?')[0] + '?t=' + Math.random(), { method: 'HEAD', cache: 'no-store' })
+    .then(r => { const d = r.headers.get('Date'); if (d) { const t = new Date(d).getTime(); if (t) { timeBase = t; perfBase = performance.now(); timeSynced = true; } } })
+    .catch(() => {});
+  return Promise.race([req, new Promise(res => setTimeout(res, 3000))]);
+}
+setInterval(syncTime, 5 * 60000);
+
 /* ================= Прогресс: энергия, опыт, уровни, магазин ================= */
 // Цифры — из таблицы «Пруд у деревни — рыбы», вкладки «Опыт и энергия» и «Магазин»
 const PROG = { E1: 25, ESTEP: 1, REGEN_MIN: 4, XP_BASE: 10, XP_POW: 1.6, TROPHY_XP: 20 };
@@ -769,7 +790,7 @@ const ITEMS = [
   { id: 'vypolzok', icon: '🪱', name: 'Наживка «Выползок»',  cat: 'Наживки', cur: 'pearl', price: 120, type: 'bait', boost: { epic: 2, legendary: 2 }, desc: '10 забросов: эпические и легендарные клюют вдвое чаще' },
   { id: 'line',     icon: '🧵', name: 'Леска «Крепкая»',     cat: 'Снасти', cur: 'coin', price: 50, type: 'gear', desc: 'Навсегда: шкала улова убывает на 20% медленнее' },
   { id: 'hook',     icon: '🪝', name: 'Крючок «Острый»',     cat: 'Снасти', cur: 'coin', price: 40, type: 'gear', desc: 'Навсегда: на подсечку на 0,3 с больше' },
-  { id: 'energy',   icon: '⚡', name: 'Полная энергия',      cat: 'Энергия', cur: 'pearl', price: 20, type: 'energy', desc: 'Сразу заполняет энергию до максимума' },
+  { id: 'energy',   icon: '⚡', name: 'Полная энергия',      cat: 'Энергия', cur: 'pearl', price: 20, type: 'energy', desc: 'Сразу заполняет энергию до максимума. Не чаще раза в сутки' },
   { id: 'pass',     icon: '🎫', name: 'Рыбацкий пропуск, 30 дней', cat: 'Энергия', cur: 'pearl', price: 600, type: 'pass', desc: 'Каждый день «Мотыль» и «Хлебная» прикормка, монеты ×1,2' },
   { id: 'fl_pero',  icon: '🪶', name: 'Поплавок «Гусиное перо»', cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Скоро' },
   { id: 'fl_cork',  icon: '🟤', name: 'Поплавок «Пробковый»',    cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Скоро' },
@@ -783,14 +804,14 @@ const ITEM = Object.fromEntries(ITEMS.map(i => [i.id, i]));
 
 function needXp(L) { return Math.round(PROG.XP_BASE * Math.pow(L, PROG.XP_POW)); }
 function maxEnergy(L) { return PROG.E1 + (L - 1) * PROG.ESTEP; }
-function todayStr(d) { d = d || new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
-function biteTime() { const h = new Date().getHours(); return BITE_TIMES.find(b => h >= b.from && h < b.to) || null; }
-function gbActive() { return save.gb && save.gb.until > Date.now() ? ITEM[save.gb.id] : null; }
+function todayStr(d) { d = d || new Date(gameNow()); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+function biteTime() { const h = new Date(gameNow()).getHours(); return BITE_TIMES.find(b => h >= b.from && h < b.to) || null; }
+function gbActive() { return save.gb && save.gb.until > gameNow() ? ITEM[save.gb.id] : null; }
 function baitActive() { return save.bait && save.bait.id && (save.baitLeft[save.bait.id] || 0) > 0 ? ITEM[save.bait.id] : null; }
 function fmtTime(ms) { const s = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
 
 function initProgress() {
-  const d = { level: 1, xp: 0, energy: null, energyTs: Date.now(), pearls: 0, inv: {}, gear: {}, baitLeft: {}, bait: null, gb: null,
+  const d = { level: 1, xp: 0, energy: null, energyTs: gameNow(), pearls: 0, inv: {}, gear: {}, gearOn: {}, energyBuyDay: '', baitLeft: {}, bait: null, gb: null,
               passUntil: 0, passDay: '', streak: { day: '', count: 0 }, flags: {} };
   for (const k in d) if (save[k] === undefined) save[k] = d[k];
   if (save.energy === null) save.energy = maxEnergy(save.level);
@@ -798,7 +819,8 @@ function initProgress() {
 
 /* --- энергия --- */
 function updateEnergy() {
-  const now = Date.now(), max = maxEnergy(save.level), step = PROG.REGEN_MIN * 60000;
+  const now = gameNow(), max = maxEnergy(save.level), step = PROG.REGEN_MIN * 60000;
+  if (save.energyTs > now) save.energyTs = now;   // время из будущего (переведённые часы) не засчитываем
   if (save.energy >= max) { save.energyTs = now; return; }
   const gained = Math.floor((now - save.energyTs) / step);
   if (gained > 0) {
@@ -809,11 +831,11 @@ function updateEnergy() {
 function spendEnergy() {
   updateEnergy();
   if (save.energy < 1) return false;
-  if (save.energy >= maxEnergy(save.level)) save.energyTs = Date.now();
+  if (save.energy >= maxEnergy(save.level)) save.energyTs = gameNow();
   save.energy -= 1;
   return true;
 }
-function nextEnergyIn() { return PROG.REGEN_MIN * 60000 - (Date.now() - save.energyTs); }
+function nextEnergyIn() { return PROG.REGEN_MIN * 60000 - (gameNow() - save.energyTs); }
 
 /* --- опыт и уровни --- */
 let pendingLevels = [];
@@ -847,14 +869,14 @@ function showLevelUp() {
 
 /* --- ежедневное: серия входов и пропуск --- */
 function dailyCheck() {
-  const t = todayStr(), y = todayStr(new Date(Date.now() - 86400000));
+  const t = todayStr(), y = todayStr(new Date(gameNow() - 86400000));
   const msgs = [];
   if (save.streak.day !== t) {
     save.streak.count = save.streak.day === y ? save.streak.count + 1 : 1;
     save.streak.day = t;
     if (save.streak.count % 7 === 0) { save.pearls += 10; msgs.push('7 дней подряд! +10 жемчуга'); }
   }
-  if (save.passUntil > Date.now() && save.passDay !== t) {
+  if (save.passUntil > gameNow() && save.passDay !== t) {
     save.passDay = t;
     save.inv.motyl = (save.inv.motyl || 0) + 1;
     save.inv.gb_bread = (save.inv.gb_bread || 0) + 1;
@@ -881,9 +903,9 @@ function refreshProgress() {
   // активные эффекты на сцене
   const fx = [];
   const bt = biteTime(); if (bt) fx.push(`<span class="fx gold">☀ ${bt.name}: опыт ×${bt.mult}</span>`);
-  const gb = gbActive(); if (gb) fx.push(`<span class="fx">${gb.icon} ${fmtTime(save.gb.until - Date.now())}</span>`);
+  const gb = gbActive(); if (gb) fx.push(`<span class="fx">${gb.icon} ${fmtTime(save.gb.until - gameNow())}</span>`);
   const b = baitActive(); if (b) fx.push(`<span class="fx">${b.icon} ${b.name.replace('Наживка ', '')}: ${save.baitLeft[b.id]}</span>`);
-  if (save.passUntil > Date.now()) fx.push('<span class="fx gold">🎫 Пропуск</span>');
+  if (save.passUntil > gameNow()) fx.push('<span class="fx gold">🎫 Пропуск</span>');
   $('fxBar').innerHTML = fx.join('');
 }
 setInterval(() => { if (save && save.level) refreshProgress(); }, 1000);
@@ -905,6 +927,7 @@ function openShop(tab) {
       let btn;
       if (it.type === 'soon') btn = '<button class="buy" disabled>Скоро</button>';
       else if (it.type === 'gear' && save.gear[it.id]) btn = '<button class="buy" disabled>Есть ✓</button>';
+      else if (it.type === 'energy' && save.energyBuyDay === todayStr()) btn = '<button class="buy" disabled>Завтра</button>';
       else btn = `<button class="buy${canPay(it) ? '' : ' poor'}" data-buy="${it.id}">${priceTag(it)}</button>`;
       const have = save.inv[it.id] ? ` · в рюкзаке: ${save.inv[it.id]}` : '';
       return `<div class="row"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${it.desc}${have}</span></div>${btn}</div>`;
@@ -915,55 +938,82 @@ function openShop(tab) {
 }
 function buy(id) {
   const it = ITEM[id];
+  if (it.type === 'energy' && save.energyBuyDay === todayStr()) { toast('Полную энергию можно купить раз в сутки'); return; }
   if (!canPay(it)) { toast(it.cur === 'coin' ? 'Не хватает монет' : 'Не хватает жемчуга'); haptic('error'); return; }
   if (it.cur === 'coin') save.coins = Math.round((save.coins - it.price) * 100) / 100; else save.pearls -= it.price;
   if (it.type === 'gear') { save.gear[id] = true; toast(it.name + ' — теперь твоя'); }
-  else if (it.type === 'energy') { updateEnergy(); save.energy = Math.max(save.energy, maxEnergy(save.level)); toast('Энергия полная!'); }
-  else if (it.type === 'pass') { save.passUntil = Math.max(Date.now(), save.passUntil) + 30 * 86400000; save.passDay = ''; dailyCheck(); toast('Пропуск активен на 30 дней'); }
+  else if (it.type === 'energy') { save.energyBuyDay = todayStr(); updateEnergy(); save.energy = Math.max(save.energy, maxEnergy(save.level)); toast('Энергия полная!'); }
+  else if (it.type === 'pass') { save.passUntil = Math.max(gameNow(), save.passUntil) + 30 * 86400000; save.passDay = ''; dailyCheck(); toast('Пропуск активен на 30 дней'); }
   else { save.inv[id] = (save.inv[id] || 0) + 1; toast(it.name + ' — в рюкзаке'); }
   haptic('success'); persist(); refreshTop(); refreshProgress(); openShop();
 }
 
 /* --- рюкзак --- */
+// показываем только то, что есть; нажатие на строку — активировать / снять
+function gearOn(id) { return save.gear[id] && save.gearOn[id] !== false; }
 function openBag() {
   const rows = [];
-  const gb = gbActive();
-  rows.push('<div class="sec">Прикормка</div>');
-  rows.push(gb ? `<div class="row act"><div class="ic">${gb.icon}</div><div class="tx"><b>${gb.name}</b><span>Действует ещё ${fmtTime(save.gb.until - Date.now())}</span></div></div>` : '<div class="empty">Сейчас не действует</div>');
-  ITEMS.filter(it => it.type === 'gb' && save.inv[it.id]).forEach(it => rows.push(`<div class="row"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name} ×${save.inv[it.id]}</b><span>${it.desc}</span></div><button class="buy" data-use="${it.id}">Высыпать</button></div>`));
-  rows.push('<div class="sec">Наживка</div>');
-  const baits = ITEMS.filter(it => it.type === 'bait' && (save.inv[it.id] || save.baitLeft[it.id]));
-  if (!baits.length) rows.push('<div class="empty">Нет наживки — без неё обычный клёв. Купи в магазине</div>');
-  baits.forEach(it => {
-    const left = save.baitLeft[it.id] || 0, packs = save.inv[it.id] || 0;
-    const on = save.bait && save.bait.id === it.id && left > 0;
-    const info = (left ? `Осталось ${left} забросов` : '') + (packs ? (left ? ' · ' : '') + `запас ×${packs}` : '');
-    const btn = on ? '<button class="buy" data-unbait="1">Снять</button>' : `<button class="buy" data-bait="${it.id}">Насадить</button>`;
-    rows.push(`<div class="row${on ? ' act' : ''}"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${info}</span></div>${btn}</div>`);
+  const badge = (n) => n > 0 ? `<span class="cnt">×${n}</span>` : '';
+  // прикормки
+  const gbA = gbActive();
+  const gbs = ITEMS.filter(it => it.type === 'gb' && ((save.inv[it.id] || 0) > 0 || (gbA && gbA.id === it.id)));
+  rows.push('<div class="sec">Прикормки</div>');
+  if (!gbs.length) rows.push('<div class="empty">Нет прикормки. Купи в магазине 🛒</div>');
+  gbs.forEach(it => {
+    const on = gbA && gbA.id === it.id, n = save.inv[it.id] || 0;
+    const st = on ? `Действует ещё ${fmtTime(save.gb.until - gameNow())}` + (n ? ' · нажми, чтобы продлить' : '') : it.desc;
+    const act = n ? `data-act="gb:${it.id}"` : '';
+    rows.push(`<div class="row tap${on ? ' act' : ''}" ${act}><div class="ic">${it.icon}</div><div class="tx"><b>${it.name} ${badge(n)}</b><span>${st}</span></div><span class="state">${on ? 'Активна' : 'Высыпать'}</span></div>`);
   });
-  rows.push('<div class="sec">Снасти</div>');
+  // наживки
+  const bA = baitActive();
+  const baits = ITEMS.filter(it => it.type === 'bait' && ((save.inv[it.id] || 0) > 0 || (save.baitLeft[it.id] || 0) > 0));
+  rows.push('<div class="sec">Наживки</div>');
+  if (!baits.length) rows.push('<div class="empty">Нет наживки — ловишь на простого червя. Купи в магазине 🛒</div>');
+  baits.forEach(it => {
+    const on = bA && bA.id === it.id, n = save.inv[it.id] || 0, left = save.baitLeft[it.id] || 0;
+    const st = (left ? `На крючке: ${left} забросов` : 'Пачка на 10 забросов') + (on ? '' : ' · ' + it.desc.replace('10 забросов: ', ''));
+    rows.push(`<div class="row tap${on ? ' act' : ''}" data-act="bait:${it.id}"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name} ${badge(n)}</b><span>${st}</span></div><span class="state">${on ? 'Насажена' : 'Насадить'}</span></div>`);
+  });
+  // снасти
   const gear = ITEMS.filter(it => it.type === 'gear' && save.gear[it.id]);
-  rows.push(gear.length ? gear.map(it => `<div class="row act"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div></div>`).join('') : '<div class="empty">Пока только простая снасть</div>');
+  rows.push('<div class="sec">Снасти</div>');
+  if (!gear.length) rows.push('<div class="empty">Пока простая снасть. Леска и крючок есть в магазине 🛒</div>');
+  gear.forEach(it => {
+    const on = gearOn(it.id);
+    rows.push(`<div class="row tap${on ? ' act' : ''}" data-act="gear:${it.id}"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name}</b><span>${it.desc}</span></div><span class="state">${on ? 'Надета' : 'Надеть'}</span></div>`);
+  });
   $('bagList').innerHTML = rows.join('');
   $('bagModal').classList.add('show');
 }
+let confirmReplace = null;
 function useGb(id) {
   if (!save.inv[id]) return;
-  const it = ITEM[id];
-  if (gbActive() && !confirmReplace) { confirmReplace = id; toast('Новая прикормка заменит текущую. Нажми ещё раз'); return; }
-  confirmReplace = null;
-  save.inv[id]--; save.gb = { id, until: Date.now() + it.minutes * 60000 };
-  persist(); refreshProgress(); openBag(); toast(it.name + ' — клюёт быстрее!');
-}
-let confirmReplace = null;
-function setBait(id) {
-  if (!(save.baitLeft[id] > 0)) {
-    if (!save.inv[id]) return;
-    save.inv[id]--; save.baitLeft[id] = (save.baitLeft[id] || 0) + 10;
+  const it = ITEM[id], cur = gbActive();
+  if (cur && cur.id === id) { save.inv[id]--; save.gb.until += it.minutes * 60000; toast(it.name + ': +' + it.minutes + ' минут'); }
+  else {
+    if (cur && confirmReplace !== id) { confirmReplace = id; toast('Сейчас действует «' + cur.name.replace('Прикормка ', '') + '». Нажми ещё раз, чтобы заменить'); return; }
+    confirmReplace = null;
+    save.inv[id]--; save.gb = { id, until: gameNow() + it.minutes * 60000 };
+    toast(it.name + ' — клюёт быстрее!');
   }
-  save.bait = { id };
-  persist(); refreshProgress(); openBag(); toast(ITEM[id].name + ' на крючке');
+  haptic('light'); persist(); refreshProgress(); openBag();
 }
+function toggleBait(id) {
+  const cur = baitActive();
+  if (cur && cur.id === id) { save.bait = null; toast('Наживка снята'); }
+  else {
+    if (!(save.baitLeft[id] > 0)) { if (!save.inv[id]) return; save.inv[id]--; save.baitLeft[id] = 10; }
+    save.bait = { id }; toast(ITEM[id].name + ' на крючке');
+  }
+  haptic('light'); persist(); refreshProgress(); openBag();
+}
+function toggleGear(id) {
+  save.gearOn[id] = !gearOn(id);
+  toast(ITEM[id].name + (save.gearOn[id] ? ' — надета' : ' — снята'));
+  haptic('light'); persist(); openBag();
+}
+function setBait(id) { toggleBait(id); }
 
 /* --- влияние на рыбалку --- */
 let castHeavy = false;
@@ -1029,6 +1079,7 @@ action.addEventListener('contextmenu', (e) => e.preventDefault());
 $('cAgain').addEventListener('click', () => { $('catchModal').classList.remove('show'); showLevelUp(); });
 $('luOk').addEventListener('click', () => $('levelModal').classList.remove('show'));
 $('shopBtn').addEventListener('click', () => openShop());
+$('pearlBtn').addEventListener('click', () => openShop('Жемчуг'));
 $('bagBtn').addEventListener('click', () => { confirmReplace = null; openBag(); });
 $('shopClose').addEventListener('click', () => $('shopModal').classList.remove('show'));
 $('bagClose').addEventListener('click', () => $('bagModal').classList.remove('show'));
@@ -1038,9 +1089,9 @@ $('shopList').addEventListener('click', (e) => {
   const p = e.target.closest('[data-pack]'); if (p) { const pk = PACKS[+p.dataset.pack]; save.pearls += pk.pearls; persist(); refreshProgress(); toast('+' + pk.pearls + ' жемчуга (тест)'); openShop(); }
 });
 $('bagList').addEventListener('click', (e) => {
-  const u = e.target.closest('[data-use]'); if (u) return useGb(u.dataset.use);
-  const b = e.target.closest('[data-bait]'); if (b) return setBait(b.dataset.bait);
-  if (e.target.closest('[data-unbait]')) { save.bait = null; persist(); refreshProgress(); openBag(); }
+  const r = e.target.closest('[data-act]'); if (!r) return;
+  const [kind, id] = r.dataset.act.split(':');
+  if (kind === 'gb') useGb(id); else if (kind === 'bait') toggleBait(id); else if (kind === 'gear') toggleGear(id);
 });
 $('energy').parentElement.parentElement.addEventListener('click', () => openShop('Энергия'));
 
@@ -1073,7 +1124,7 @@ $('albumClose').addEventListener('click', () => $('albumModal').classList.remove
 if (tg) {
   tg.ready();
   tg.expand();
-  try { tg.setHeaderColor('#FFFFFF'); tg.setBackgroundColor('#F7B98C'); } catch (e) {}
+  try { tg.setHeaderColor('#121A2E'); tg.setBackgroundColor('#F7B98C'); } catch (e) {}
   try { tg.disableVerticalSwipes && tg.disableVerticalSwipes(); } catch (e) {}
 }
 // предзагрузка картинок: держим их в памяти и заранее декодируем, чтобы рыба появлялась мгновенно
@@ -1085,7 +1136,7 @@ FISH.concat(JUNK_LIST).forEach(f => {
   IMG_CACHE[f.id] = i;
 });
 
-load(() => {
+load(() => syncTime().then(() => {
   migrate();
   initProgress();
   dailyCheck();
@@ -1093,7 +1144,7 @@ load(() => {
   refreshProgress();
   const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
   toIdle(user && user.first_name ? 'Привет, ' + user.first_name + '!' : 'Привет, рыбак!');
-});
+}));
 window.addEventListener('resize', () => { placeBobber(bobVX, bobVY); if (state === 'waiting' || state === 'bite' || state === 'reel') setLine(true); });
 </script>
 </body>
