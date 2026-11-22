@@ -187,7 +187,7 @@
 
   <div class="panel">
     <div id="status">Привет, рыбак!</div>
-    <div id="sub">Зажми кнопку и отпусти в зелёной зоне</div>
+    <div id="sub">Нажми, чтобы начать заброс</div>
 
     <div class="meter" id="powerMeter"><div id="powerFill"></div><div id="powerZone"></div></div>
 
@@ -231,8 +231,8 @@ const RARITY = {
   common:    { name: 'Обычная',     color: '#8A8F98', zone: 0.34, speed: 0.22, chaos: 0.5 },
   uncommon:  { name: 'Необычная',   color: '#3FA34D', zone: 0.30, speed: 0.30, chaos: 0.7 },
   rare:      { name: 'Редкая',      color: '#2F7BD9', zone: 0.26, speed: 0.38, chaos: 0.9 },
-  epic:      { name: 'Эпическая',   color: '#8B4FD6', zone: 0.23, speed: 0.46, chaos: 1.1 },
-  legendary: { name: 'Легендарная', color: '#E3A008', zone: 0.21, speed: 0.55, chaos: 1.3 },
+  epic:      { name: 'Эпическая',   color: '#8B4FD6', zone: 0.25, speed: 0.40, chaos: 1.0 },
+  legendary: { name: 'Легендарная', color: '#E3A008', zone: 0.25, speed: 0.42, chaos: 1.05 },
 };
 
 // chance — относительный шанс, min/max — вес в кг, price — монет за кг (минимум 1)
@@ -337,7 +337,7 @@ function toIdle(msg, subMsg) {
   $('reelMeter').classList.remove('show');
   $('prog').classList.remove('show');
   status.textContent = msg || 'Готов к забросу';
-  sub.textContent = subMsg || 'Зажми кнопку и отпусти в зелёной зоне';
+  sub.textContent = subMsg || 'Нажми, чтобы начать заброс';
   setButton('Забросить');
 }
 
@@ -347,8 +347,8 @@ function startPower() {
   state = 'power';
   $('powerMeter').classList.add('show');
   status.textContent = 'Сила заброса…';
-  sub.textContent = 'Отпусти, когда шкала в зелёной зоне';
-  setButton('Отпусти!', 'green');
+  sub.textContent = 'Нажми ещё раз, когда шкала в зелёной зоне';
+  setButton('Стоп!', 'green');
   powerStart = performance.now();
   const tick = (t) => {
     if (state !== 'power') return;
@@ -463,14 +463,14 @@ function reelTick(t) {
   reel.fishX = Math.max(0.03, Math.min(0.97, reel.fishX));
 
   // зона игрока: держишь — ускоряется вправо, отпускаешь — влево
-  reel.zoneV += (holding ? 2.2 : -2.2) * dt;
-  reel.zoneV = Math.max(-0.9, Math.min(0.9, reel.zoneV));
+  reel.zoneV += (holding ? 7.0 : -7.0) * dt;
+  reel.zoneV = Math.max(-1.4, Math.min(1.4, reel.zoneV));
   reel.zoneX += reel.zoneV * dt;
   if (reel.zoneX < 0) { reel.zoneX = 0; reel.zoneV = Math.max(0, reel.zoneV) * 0.3; }
   if (reel.zoneX > 1 - reel.zoneW) { reel.zoneX = 1 - reel.zoneW; reel.zoneV = Math.min(0, reel.zoneV) * 0.3; }
 
   const inside = reel.fishX >= reel.zoneX && reel.fishX <= reel.zoneX + reel.zoneW;
-  reel.progress += (inside ? 0.30 : -0.17) * dt;
+  reel.progress += (inside ? 0.34 : -0.15) * dt;
 
   $('reelZone').style.left = (reel.zoneX * 100) + '%';
   $('reelFish').style.left = (reel.fishX * 100) + '%';
@@ -528,19 +528,20 @@ function caught() {
 function onDown(e) {
   e.preventDefault();
   if (state === 'idle') startPower();
+  else if (state === 'power') releasePower();
   else if (state === 'waiting') { escaped('Рано подсёк — рыба испугалась'); }
   else if (state === 'bite') startReel();
-  else if (state === 'reel') holding = true;
+  else if (state === 'reel') { if (!holding) reel.zoneV *= 0.2; holding = true; }
 }
 function onUp(e) {
   e.preventDefault();
-  if (state === 'power') releasePower();
+  if (state === 'reel' && holding) reel.zoneV *= 0.2;  // мгновенный разворот
   holding = false;
 }
 action.addEventListener('pointerdown', onDown);
 action.addEventListener('pointerup', onUp);
 action.addEventListener('pointercancel', onUp);
-action.addEventListener('pointerleave', (e) => { if (state === 'reel' || state === 'power') onUp(e); });
+action.addEventListener('pointerleave', (e) => { if (state === 'reel') onUp(e); });
 action.addEventListener('contextmenu', (e) => e.preventDefault());
 
 $('cAgain').addEventListener('click', () => { $('catchModal').classList.remove('show'); });
