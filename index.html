@@ -108,6 +108,78 @@
     #luBody div { font-size: 17px; font-weight: 700; margin-top: 8px; }
     .cxp { margin-top: 4px; font-size: 13px; color: #2F7BD9; font-weight: 700; }
 
+
+    /* ---------- мультяшные иконки ---------- */
+    .chip.ic { padding: 3px 7px !important; }
+    .ico { width: 28px; height: 28px; display: block; filter: drop-shadow(0 1.5px 0 rgba(0,0,0,0.35)); }
+    #albumBtn { display: flex; align-items: center; gap: 4px; }
+    #albumBtn .ico { width: 24px; height: 24px; }
+    .chip button:active .ico { transform: scale(0.9); }
+
+    /* ---------- праздничное окно ---------- */
+    .cele-modal { display: flex !important; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; background: radial-gradient(circle at 50% 40%, rgba(255,214,102,0.25), rgba(10,16,30,0.75) 70%); }
+    .cele-modal.show { opacity: 1; pointer-events: auto; }
+    .card.cele { position: relative; overflow: hidden; background: linear-gradient(180deg, #FFF6DC 0%, #FFE6A8 100%); border: 4px solid #3A2510; border-radius: 26px; box-shadow: 0 8px 0 #3A2510, 0 18px 40px rgba(0,0,0,0.45); color: #3A2510; transform: scale(0.5) translateY(30px); opacity: 0; animation: none; }
+    .cele-modal.show .card.cele { animation: celePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    @keyframes celePop { 0% { transform: scale(0.5) translateY(30px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
+    .cele h2 { font-size: 30px; font-weight: 900; color: #E5463B; text-shadow: 0 2px 0 #FFF, 0 3px 0 #3A2510; letter-spacing: 0.5px; opacity: 0; }
+    .cele-modal.show .cele h2 { animation: celeUp 0.45s 0.35s ease-out forwards; }
+    #luBody { opacity: 0; }
+    .cele-modal.show #luBody { animation: celeUp 0.45s 0.5s ease-out forwards; }
+    @keyframes celeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    #luBody div { font-size: 17px; font-weight: 800; margin-top: 8px; color: #3A2510; }
+    .card.cele button.main { background: #3FA34D; box-shadow: 0 4px 0 #2B7A36; border: 3px solid #3A2510; }
+    .burst { position: relative; width: 170px; height: 150px; margin: -6px auto 4px; }
+    .rays { position: absolute; left: 50%; top: 50%; width: 230px; height: 230px; transform: translate(-50%, -50%); animation: spin 10s linear infinite; opacity: 0.9; }
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    .badge { position: absolute; left: 50%; top: 50%; width: 132px; height: 132px; transform: translate(-50%, -50%) scale(0); }
+    .cele-modal.show .badge { animation: badgeIn 0.7s 0.15s cubic-bezier(0.34, 1.7, 0.64, 1) forwards, wobble 2.4s 0.9s ease-in-out infinite; }
+    @keyframes badgeIn { to { transform: translate(-50%, -50%) scale(1); } }
+    @keyframes wobble { 0%, 100% { transform: translate(-50%, -50%) rotate(-4deg) scale(1); } 50% { transform: translate(-50%, -50%) rotate(4deg) scale(1.04); } }
+    .badge svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 0 rgba(58,37,16,0.5)); }
+    .spark { position: absolute; color: #FFFFFF; font-size: 22px; text-shadow: 0 0 6px #FFD24A, 0 1px 0 #3A2510; opacity: 0; }
+    .cele-modal.show .spark { animation: twinkle 1.6s ease-in-out infinite; }
+    .s1 { left: 6px; top: 18px; } .s2 { right: 2px; top: 34px; animation-delay: 0.5s !important; font-size: 16px; } .s3 { left: 26px; bottom: 6px; animation-delay: 1s !important; font-size: 14px; }
+    @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); } 50% { opacity: 1; transform: scale(1.2) rotate(45deg); } }
+    .confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .confetti i { position: absolute; top: -14px; width: 9px; height: 14px; border-radius: 2px; border: 1.5px solid rgba(58,37,16,0.6); animation: fall 1.9s ease-in forwards; }
+    @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(520px) rotate(720deg); opacity: 0.9; } }
+    .cele-modal.closing { opacity: 0 !important; }
+
+    /* ---------- индикатор наживки ---------- */
+    .baitbtn { position: absolute; right: 10px; bottom: 10px; z-index: 3; display: flex; align-items: center; gap: 6px; padding: 5px 10px 5px 6px; border-radius: 16px; border: 2.5px solid #3A2510; background: rgba(255,248,230,0.94); box-shadow: 0 3px 0 #3A2510; cursor: pointer; font-family: inherit; max-width: 60%; }
+    .baitbtn:active { transform: translateY(2px); box-shadow: 0 1px 0 #3A2510; }
+    .baitbtn .bi { font-size: 20px; line-height: 1; width: 26px; height: 26px; border-radius: 50%; background: #FFE6B0; display: flex; align-items: center; justify-content: center; border: 2px solid #3A2510; }
+    .baitbtn .bt { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05; min-width: 0; }
+    .baitbtn .bt b { font-size: 12px; color: #3A2510; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+    .baitbtn .bt i { font-style: normal; font-size: 11px; color: #7A5A30; font-weight: 700; }
+    .baitbtn .bc { font-size: 11px; color: #7A5A30; }
+    .baitbtn.locbtn { right: auto; left: 10px; max-width: 45%; }
+    .baitbtn.locbtn .bi { background: #CFEAD2; }
+    .row.lock { opacity: 0.72; }
+    .row .ic.loc { font-size: 26px; }
+    #locList .buy { white-space: nowrap; min-width: 0; padding-left: 10px; padding-right: 10px; }
+    #locList .need { color: #FF9A7A; font-weight: 700; }
+    .qloc { display: block; font-size: 11px; color: #8A96B0; margin-top: 2px; }
+    .two-btn { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .main.ghost { background: #2B3A60; box-shadow: 0 4px 0 #1A2540; }
+
+    /* ---------- задания ---------- */
+    .qbtn { position: absolute; right: 8px; top: 8px; z-index: 3; width: 58px; height: 58px; border-radius: 18px; border: 3px solid #3A2510; background: linear-gradient(180deg, #2B3A60, #1C2740); box-shadow: 0 4px 0 #3A2510, 0 6px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+    .qbtn:active { transform: translateY(2px); box-shadow: 0 2px 0 #3A2510; }
+    .qico { width: 44px; height: 44px; filter: drop-shadow(0 1.5px 0 rgba(0,0,0,0.35)); }
+    .qbtn.ach { top: 74px; }
+    .tcnt { display: inline-block; min-width: 18px; padding: 0 5px; margin-left: 4px; border-radius: 9px; background: #E5463B; color: #FFF; font-size: 11px; }
+    .amed { width: 40px; height: 40px; flex: none; }
+    #qBadge, #aBadge { position: absolute; right: -8px; top: -8px; min-width: 22px; height: 22px; border-radius: 11px; background: #E5463B; color: #FFF; font-weight: 900; font-size: 13px; display: none; align-items: center; justify-content: center; border: 2px solid #3A2510; padding: 0 4px; animation: qpulse 1.4s ease-in-out infinite; }
+    @keyframes qpulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+    #fxBar { right: 76px !important; }
+    .tabs.two { grid-template-columns: 1fr 1fr; }
+    .qbar { height: 8px; border-radius: 4px; background: #121A2E; overflow: hidden; margin: 6px 0 2px; }
+    .qbar i { display: block; height: 100%; background: linear-gradient(90deg, #F59E0B, #3FA34D); border-radius: 4px; }
+    .buy.go { background: #3FA34D; box-shadow: 0 3px 0 #2B7A36; }
+    .cele-modal { z-index: 20 !important; }
+
     /* ---------- сцена ---------- */
     .scene { position: relative; flex: 1; overflow: hidden; }
     .scene svg.bg { position: absolute; inset: 0; width: 100%; height: 100%; will-change: transform; transform: translateZ(0); }
@@ -232,15 +304,19 @@
       <div class="chip"><div class="coin"></div><span id="coins">0</span></div>
       <div class="chip"><button id="pearlBtn"><span class="pearl"></span><span id="pearls">0</span><b class="plus">+</b></button></div>
       <div class="sp"></div>
-      <div class="chip"><button class="ib" id="bagBtn">🎒</button></div>
-      <div class="chip"><button class="ib" id="shopBtn">🛒</button></div>
-      <div class="chip"><button id="albumBtn">📖 <span id="albumCount">0/15</span></button></div>
+      <div class="chip ic"><button class="ib" id="bagBtn" aria-label="Рюкзак"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M17 12c0-5 3-8 7-8s7 3 7 8" fill="none" stroke="#3A2510" stroke-width="3.2" stroke-linecap="round"/><rect x="8" y="12" width="32" height="31" rx="9" fill="#B07A3E" stroke="#3A2510" stroke-width="3"/><path d="M8 22c0-6 4-10 9-10h14c5 0 9 4 9 10v2H8z" fill="#8C5A28" stroke="#3A2510" stroke-width="3" stroke-linejoin="round"/><rect x="21" y="20" width="6" height="8" rx="2" fill="#F6C343" stroke="#3A2510" stroke-width="2.4"/><rect x="14" y="30" width="20" height="9" rx="3.5" fill="#9A6630" stroke="#3A2510" stroke-width="2.6"/><path d="M12 15c2-1.5 4-2 6-2" stroke="#E7B77A" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg></button></div>
+      <div class="chip ic"><button class="ib" id="shopBtn" aria-label="Магазин"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="22" width="30" height="20" rx="3" fill="#C98B4A" stroke="#3A2510" stroke-width="3"/><rect x="19" y="29" width="10" height="13" rx="2" fill="#7A4A1E" stroke="#3A2510" stroke-width="2.4"/><path d="M5 14l4-8h30l4 8z" fill="#FFF3DC" stroke="#3A2510" stroke-width="3" stroke-linejoin="round"/><path d="M15 6l-2 8M24 6v8M33 6l2 8" stroke="#E5463B" stroke-width="5"/><path d="M5 14c0 4 3 6 5.5 6S16 18 16 14c0 4 3 6 5.5 6S27 18 27 14c0 4 3 6 5.5 6S38 18 38 14h5c0 4-2.5 6-5 6" fill="#E5463B" stroke="#3A2510" stroke-width="3" stroke-linejoin="round"/><circle cx="34" cy="30" r="3" fill="#F6C343" stroke="#3A2510" stroke-width="2"/></svg></button></div>
+      <div class="chip ic"><button id="albumBtn" aria-label="Коллекция"><svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 8h24a5 5 0 0 1 5 5v27H14a4 4 0 0 1-4-4z" fill="#FFF6E2" stroke="#3A2510" stroke-width="3" stroke-linejoin="round"/><path d="M8 7h24a4 4 0 0 1 4 4v26H12a4 4 0 0 0-4 4z" fill="#2F7BD9" stroke="#3A2510" stroke-width="3" stroke-linejoin="round"/><path d="M14 22c3-4 8-4 11 0-3 4-8 4-11 0z" fill="#F6C343" stroke="#3A2510" stroke-width="2.2" stroke-linejoin="round"/><path d="M25 22l4-3v6z" fill="#F6C343" stroke="#3A2510" stroke-width="2.2" stroke-linejoin="round"/><circle cx="17" cy="21.5" r="1.2" fill="#3A2510"/><path d="M28 7v10l2.5-2 2.5 2V7" fill="#E5463B" stroke="#3A2510" stroke-width="2.2" stroke-linejoin="round"/><path d="M11 11c1-1 2-1.5 3.5-1.5" stroke="#9CC4F2" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg> <span id="albumCount">0/15</span></button></div>
     </div>
   </div>
 
   <div class="scene" id="scene">
     <div id="fxBar"></div>
-    <svg class="bg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice"><defs>
+    <button id="questBtn" class="qbtn" aria-label="Задания"><svg class="qico" viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="10" width="36" height="46" rx="4" fill="#FBEFD0" stroke="#3A2510" stroke-width="3.5"/><rect x="8" y="6" width="48" height="10" rx="5" fill="#E2B76E" stroke="#3A2510" stroke-width="3.5"/><rect x="8" y="50" width="48" height="10" rx="5" fill="#E2B76E" stroke="#3A2510" stroke-width="3.5"/><path d="M20 25l3 3 5-6" fill="none" stroke="#3FA34D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 25h13" stroke="#8C6A42" stroke-width="3.2" stroke-linecap="round"/><path d="M20 36l3 3 5-6" fill="none" stroke="#3FA34D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 36h13" stroke="#8C6A42" stroke-width="3.2" stroke-linecap="round"/><rect x="19" y="43" width="9" height="3" rx="1.5" fill="#C9B48A"/><path d="M31 44.5h10" stroke="#C9B48A" stroke-width="3" stroke-linecap="round"/><circle cx="47" cy="47" r="7" fill="#E5463B" stroke="#3A2510" stroke-width="3"/><path d="M44.5 47h5M47 44.5v5" stroke="#FFD95E" stroke-width="2.2" stroke-linecap="round"/><path d="M18 14c2-1 5-1.5 8-1.5" stroke="#FFF7E0" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg><span id="qBadge">0</span></button>
+    <button id="baitBtn" class="baitbtn" aria-label="Наживка"><span class="bi">🪱</span><span class="bt"><b id="baitName">Червь</b><i id="baitLeftTxt">∞</i></span><span class="bc">▾</span></button>
+    <button id="locBtn" class="baitbtn locbtn" aria-label="Водоём"><span class="bi">🏡</span><span class="bt"><b id="locName">Пруд</b><i id="locSub">водоём</i></span><span class="bc">▾</span></button>
+    <button id="achBtn" class="qbtn ach" aria-label="Достижения"><svg class="qico" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 10h24v14a12 12 0 0 1-24 0z" fill="#FFD95E" stroke="#3A2510" stroke-width="3.5" stroke-linejoin="round"/><path d="M20 15h-6a6 6 0 0 0 7 9M44 15h6a6 6 0 0 1-7 9" fill="none" stroke="#3A2510" stroke-width="3.5" stroke-linecap="round"/><path d="M24 14v8a8 8 0 0 0 5 7" fill="none" stroke="#FFF3B0" stroke-width="3" stroke-linecap="round"/><path d="M28 35h8l2 9H26z" fill="#F2A93B" stroke="#3A2510" stroke-width="3.2" stroke-linejoin="round"/><rect x="18" y="44" width="28" height="10" rx="3" fill="#8C5A2B" stroke="#3A2510" stroke-width="3.2"/><rect x="25" y="47" width="14" height="4" rx="1.5" fill="#FFD95E"/><path d="M32 15l1.8 3.6 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="#FFF7E0" stroke="#C77A1E" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 34l2 2M54 34l-2 2M12 28h-3M52 28h3" stroke="#FFD95E" stroke-width="2.6" stroke-linecap="round"/></svg><span id="aBadge" class="qb">0</span></button>
+    <svg class="bg" id="sceneBg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice"><defs>
       <linearGradient id="skyb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7B98C"/><stop offset="1" stop-color="#FCE6CF"/></linearGradient>
       <linearGradient id="watb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7EA9C4"/><stop offset="1" stop-color="#2E5C7A"/></linearGradient>
     </defs><rect width="400" height="240" fill="url(#skyb)"/><circle cx="300" cy="205" r="41.6" fill="#FFE3A0" opacity="0.25"/><circle cx="300" cy="205" r="26" fill="#FFE3A0"/><g fill="#FFFFFF" opacity="0.7"><ellipse cx="90" cy="100" rx="36.0" ry="10.8"/><ellipse cx="109.8" cy="92.8" rx="21.6" ry="11.700000000000001"/></g><path d="M0,215 Q40,170 90,190 Q140,160 200,184 Q260,158 310,186 Q360,166 400,190 L400,240 L0,240 Z" fill="#6E8C6A"/><path d="M0,240 L0,214 Q100,200 200,210 Q300,198 400,212 L400,240 Z" fill="#86A276"/><ellipse cx="50" cy="184.56" rx="13.440000000000001" ry="17.28" fill="#6E9A4A"/><ellipse cx="52.88" cy="180.72" rx="10.56" ry="13.440000000000001" fill="#86AE5A"/><rect x="48.32" y="193.2" width="3.3600000000000003" height="28.799999999999997" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="48.32" y="213.5" width="1.9" height="2" fill="#2E2E2E"/><rect x="48.32" y="209.7" width="1.9" height="2" fill="#2E2E2E"/><rect x="48.32" y="203.3" width="1.9" height="2" fill="#2E2E2E"/><rect x="48.32" y="198.4" width="1.9" height="2" fill="#2E2E2E"/><ellipse cx="265" cy="181.44" rx="14.560000000000002" ry="18.72" fill="#6E9A4A"/><ellipse cx="268.12" cy="177.28" rx="11.44" ry="14.560000000000002" fill="#86AE5A"/><rect x="263.18" y="190.8" width="3.6400000000000006" height="31.2" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="263.18" y="215.8" width="2.1" height="2" fill="#2E2E2E"/><rect x="263.18" y="208.3" width="2.1" height="2" fill="#2E2E2E"/><rect x="263.18" y="200.7" width="2.1" height="2" fill="#2E2E2E"/><rect x="263.18" y="196.1" width="2.1" height="2" fill="#2E2E2E"/><path d="M345,168 L359.0,198.8 L351.72,198.8 L362.92,224 L327.08,224 L338.28,198.8 L331.0,198.8 Z" fill="#3E6A44"/><rect x="70" y="198.72" width="44" height="27.28" fill="#9A6634" stroke="#4A2E14" stroke-width="1.2"/><line x1="70" y1="204.2" x2="114" y2="204.2" stroke="#7A4E26" stroke-width="1"/><line x1="70" y1="209.6" x2="114" y2="209.6" stroke="#7A4E26" stroke-width="1"/><line x1="70" y1="215.1" x2="114" y2="215.1" stroke="#7A4E26" stroke-width="1"/><line x1="70" y1="220.5" x2="114" y2="220.5" stroke="#7A4E26" stroke-width="1"/><rect x="100.8" y="183.012" width="3.96" height="9.24" fill="#8A4B3A" stroke="#4A2E14" stroke-width="1"/><g fill="#FFFFFF" opacity="0.6"><circle cx="104.78" cy="177.088" r="2.2"/><circle cx="109.78" cy="170.088" r="2.8600000000000003"/><circle cx="116.78" cy="162.088" r="3.52"/></g><path d="M66.48,198.72 L92.0,180.24 L117.52000000000001,198.72 Z" fill="#5E5E66" stroke="#3E3E44" stroke-width="1.4" stroke-linejoin="round"/><circle cx="92.0" cy="191.6976" r="2.6399999999999997" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.2"/><rect x="79.68" y="206.3584" width="7.04" height="9.8208" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M77.68,206.3584 L83.2,202.92112 L88.72000000000001,206.3584" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="83.2" y1="206.3584" x2="83.2" y2="216.17919999999998" stroke="#FFFFFF" stroke-width="1"/><rect x="77.68" y="216.17919999999998" width="11.04" height="2.5" fill="#FFFFFF"/><rect x="97.28" y="206.3584" width="7.04" height="9.8208" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M95.28,206.3584 L100.8,202.92112 L106.32000000000001,206.3584" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="100.8" y1="206.3584" x2="100.8" y2="216.17919999999998" stroke="#FFFFFF" stroke-width="1"/><rect x="95.28" y="216.17919999999998" width="11.04" height="2.5" fill="#FFFFFF"/><rect x="140" y="193.0" width="50" height="31.0" fill="#9A6634" stroke="#4A2E14" stroke-width="1.2"/><line x1="140" y1="199.2" x2="190" y2="199.2" stroke="#7A4E26" stroke-width="1"/><line x1="140" y1="205.4" x2="190" y2="205.4" stroke="#7A4E26" stroke-width="1"/><line x1="140" y1="211.6" x2="190" y2="211.6" stroke="#7A4E26" stroke-width="1"/><line x1="140" y1="217.8" x2="190" y2="217.8" stroke="#7A4E26" stroke-width="1"/><rect x="175.0" y="175.15" width="4.5" height="10.5" fill="#8A4B3A" stroke="#4A2E14" stroke-width="1"/><g fill="#FFFFFF" opacity="0.6"><circle cx="179.25" cy="169.1" r="2.5"/><circle cx="184.25" cy="162.1" r="3.25"/><circle cx="191.25" cy="154.1" r="4.0"/></g><path d="M136.0,193.0 L165.0,172.0 L194.0,193.0 Z" fill="#5E5E66" stroke="#3E3E44" stroke-width="1.4" stroke-linejoin="round"/><circle cx="165.0" cy="185.02" r="3.0" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.2"/><rect x="151.0" y="201.68" width="8.0" height="11.16" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M149.0,201.68 L155.0,197.774 L161.0,201.68" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="155.0" y1="201.68" x2="155.0" y2="212.84" stroke="#FFFFFF" stroke-width="1"/><rect x="149.0" y="212.84" width="12.0" height="2.5" fill="#FFFFFF"/><rect x="171.0" y="201.68" width="8.0" height="11.16" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M169.0,201.68 L175.0,197.774 L181.0,201.68" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="175.0" y1="201.68" x2="175.0" y2="212.84" stroke="#FFFFFF" stroke-width="1"/><rect x="169.0" y="212.84" width="12.0" height="2.5" fill="#FFFFFF"/><rect x="215" y="199.96" width="42" height="26.04" fill="#9A6634" stroke="#4A2E14" stroke-width="1.2"/><line x1="215" y1="205.2" x2="257" y2="205.2" stroke="#7A4E26" stroke-width="1"/><line x1="215" y1="210.4" x2="257" y2="210.4" stroke="#7A4E26" stroke-width="1"/><line x1="215" y1="215.6" x2="257" y2="215.6" stroke="#7A4E26" stroke-width="1"/><line x1="215" y1="220.8" x2="257" y2="220.8" stroke="#7A4E26" stroke-width="1"/><rect x="244.4" y="184.966" width="3.78" height="8.82" fill="#8A4B3A" stroke="#4A2E14" stroke-width="1"/><g fill="#FFFFFF" opacity="0.6"><circle cx="248.29" cy="179.084" r="2.1"/><circle cx="253.29" cy="172.084" r="2.73"/><circle cx="260.28999999999996" cy="164.084" r="3.36"/></g><path d="M211.64,199.96 L236.0,182.32 L260.36,199.96 Z" fill="#7A3A2E" stroke="#3E3E44" stroke-width="1.4" stroke-linejoin="round"/><circle cx="236.0" cy="193.2568" r="2.52" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.2"/><rect x="224.24" y="207.2512" width="6.72" height="9.3744" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M222.24,207.2512 L227.60000000000002,203.97016000000002 L232.96,207.2512" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="227.60000000000002" y1="207.2512" x2="227.60000000000002" y2="216.62560000000002" stroke="#FFFFFF" stroke-width="1"/><rect x="222.24" y="216.62560000000002" width="10.719999999999999" height="2.5" fill="#FFFFFF"/><rect x="241.04" y="207.2512" width="6.72" height="9.3744" fill="#FFD36B" stroke="#FFFFFF" stroke-width="1.6"/><path d="M239.04,207.2512 L244.4,203.97016000000002 L249.76,207.2512" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1"/><line x1="244.4" y1="207.2512" x2="244.4" y2="216.62560000000002" stroke="#FFFFFF" stroke-width="1"/><rect x="239.04" y="216.62560000000002" width="10.719999999999999" height="2.5" fill="#FFFFFF"/><line x1="60" y1="224" x2="260" y2="224" stroke="#8C6A42" stroke-width="1.5"/><line x1="60" y1="227.5" x2="260" y2="227.5" stroke="#8C6A42" stroke-width="1.5"/><path d="M60,230 L60,221 L61.2,219 L62.4,221 L62.4,230 Z" fill="#8C6A42"/><path d="M66,230 L66,221 L67.2,219 L68.4,221 L68.4,230 Z" fill="#8C6A42"/><path d="M72,230 L72,221 L73.2,219 L74.4,221 L74.4,230 Z" fill="#8C6A42"/><path d="M78,230 L78,221 L79.2,219 L80.4,221 L80.4,230 Z" fill="#8C6A42"/><path d="M84,230 L84,221 L85.2,219 L86.4,221 L86.4,230 Z" fill="#8C6A42"/><path d="M90,230 L90,221 L91.2,219 L92.4,221 L92.4,230 Z" fill="#8C6A42"/><path d="M96,230 L96,221 L97.2,219 L98.4,221 L98.4,230 Z" fill="#8C6A42"/><path d="M102,230 L102,221 L103.2,219 L104.4,221 L104.4,230 Z" fill="#8C6A42"/><path d="M108,230 L108,221 L109.2,219 L110.4,221 L110.4,230 Z" fill="#8C6A42"/><path d="M114,230 L114,221 L115.2,219 L116.4,221 L116.4,230 Z" fill="#8C6A42"/><path d="M120,230 L120,221 L121.2,219 L122.4,221 L122.4,230 Z" fill="#8C6A42"/><path d="M126,230 L126,221 L127.2,219 L128.4,221 L128.4,230 Z" fill="#8C6A42"/><path d="M132,230 L132,221 L133.2,219 L134.4,221 L134.4,230 Z" fill="#8C6A42"/><path d="M138,230 L138,221 L139.2,219 L140.4,221 L140.4,230 Z" fill="#8C6A42"/><path d="M144,230 L144,221 L145.2,219 L146.4,221 L146.4,230 Z" fill="#8C6A42"/><path d="M150,230 L150,221 L151.2,219 L152.4,221 L152.4,230 Z" fill="#8C6A42"/><path d="M156,230 L156,221 L157.2,219 L158.4,221 L158.4,230 Z" fill="#8C6A42"/><path d="M162,230 L162,221 L163.2,219 L164.4,221 L164.4,230 Z" fill="#8C6A42"/><path d="M168,230 L168,221 L169.2,219 L170.4,221 L170.4,230 Z" fill="#8C6A42"/><path d="M174,230 L174,221 L175.2,219 L176.4,221 L176.4,230 Z" fill="#8C6A42"/><path d="M180,230 L180,221 L181.2,219 L182.4,221 L182.4,230 Z" fill="#8C6A42"/><path d="M186,230 L186,221 L187.2,219 L188.4,221 L188.4,230 Z" fill="#8C6A42"/><path d="M192,230 L192,221 L193.2,219 L194.4,221 L194.4,230 Z" fill="#8C6A42"/><path d="M198,230 L198,221 L199.2,219 L200.4,221 L200.4,230 Z" fill="#8C6A42"/><path d="M204,230 L204,221 L205.2,219 L206.4,221 L206.4,230 Z" fill="#8C6A42"/><path d="M210,230 L210,221 L211.2,219 L212.4,221 L212.4,230 Z" fill="#8C6A42"/><path d="M216,230 L216,221 L217.2,219 L218.4,221 L218.4,230 Z" fill="#8C6A42"/><path d="M222,230 L222,221 L223.2,219 L224.4,221 L224.4,230 Z" fill="#8C6A42"/><path d="M228,230 L228,221 L229.2,219 L230.4,221 L230.4,230 Z" fill="#8C6A42"/><path d="M234,230 L234,221 L235.2,219 L236.4,221 L236.4,230 Z" fill="#8C6A42"/><path d="M240,230 L240,221 L241.2,219 L242.4,221 L242.4,230 Z" fill="#8C6A42"/><path d="M246,230 L246,221 L247.2,219 L248.4,221 L248.4,230 Z" fill="#8C6A42"/><path d="M252,230 L252,221 L253.2,219 L254.4,221 L254.4,230 Z" fill="#8C6A42"/><path d="M258,230 L258,221 L259.2,219 L260.4,221 L260.4,230 Z" fill="#8C6A42"/><rect x="0" y="226" width="400" height="374" fill="#86A276"/><path d="M0,226 L400,226 L400,600 L0,600 Z" fill="#6E8C6A" opacity="0.25"/><path d="M200,234 C282,232 332,240 352,262 C378,292 386,350 386,410 C386,482 342,536 262,547 C222,552 178,552 138,547 C58,536 14,482 14,410 C14,350 22,292 48,262 C68,240 118,232 200,234 Z" fill="#D9C49C" transform="translate(200 390) scale(1.035 1.04) translate(-200 -390)"/><path d="M200,234 C282,232 332,240 352,262 C378,292 386,350 386,410 C386,482 342,536 262,547 C222,552 178,552 138,547 C58,536 14,482 14,410 C14,350 22,292 48,262 C68,240 118,232 200,234 Z" fill="url(#watb)"/><path d="M200,234 C282,232 332,240 352,262 C378,292 386,350 386,410 C386,482 342,536 262,547 C222,552 178,552 138,547 C58,536 14,482 14,410 C14,350 22,292 48,262 C68,240 118,232 200,234 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.35"/><g fill="#6A4A2A" opacity="0.14"><rect x="72" y="238" width="40" height="3" rx="1.5"/><rect x="76" y="245" width="32" height="3" rx="1.5"/><rect x="80" y="252" width="24" height="2.5" rx="1.2"/></g><g fill="#6A4A2A" opacity="0.14"><rect x="142" y="238" width="46" height="3" rx="1.5"/><rect x="146" y="245" width="38" height="3" rx="1.5"/><rect x="150" y="252" width="30" height="2.5" rx="1.2"/></g><g fill="#6A4A2A" opacity="0.14"><rect x="217" y="238" width="38" height="3" rx="1.5"/><rect x="221" y="245" width="30" height="3" rx="1.5"/><rect x="225" y="252" width="22" height="2.5" rx="1.2"/></g><g fill="#FFE3A0" opacity="0.45"><rect x="260" y="252" width="80" height="4" rx="2"/><rect x="272" y="266" width="56" height="4" rx="2"/><rect x="284" y="280" width="32" height="3" rx="1.5"/></g><g stroke="#FFFFFF" stroke-width="2" opacity="0.22" stroke-linecap="round"><line x1="120" y1="300" x2="180" y2="300"/><line x1="230" y1="340" x2="290" y2="340"/><line x1="150" y1="420" x2="220" y2="420"/><line x1="200" y1="500" x2="270" y2="500"/></g><g fill="#FFFFFF" opacity="0.35"><ellipse cx="120" cy="240" rx="150" ry="14"/><ellipse cx="300" cy="250" rx="160" ry="12"/><ellipse cx="200" cy="268" rx="190" ry="10" opacity="0.6"/></g><g fill="#6E8C6A"><ellipse cx="0" cy="290" rx="34" ry="30"/><ellipse cx="400" cy="300" rx="30" ry="34"/><ellipse cx="60" cy="560" rx="70" ry="30"/><ellipse cx="350" cy="565" rx="80" ry="30"/></g><path d="M24.951858508367565,470 Q24.17158950765604,437.61940907131213 22.350961839329152,416.03234845218685" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M33.41568015438478,470 Q30.80885330982366,436.32859038292844 24.726257339181043,413.8809839715474" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="23.095199620701415" y="411.8809839715474" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M38.0526719662195,470 Q36.60879605218754,432.97448973959206 33.23975225277965,408.29081623265347" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M45.937323844186785,470 Q45.75890488932147,430.46898580551425 45.34259399463575,404.1149763425238" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M55.345845805097554,470 Q56.18025464836253,438.6945651742025 58.12720861598079,417.82427529033754" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="55.34907233489247" y="415.82427529033754" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M59.60246569609409,470 Q61.81073753895387,436.1838071727626 66.96337183896003,413.639678621271" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M378.4916067795588,470 Q380.262768172953,437.7182673546455 384.39547809087276,416.1971122577425" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M372.7698011351082,470 Q375.3037511151007,437.745460523745 381.21630106841656,416.2424342062417" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="377.8716510750857" y="414.2424342062417" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M362.11602091313443,470 Q364.7761612151243,441.69503377695526 370.98315525310073,422.8250562949255" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M357.5958982125477,470 Q355.27513400046655,435.42703291879104 349.8600175056106,412.37838819798503" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M349.8762761911287,470 Q350.13884134654427,444.84935121027445 350.7514933758473,428.08225201712406" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="348.16397165737544" y="426.08225201712406" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M47.295331059332646,284 Q48.20093789757177,270.5290707407761 50.31402052012972,261.5484512346268" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M53.28974514667017,284 Q52.483878648145684,267.3872028448574 50.60352348492188,256.312004741429" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M60.231995699098825,284 Q57.45696964975073,267.6193244171743 50.98190886793852,256.6988740286239" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M68.73458273464955,284 Q66.27886081471274,271.1899797436311 60.54884300152685,262.6499662393852" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M351.85202943126006,284 Q349.6832659063468,268.71377463981645 344.6228176815492,258.52295773302745" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M346.46624739994536,284 Q346.4829398802586,271.70748995869803 346.5218890009895,263.5124832644967" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M339.59319188012773,284 Q339.91881468919746,271.10055247898674 340.67860124369344,262.5009207983112" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M331.46660017073447,284 Q330.7407177971071,271.4262905536439 329.0469922586432,263.04381758940656" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M149.8095182140393,552 Q152.35478171818167,535.1922573295832 158.2937298945139,523.9870955493053" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M156.8626002803991,552 Q157.3869092534985,535.6160152118118 158.61029685739703,524.6933586863531" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="155.93552719969725" y="522.6933586863531" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M162.73864137541952,552 Q163.51793769672034,535.5828255054189 165.33629577975555,524.6380425090315" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M172.1719074900798,552 Q170.99231506582694,538.9919525971695 168.23993274257032,530.3199209952826" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M176.36268214996736,552 Q177.5233130452148,533.1533005995639 180.23145180079214,520.5888343326064" stroke="#4A7A44" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="177.34457483570966" y="518.5888343326064" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M426.7,557.8 L301.6,89.6 L298.4,90.4 L409.3,562.2 Z" fill="#D9B86A" stroke="#6B4E1E" stroke-width="1.5" stroke-linejoin="round"/><line x1="418.7" y1="549.8" x2="302.9" y2="99.3" stroke="#FFF3C8" stroke-width="2" opacity="0.6"/><line x1="390.0" y1="417.2" x2="375.2" y2="420.8" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="388.7" y1="414.5" x2="375.1" y2="417.9" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="364.9" y1="323.5" x2="353.1" y2="326.5" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="363.6" y1="320.8" x2="353.0" y2="323.5" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="342.4" y1="239.2" x2="333.1" y2="241.6" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="341.1" y1="236.6" x2="333.0" y2="238.6" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="322.4" y1="164.3" x2="315.4" y2="166.1" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="321.1" y1="161.7" x2="315.3" y2="163.1" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><path d="M428.2,557.4 L409.3,482.2 L388.9,487.4 L407.8,562.6 Z" fill="#B98A5A" stroke="#5A3A1A" stroke-width="1.5"/><path d="M407.6,482.7 L400.7,456.9 L384.6,461.0 L390.7,486.9 Z" fill="#8A1A10" stroke="#3A0A06" stroke-width="0.8"/><line x1="407.3" y1="481.5" x2="390.4" y2="485.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.9" y1="480.3" x2="390.1" y2="484.6" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.6" y1="479.2" x2="389.8" y2="483.4" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.3" y1="478.0" x2="389.6" y2="482.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.0" y1="476.8" x2="389.3" y2="481.0" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.7" y1="475.7" x2="389.0" y2="479.8" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.4" y1="474.5" x2="388.7" y2="478.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.1" y1="473.3" x2="388.4" y2="477.5" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.8" y1="472.1" x2="388.2" y2="476.3" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.4" y1="471.0" x2="387.9" y2="475.1" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.1" y1="469.8" x2="387.6" y2="473.9" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.8" y1="468.6" x2="387.3" y2="472.8" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.5" y1="467.5" x2="387.1" y2="471.6" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.2" y1="466.3" x2="386.8" y2="470.4" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.9" y1="465.1" x2="386.5" y2="469.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.6" y1="463.9" x2="386.2" y2="468.1" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.3" y1="462.8" x2="386.0" y2="466.9" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.9" y1="461.6" x2="385.7" y2="465.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.6" y1="460.4" x2="385.4" y2="464.5" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.3" y1="459.3" x2="385.1" y2="463.3" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.0" y1="458.1" x2="384.8" y2="462.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><path d="M368.7,337.6 L366.2,328.2 L354.2,331.2 L356.4,340.6 Z" fill="#8A1A10" stroke="#3A0A06" stroke-width="0.6"/><circle cx="300.6" cy="92.4" r="2.2" fill="none" stroke="#555" stroke-width="1.2"/></svg>
@@ -279,13 +355,58 @@
 
   <div id="toast"></div>
 
-  <!-- новый уровень -->
-  <div class="modal" id="levelModal">
-    <div class="card">
-      <div style="font-size:44px">🎉</div>
+  <!-- праздничное окно: новый уровень и достижения -->
+  <div class="modal cele-modal" id="levelModal">
+    <div class="card cele">
+      <div class="confetti" id="confetti"></div>
+      <div class="burst">
+        <svg class="rays" viewBox="0 0 200 200" aria-hidden="true"><g id="raysG"></g></svg>
+        <div class="badge" id="celeIcon"></div>
+        <span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✦</span>
+      </div>
       <h2 id="luTitle">Уровень 2!</h2>
       <div id="luBody"></div>
       <button class="main" id="luOk">Отлично!</button>
+    </div>
+  </div>
+
+  <!-- задания -->
+  <div class="modal" id="questModal">
+    <div class="card shop">
+      <h2>Задания</h2>
+      <div class="tabs two" id="qTabs"></div>
+      <div class="list" id="qList"></div>
+      <button class="main" id="qClose">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- достижения -->
+  <div class="modal" id="achModal">
+    <div class="card shop">
+      <h2>Достижения</h2>
+      <div class="tabs" id="aTabs"></div>
+      <div class="list" id="aList"></div>
+      <button class="main" id="aClose">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- выбор водоёма -->
+  <div class="modal" id="locModal">
+    <div class="card shop">
+      <h2>Водоёмы</h2>
+      <div class="note">Новые водоёмы открываются с уровнем. На каждом своя рыба, свои достижения и свой мусор.</div>
+      <div class="list" id="locList"></div>
+      <button class="main" id="locClose">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- выбор наживки -->
+  <div class="modal" id="baitModal">
+    <div class="card shop">
+      <h2>Наживка</h2>
+      <div class="note">Наживка не делает редкую рыбу чаще — она решает, какой вид клюнет охотнее. На червя клюёт любая рыба.</div>
+      <div class="list" id="baitList"></div>
+      <div class="two-btn"><button class="main ghost" id="baitShop">🛒 Купить наживку</button><button class="main" id="baitClose">Закрыть</button></div>
     </div>
   </div>
 
@@ -347,7 +468,7 @@ const RARITY = {
 // chance — относительный шанс, min/max — вес в кг, price — монет за кг (минимум 1)
 // Данные из таблицы «Пруд у деревни — рыбы». chance — относительный шанс, вес в кг, price — монет за рыбу среднего размера
 // (форель и осётр убраны из пруда — вернутся в следующих водоёмах)
-const FISH = [
+const FISH_POND = [
   { id: 'karas_serebr', name: 'Карась серебряный', r: 'common',    chance: 100, min: 0.10, max: 2.6, price: 2,   trophy: 1.8 },
   { id: 'plotva',       name: 'Плотва',            r: 'common',    chance: 100, min: 0.05, max: 0.8, price: 2, trophy: 0.6 },
   { id: 'okun',         name: 'Окунь',             r: 'common',    chance: 100, min: 0.05, max: 1.5, price: 2, trophy: 1.1 },
@@ -364,12 +485,62 @@ const FISH = [
   { id: 'tsar_shchuka', name: 'Царь-щука',         r: 'legendary', chance: 5,   min: 10,   max: 20,  price: 80,   trophy: 15 },
   { id: 'zolotaya',     name: 'Золотая рыбка',     r: 'legendary', chance: 5,   min: 0.10, max: 0.5, price: 80,  trophy: 0.35 },
 ];
-const JUNK_LIST = [
+const JUNK_POND = [
   { id: 'sapog',   name: 'Старый сапог',     r: 'junk', min: 1.0, max: 1.6, price: 1 },
   { id: 'banka',   name: 'Консервная банка', r: 'junk', min: 0.1, max: 0.3, price: 1 },
   { id: 'koryaga', name: 'Коряга',           r: 'junk', min: 0.3, max: 3.0, price: 1 },
 ];
-const JUNK_CHANCE = 0.05;
+// Данные из вкладки таблицы «Речушка»
+const FISH_RIVER = [
+  { id: 'peskar',      name: 'Пескарь',         r: 'common',    min: 0.02, max: 0.15, price: 4,   trophy: 0.1 },
+  { id: 'elets',       name: 'Елец',            r: 'common',    min: 0.03, max: 0.4,  price: 4,   trophy: 0.28 },
+  { id: 'gustera',     name: 'Густера',         r: 'common',    min: 0.05, max: 1.2,  price: 4,   trophy: 0.8 },
+  { id: 'krasnoperka', name: 'Краснопёрка',     r: 'common',    min: 0.05, max: 1.0,  price: 4,   trophy: 0.7 },
+  { id: 'golavl',      name: 'Голавль',         r: 'uncommon',  min: 0.1,  max: 4,    price: 8,   trophy: 2.5 },
+  { id: 'yaz',         name: 'Язь',             r: 'uncommon',  min: 0.2,  max: 4,    price: 8,   trophy: 2.5 },
+  { id: 'chekhon',     name: 'Чехонь',          r: 'uncommon',  min: 0.1,  max: 1.2,  price: 8,   trophy: 0.8 },
+  { id: 'zherekh',     name: 'Жерех',           r: 'rare',      min: 0.5,  max: 8,    price: 20,  trophy: 5 },
+  { id: 'sazan',       name: 'Сазан',           r: 'rare',      min: 1,    max: 15,   price: 20,  trophy: 10 },
+  { id: 'sterlyad',    name: 'Стерлядь',        r: 'epic',      min: 0.5,  max: 8,    price: 50,  trophy: 4 },
+  { id: 'osetr_stary', name: 'Старый осётр',    r: 'legendary', min: 10,   max: 40,   price: 150, trophy: 30 },
+  { id: 'yaz_serebr',  name: 'Серебряный язь',  r: 'legendary', min: 1,    max: 4,    price: 150, trophy: 3 },
+];
+const JUNK_RIVER = [
+  { id: 'vedro',   name: 'Дырявое ведро', r: 'junk', min: 1.5, max: 3.0, price: 2 },
+  { id: 'veslo',   name: 'Старое весло',  r: 'junk', min: 1.0, max: 2.0, price: 2 },
+  { id: 'koryaga', name: 'Коряга',        r: 'junk', min: 0.3, max: 3.0, price: 2 },
+];
+// Данные из вкладки таблицы «Горное озеро»
+const FISH_LAKE = [
+  { id: 'golyan',     name: 'Гольян',            r: 'common',    min: 0.01, max: 0.06, price: 8,   trophy: 0.045 },
+  { id: 'bychok',     name: 'Бычок-подкаменщик', r: 'common',    min: 0.01, max: 0.08, price: 8,   trophy: 0.06 },
+  { id: 'ryapushka',  name: 'Ряпушка',           r: 'common',    min: 0.02, max: 0.2,  price: 8,   trophy: 0.15 },
+  { id: 'kharius',    name: 'Хариус',            r: 'uncommon',  min: 0.1,  max: 2,    price: 16,  trophy: 1.4 },
+  { id: 'sig',        name: 'Сиг',               r: 'uncommon',  min: 0.2,  max: 3,    price: 16,  trophy: 2 },
+  { id: 'forel_ruch', name: 'Форель ручьевая',   r: 'uncommon',  min: 0.1,  max: 2.5,  price: 16,  trophy: 1.6 },
+  { id: 'golets',     name: 'Голец',             r: 'rare',      min: 0.3,  max: 6,    price: 40,  trophy: 4 },
+  { id: 'lenok',      name: 'Ленок',             r: 'rare',      min: 0.3,  max: 6,    price: 40,  trophy: 4 },
+  { id: 'kumzha',     name: 'Кумжа',             r: 'epic',      min: 1,    max: 15,   price: 90,  trophy: 10 },
+  { id: 'taymen',     name: 'Таймень',           r: 'epic',      min: 2,    max: 35,   price: 90,  trophy: 25 },
+  { id: 'forel_luna', name: 'Лунная форель',     r: 'legendary', min: 0.5,  max: 3,    price: 250, trophy: 2.2 },
+  { id: 'nalim_hoz',  name: 'Хозяин глубин',     r: 'legendary', min: 5,    max: 25,   price: 250, trophy: 18 },
+];
+const JUNK_LAKE = [
+  { id: 'kruzhka', name: 'Потерянная кружка', r: 'junk', min: 0.2, max: 0.4, price: 3 },
+  { id: 'set',     name: 'Обрывок сети',      r: 'junk', min: 0.5, max: 1.5, price: 3 },
+  { id: 'kamen',   name: 'Камень со мхом',    r: 'junk', min: 0.5, max: 2.0, price: 3 },
+];
+// Водоёмы: открытие — уровень + монеты (вкладки «Речушка» и «Горное озеро»), xp — множитель опыта за рыбу
+const LOCS = [
+  { id: 'pond',  name: 'Пруд у деревни', short: 'Пруд',      icon: '🏡', lvl: 1,  cost: 0,    xp: 1,   junk: 0.05, fish: FISH_POND,  junkList: JUNK_POND,  desc: 'Караси, лещи, щуки' },
+  { id: 'river', name: 'Речушка',        short: 'Речушка',   icon: '🌿', lvl: 8,  cost: 1000, xp: 1.4, junk: 0.05, fish: FISH_RIVER, junkList: JUNK_RIVER, desc: 'Голавль, жерех, стерлядь · опыт ×1,4' },
+  { id: 'lake',  name: 'Горное озеро',   short: 'Озеро',     icon: '🌙', lvl: 13, cost: 5000, xp: 1.8, junk: 0.03, fish: FISH_LAKE,  junkList: JUNK_LAKE,  desc: 'Хариус, таймень, форель · опыт ×1,8' },
+];
+const ALL_FISH = FISH_POND.concat(FISH_RIVER, FISH_LAKE);
+// текущий водоём: эти массивы меняются при переходе
+let CUR_LOC = 'pond', JUNK_CHANCE = 0.05;
+const FISH = FISH_POND.slice(), JUNK_LIST = JUNK_POND.slice();
+function curLoc() { return LOCS.find(L => L.id === CUR_LOC) || LOCS[0]; }
 
 // ===== ТЕСТ: ловятся только легендарные (золотая рыбка и царь-щука). Чтобы отключить — поставить false =====
 const TEST_ONLY_LEGENDARY = false;
@@ -565,6 +736,7 @@ function releasePower() {
   cancelAnimationFrame(powerRaf);
   $('powerMeter').classList.remove('show');
   perfect = castPower >= 0.72 && castPower <= 0.88;
+  if (perfect) qEvent('perfect');
   // дальность: чем сильнее, тем дальше (выше на экране)
   // по картинке пруда: 500 — у ближнего берега, 270 — у дальнего
   const vr = visRange();
@@ -606,34 +778,41 @@ function pickFish() {
   save.casts++;
   if (TEST_ONLY_LEGENDARY) { const L = FISH.filter(f => f.r === 'legendary'); return L[Math.floor(Math.random() * L.length)]; }
   const bait = consumeBait();
+  lastCastBait = !!bait;
   castHeavy = false;
-  if (!(bait && bait.noJunk) && Math.random() < JUNK_CHANCE) return JUNK_LIST[Math.floor(Math.random() * JUNK_LIST.length)];
+  if (Math.random() < JUNK_CHANCE) return JUNK_LIST[Math.floor(Math.random() * JUNK_LIST.length)];
   const guaranteed = save.sinceRare >= BAD_LUCK_LIMIT;
-  let pool = FISH.map(f => {
-    let c = f.chance;
-    if (perfect && f.r !== 'common') c *= 1.4;
-    c *= fishMultiplierWith(f, bait);
-    if (guaranteed && (f.r === 'common' || f.r === 'uncommon')) c = 0;
-    return { f, c };
+  const gb = gbActive();
+  // 1) редкость: от наживки не зависит
+  const tiers = Object.keys(RARITY_W).filter(r => FISH.some(f => f.r === r)).map(r => {
+    let w = RARITY_W[r];
+    if (perfect && r !== 'common') w *= 1.4;
+    if (gb && gb.boost && gb.boost[r]) w *= gb.boost[r];
+    if (guaranteed && (r === 'common' || r === 'uncommon')) w = 0;
+    return { r, w };
   });
-  const total = pool.reduce((s, p) => s + p.c, 0);
-  let x = Math.random() * total;
+  let x = Math.random() * tiers.reduce((s, t) => s + t.w, 0), tier = tiers[0].r;
+  for (const t of tiers) { x -= t.w; if (x <= 0) { tier = t.r; break; } }
+  // 2) вид внутри редкости: наживка и прикормка решают, кто клюнет чаще
+  const pool = FISH.filter(f => f.r === tier).map(f => ({ f, c: speciesWeight(f, bait, gb) }));
+  x = Math.random() * pool.reduce((s, p) => s + p.c, 0);
   let chosen = pool[0].f;
   for (const p of pool) { x -= p.c; if (x <= 0) { chosen = p.f; break; } }
   castHeavy = !!(bait && bait.heavy && bait.heavy.includes(chosen.id));
   return chosen;
 }
-function fishMultiplierWith(f, bait) {
+function speciesWeight(f, bait, gb) {
   let m = 1;
-  const gb = gbActive();
-  if (gb && gb.boost && gb.boost[f.r]) m *= gb.boost[f.r];
-  if (bait && bait.boost && bait.boost[f.r]) m *= bait.boost[f.r];
-  if (bait && bait.boostIds && bait.boostIds[f.id]) m *= bait.boostIds[f.id];
+  if (bait && bait.like && bait.like.includes(f.id)) m *= BAIT_LIKE;
+  if (gb && gb.like && gb.like.includes(f.id)) m *= gb.likeM;
+  if (gb && gb.predLater && PRED.includes(f.id) && save.gb && gameNow() - (save.gb.started || 0) > 5 * 60000) m *= gb.predLater;
   return m;
 }
 
+let biteT0 = 0;
 function startBite() {
   state = 'bite';
+  biteT0 = performance.now();
   current = pickFish();
   $('reelFishImg').src = 'fish/' + current.id + '.svg';
   $('cImg').src = 'fish/' + current.id + '.svg';
@@ -655,6 +834,7 @@ function vibrateBite() { haptic('heavy'); }
 let reel = null, reelRaf = 0, holding = false, reelTrackW = 0, lastInside = null;
 function startReel() {
   clearTimers();
+  if (performance.now() - biteT0 < 500) qEvent('fasthook');
   state = 'reel';
   bigtext.classList.remove('show');
   haptic('medium');
@@ -754,6 +934,7 @@ function coinsFor(f, w) {
 /* --- 5. Результат --- */
 function escaped(msg) {
   state = 'result';
+  qEvent('escape');
   haptic('error');
   const R = RARITY[current ? current.r : 'common'];
   const hint = current && current.r !== 'common' && current.r !== 'junk' ? 'Ушла ' + R.name.toLowerCase() + ' рыба…' : 'Бывает. Попробуй ещё!';
@@ -792,7 +973,8 @@ function caught() {
   $('cTrophy').textContent = firstTrophy ? '🏆 ТРОФЕЙ ЗАКРЫТ!' : '🏆 ТРОФЕЙ!';
   const xpRes = catchXp(f, isNew, firstTrophy);
   if (xpRes.xp) addXp(xpRes.xp);
-  if (isFish && !save.flags.pondDone && FISH.every(x => save.caught[x.id])) { save.flags.pondDone = true; save.pearls += 50; xpRes.lines.push('+50 жемчуга за всю коллекцию!'); }
+  if (f.r === 'junk') qEvent('junk');
+  else { qEvent('catch', { f, w, rec: isRecord, bait: lastCastBait, gb: !!gbActive(), dawn: !!biteTime() }); qEvent('coins', { n: reward }); if (xpRes.xp) qEvent('xp', { n: xpRes.xp }); }
   $('cXp').innerHTML = xpRes.lines.join('<br>');
   persist(); refreshTop(); refreshProgress();
   $('cRecord').textContent = isRecord ? 'Новый личный рекорд!' : (f.r === 'junk' ? 'Ну хоть не пусто 🙂' : '');
@@ -817,33 +999,43 @@ setInterval(syncTime, 5 * 60000);
 // Цифры — из таблицы «Пруд у деревни — рыбы», вкладки «Опыт и энергия» и «Магазин»
 const PROG = { E1: 25, ESTEP: 1, REGEN_MIN: 4, XP_BASE: 10, XP_POW: 1.6, TROPHY_XP: 20 };
 const XP_BY_R    = { common: 1, uncommon: 3, rare: 8, epic: 20, legendary: 50, junk: 0 };
-const FIRST_XP   = { common: 8, uncommon: 12, rare: 20, epic: 32, legendary: 40, junk: 0 };
+const FIRST_XP   = { common: 8, uncommon: 12, rare: 20, epic: 50, legendary: 125, junk: 0 };
+// Шанс клёва задаётся на редкость целиком и делится поровну между её видами на водоёме
+const RARITY_W   = { common: 500, uncommon: 200, rare: 50, epic: 26, legendary: 10 };
+function rarityChance(f) { const n = FISH.filter(x => x.r === f.r).length; return RARITY_W[f.r] / Math.max(1, n); }
 const BITE_TIMES = [ { name: 'Утренняя зорька', from: 6, to: 8, mult: 2 }, { name: 'Вечерняя зорька', from: 18, to: 20, mult: 2 } ];
 const LEVEL_REWARDS = {
   5:  { items: { motyl: 3 }, text: 'Наживка «Мотыль» ×3' },
-  8:  { text: 'Можно открыть Речушку (скоро)' },
-  13: { text: 'Можно открыть Горное озеро (скоро)' },
+  8:  { text: 'Можно открыть Речушку' },
+  13: { text: 'Можно открыть Горное озеро' },
   15: { text: 'Поплавок «Гусиное перо» (скоро)' },
   25: { items: { gb_ded: 1 }, text: 'Прикормка «Дедова фирменная»' },
   30: { text: 'Удочка «Тёмный бамбук» (скоро)' },
 };
-const PRED = ['shchuka', 'sudak', 'som', 'tsar_shchuka'];
+const PRED = ['okun','shchuka','sudak','som','tsar_shchuka','golavl','zherekh','osetr_stary','golets','lenok','kumzha','taymen','nalim_hoz'];
+// Наживка не меняет, сколько ловится рыбы каждой редкости, — только КАКОЙ вид внутри редкости клюнет чаще (like ×3).
+// Червь — стартовая наживка: бесплатный, бесконечный, на него клюёт любая рыба.
+const BAIT_LIKE = 3;
 const ITEMS = [
-  { id: 'gb_bread', icon: '🍞', name: 'Прикормка «Хлебная»',          cat: 'Прикормки', cur: 'pearl', price: 20, type: 'gb', minutes: 15, wait: [1000, 2500], desc: '15 минут: поклёвка через 1–2,5 с вместо обычных 1,8–5,3 с' },
-  { id: 'gb_kasha', icon: '🥣', name: 'Прикормка «Каша с анисом»',    cat: 'Прикормки', cur: 'pearl', price: 45, type: 'gb', minutes: 30, wait: [800, 2000],  boost: { uncommon: 1.15 }, desc: '30 минут: поклёвка через 0,8–2 с, необычные виды +15% к шансу клёва' },
+  { id: 'gb_bread', icon: '🍞', name: 'Прикормка «Хлебная»',          cat: 'Прикормки', cur: 'coin',  price: 40, type: 'gb', minutes: 15, wait: [1000, 2500], like: ['plotva','ukleyka','krasnoperka','elets','karas_serebr','karas_zolot','golyan','ryapushka'], likeM: 1.3, desc: '15 минут: поклёвка через 1–2,5 с вместо 1,8–5,3 с. Плотва, уклейка, красноперка, елец, караси, гольян, ряпушка клюют чаще своих «соседей» по редкости' },
+  { id: 'gb_kasha', icon: '🥣', name: 'Прикормка «Каша с анисом»',    cat: 'Прикормки', cur: 'coin',  price: 80, type: 'gb', minutes: 30, wait: [800, 2000],  like: ['leshch','gustera','karas_serebr','karas_zolot','lin','yaz','sig'], likeM: 1.3, desc: '30 минут: поклёвка через 0,8–2 с. Лещ, густера, караси, линь, язь, сиг клюют чаще' },
+  { id: 'gb_motyl', icon: '🟤', name: 'Прикормка «Мотыль с глиной»',  cat: 'Прикормки', cur: 'pearl', price: 30, type: 'gb', minutes: 30, wait: [800, 2000],  like: ['okun','ersh','peskar','bychok','kharius','sig','sterlyad'], likeM: 1.4, predLater: 1.15, desc: '30 минут: поклёвка через 0,8–2 с. Окунь, ёрш, пескарь, бычок, хариус, сиг, стерлядь клюют чаще, а через 5 минут за мелочью подходит хищник' },
+  { id: 'gb_carp',  icon: '🌾', name: 'Прикормка «Карповая»',         cat: 'Прикормки', cur: 'pearl', price: 45, type: 'gb', minutes: 45, wait: [600, 1800],  like: ['karp','karp_zerk','sazan','leshch','lin','karas_serebr','karas_zolot'], likeM: 1.5, desc: '45 минут: поклёвка через 0,6–1,8 с. Карп, зеркальный карп, сазан, лещ, линь, караси клюют чаще' },
   { id: 'gb_ded',   icon: '🧺', name: 'Прикормка «Дедова фирменная»', cat: 'Прикормки', cur: 'pearl', price: 90, type: 'gb', minutes: 60, wait: [500, 1500],  boost: { rare: 1.2, epic: 1.2, legendary: 1.2 }, desc: '60 минут: поклёвка через 0,5–1,5 с, редкие виды и выше +20% к шансу клёва' },
-  { id: 'worm',     icon: '🪱', name: 'Наживка «Червь»',     cat: 'Наживки', cur: 'coin',  price: 7,   type: 'bait', boost: { uncommon: 1.1 }, desc: '10 забросов: необычные виды +10% к шансу клёва' },
-  { id: 'oparysh',  icon: '🐛', name: 'Наживка «Опарыш»',    cat: 'Наживки', cur: 'coin',  price: 15,  type: 'bait', noJunk: true, desc: '10 забросов: мусор не попадается, всегда клюёт рыба' },
-  { id: 'kukuruza', icon: '🌽', name: 'Наживка «Кукуруза»',  cat: 'Наживки', cur: 'pearl', price: 30,  type: 'bait', boostIds: { karas_serebr: 2, karas_zolot: 2, karp: 2, karp_zerk: 2 }, desc: '10 забросов: карась серебряный, карась золотой, карп и зеркальный карп +100% к шансу клёва' },
-  { id: 'motyl',    icon: '🔴', name: 'Наживка «Мотыль»',    cat: 'Наживки', cur: 'pearl', price: 40,  type: 'bait', boost: { rare: 1.5, epic: 1.5, legendary: 1.5 }, desc: '10 забросов: редкие виды и выше +50% к шансу клёва' },
-  { id: 'zhivets',  icon: '🐟', name: 'Наживка «Живец»',     cat: 'Наживки', cur: 'pearl', price: 80,  type: 'bait', boost: { common: 0.3 }, boostIds: { shchuka: 2, sudak: 2, som: 2, tsar_shchuka: 2 }, heavy: PRED, desc: '10 забросов: щука, судак, сом и царь-щука +100% к шансу клёва и попадаются крупнее; обычные виды −70% к шансу клёва' },
-  { id: 'vypolzok', icon: '🪱', name: 'Наживка «Выползок»',  cat: 'Наживки', cur: 'pearl', price: 120, type: 'bait', boost: { epic: 2, legendary: 2 }, desc: '10 забросов: эпические и легендарные виды +100% к шансу клёва' },
+  { id: 'hleb',      icon: '🍞', name: 'Наживка «Хлебный мякиш»', cat: 'Наживки', cur: 'coin', price: 5,   type: 'bait', like: ['karas_serebr', 'plotva', 'ukleyka', 'karas_zolot', 'leshch', 'karp', 'karp_zerk', 'zolotaya', 'elets', 'gustera', 'krasnoperka', 'golavl', 'yaz', 'sazan', 'golyan'], desc: '10 забросов. Карась, плотва, уклейка, лещ, карп, Золотая рыбка клюют чаще' },
+  { id: 'oparysh',   icon: '🐛', name: 'Наживка «Опарыш»',        cat: 'Наживки', cur: 'coin', price: 10,  type: 'bait', like: ['karas_serebr', 'plotva', 'ukleyka', 'karas_zolot', 'lin', 'leshch', 'elets', 'gustera', 'krasnoperka', 'yaz', 'chekhon', 'ryapushka', 'kharius', 'sig'], desc: '10 забросов. Белая рыба — плотва, уклейка, лещ, линь, хариус, сиг — клюёт чаще' },
+  { id: 'motyl',     icon: '🔴', name: 'Наживка «Мотыль»',        cat: 'Наживки', cur: 'coin', price: 12,  type: 'bait', like: ['karas_serebr', 'plotva', 'okun', 'ersh', 'ukleyka', 'karas_zolot', 'lin', 'leshch', 'zolotaya', 'peskar', 'elets', 'gustera', 'sterlyad', 'golyan', 'bychok', 'ryapushka', 'sig'], desc: '10 забросов. Мелочь и средняя рыба — окунь, ёрш, пескарь, бычок, ряпушка — клюёт чаще' },
+  { id: 'kukuruza',  icon: '🌽', name: 'Наживка «Кукуруза»',      cat: 'Наживки', cur: 'coin', price: 15,  type: 'bait', like: ['karas_serebr', 'karas_zolot', 'lin', 'leshch', 'karp', 'karp_zerk', 'zolotaya', 'krasnoperka', 'yaz', 'sazan'], desc: '10 забросов. Карповые и караси — карп, сазан, лещ, линь, Золотая рыбка — клюют чаще' },
+  { id: 'kuznechik', icon: '🦗', name: 'Наживка «Кузнечик»',      cat: 'Наживки', cur: 'coin', price: 20,  type: 'bait', like: ['plotva', 'ukleyka', 'elets', 'krasnoperka', 'golavl', 'yaz', 'chekhon', 'yaz_serebr', 'kharius', 'forel_ruch', 'lenok'], desc: '10 забросов. Верховая рыба — голавль, язь, елец, хариус, форель — клюёт чаще' },
+  { id: 'vypolzok',  icon: '🪱', name: 'Наживка «Выползок»',      cat: 'Наживки', cur: 'coin', price: 25,  type: 'bait', like: ['lin', 'leshch', 'karp', 'som', 'karp_zerk', 'yaz', 'sazan', 'sterlyad', 'osetr_stary', 'bychok', 'forel_ruch', 'golets', 'kumzha', 'nalim_hoz'], desc: '10 забросов. Крупная донная рыба — линь, лещ, карп, сом, осетровые — клюёт чаще' },
+  { id: 'mushka',    icon: '🪰', name: 'Наживка «Мушка»',         cat: 'Наживки', cur: 'coin', price: 100, type: 'bait', casts: 30, like: ['elets', 'golavl', 'chekhon', 'zherekh', 'yaz_serebr', 'kharius', 'sig', 'forel_ruch', 'golets', 'lenok', 'kumzha', 'forel_luna'], desc: '30 забросов, многоразовая. Лососёвые и верховая рыба Речушки и Горного озера клюют чаще, особенно Лунная форель' },
+  { id: 'zhivets',   icon: '🐟', name: 'Наживка «Живец»',         cat: 'Наживки', cur: 'coin', price: 30,  type: 'bait', like: ['okun', 'shchuka', 'sudak', 'som', 'tsar_shchuka', 'golavl', 'zherekh', 'osetr_stary', 'golets', 'lenok', 'kumzha', 'taymen', 'nalim_hoz'], heavy: PRED, desc: '10 забросов. Хищники — окунь, щука, судак, сом, Царь-щука — клюют чаще и попадаются крупнее' },
   { id: 'line',     icon: '🧵', name: 'Леска «Крепкая»',     cat: 'Снасти', cur: 'coin', price: 50, type: 'gear', desc: 'Навсегда, пока надета: когда рыба вне зелёной зоны, шкала улова убывает на 20% медленнее. Не действует в турнирах' },
   { id: 'hook',     icon: '🪝', name: 'Крючок «Острый»',     cat: 'Снасти', cur: 'coin', price: 40, type: 'gear', desc: 'Навсегда, пока надет: на подсечку на 0,3 с больше. Не действует в турнирах' },
   { id: 'energy',   icon: '⚡', name: 'Полная энергия',      cat: 'Энергия', cur: 'pearl', price: 20, type: 'energy', desc: 'Сразу заполняет энергию до максимума твоего уровня. Можно купить 1 раз в сутки' },
-  { id: 'pass7',    icon: '🎫', name: 'Рыбацкий пропуск, 7 дней',  cat: 'Энергия', cur: 'pearl', price: 250,  type: 'pass', days: 7,  desc: '7 дней: каждый день 1 «Мотыль» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
-  { id: 'pass14',   icon: '🎫', name: 'Рыбацкий пропуск, 14 дней', cat: 'Энергия', cur: 'pearl', price: 500,  type: 'pass', days: 14, desc: '14 дней: каждый день 1 «Мотыль» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
-  { id: 'pass',     icon: '🎫', name: 'Рыбацкий пропуск, 30 дней', cat: 'Энергия', cur: 'pearl', price: 1000, type: 'pass', days: 30, desc: '30 дней: каждый день 1 «Мотыль» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
+  { id: 'pass7',    icon: '🎫', name: 'Рыбацкий пропуск, 7 дней',  cat: 'Энергия', cur: 'pearl', price: 250,  type: 'pass', days: 7,  desc: '7 дней: каждый день 1 «Живец» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
+  { id: 'pass14',   icon: '🎫', name: 'Рыбацкий пропуск, 14 дней', cat: 'Энергия', cur: 'pearl', price: 500,  type: 'pass', days: 14, desc: '14 дней: каждый день 1 «Живец» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
+  { id: 'pass',     icon: '🎫', name: 'Рыбацкий пропуск, 30 дней', cat: 'Энергия', cur: 'pearl', price: 1000, type: 'pass', days: 30, desc: '30 дней: каждый день 1 «Живец» и 1 прикормка «Хлебная» в рюкзак, монеты за улов ×1,2. Продлевает текущий пропуск' },
   { id: 'fl_pero',  icon: '🪶', name: 'Поплавок «Гусиное перо»', cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Другой поплавок на воде. Скоро' },
   { id: 'fl_cork',  icon: '🟤', name: 'Поплавок «Пробковый»',    cat: 'Внешний вид', cur: 'pearl', price: 50,  type: 'soon', desc: 'Другой поплавок на воде. Скоро' },
   { id: 'fl_glow',  icon: '✨', name: 'Поплавок «Светящийся»',   cat: 'Внешний вид', cur: 'pearl', price: 150, type: 'soon', desc: 'Другой поплавок на воде. Скоро' },
@@ -859,7 +1051,7 @@ function maxEnergy(L) { return PROG.E1 + (L - 1) * PROG.ESTEP; }
 function todayStr(d) { d = d || new Date(gameNow()); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
 function biteTime() { const h = new Date(gameNow()).getHours(); return BITE_TIMES.find(b => h >= b.from && h < b.to) || null; }
 function gbActive() { return save.gb && save.gb.until > gameNow() ? ITEM[save.gb.id] : null; }
-function baitActive() { return save.bait && save.bait.id && (save.baitLeft[save.bait.id] || 0) > 0 ? ITEM[save.bait.id] : null; }
+function baitActive() { return save.bait && save.bait.id && ITEM[save.bait.id] && (save.baitLeft[save.bait.id] || 0) > 0 ? ITEM[save.bait.id] : null; }
 function fmtDate(t) { const d = new Date(t); return String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
 function passLeft() { const ms = save.passUntil - gameNow(); if (ms <= 0) return ''; return ms >= 86400000 ? Math.ceil(ms / 86400000) + ' дн.' : Math.ceil(ms / 3600000) + ' ч'; }
 function fmtTime(ms) { const s = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
@@ -908,18 +1100,77 @@ function addXp(n) {
     pendingLevels.push({ level: save.level, energy: add, coins, text: r ? r.text : '' });
   }
 }
+// Иконки для праздничного окна (свои, в старом мультяшном стиле)
+function medalSvg(text) {
+  return `<svg viewBox="0 0 140 140"><path d="M44 78 L30 132 L50 122 L60 138 L70 86 Z" fill="#E5463B" stroke="#3A2510" stroke-width="4" stroke-linejoin="round"/><path d="M96 78 L110 132 L90 122 L80 138 L70 86 Z" fill="#2F7BD9" stroke="#3A2510" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="70" cy="60" r="48" fill="#F6C343" stroke="#3A2510" stroke-width="5"/><circle cx="70" cy="60" r="37" fill="#FFD95E" stroke="#C98A12" stroke-width="4"/>
+  <path d="M42 42 A32 32 0 0 1 64 28" stroke="#FFF7C8" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <text x="70" y="75" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="${[44, 44, 38, 30, 24][Math.min(4, String(text).length)]}" fill="#E5463B" stroke="#3A2510" stroke-width="3" paint-order="stroke">${text}</text></svg>`;
+}
+function cupSvg() {
+  return `<svg viewBox="0 0 140 140"><path d="M36 30 H22 c0 22 10 34 24 36" fill="none" stroke="#3A2510" stroke-width="9" stroke-linecap="round"/><path d="M36 30 H22 c0 22 10 34 24 36" fill="none" stroke="#F6C343" stroke-width="4" stroke-linecap="round"/>
+  <path d="M104 30 H118 c0 22 -10 34 -24 36" fill="none" stroke="#3A2510" stroke-width="9" stroke-linecap="round"/><path d="M104 30 H118 c0 22 -10 34 -24 36" fill="none" stroke="#F6C343" stroke-width="4" stroke-linecap="round"/>
+  <path d="M34 20 H106 V44 c0 24 -16 40 -36 40 S34 68 34 44 Z" fill="#F6C343" stroke="#3A2510" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M46 30 c0 18 6 30 16 36" stroke="#FFF7C8" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M58 52 c6-8 18-8 24 0 c-6 8-18 8-24 0z M82 52 l8-6 v12z" fill="#E5463B" stroke="#3A2510" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="60" y="84" width="20" height="16" fill="#E0A82A" stroke="#3A2510" stroke-width="4"/><rect x="42" y="100" width="56" height="18" rx="5" fill="#8C5A28" stroke="#3A2510" stroke-width="5"/>
+  <rect x="54" y="105" width="32" height="8" rx="2" fill="#F6C343" stroke="#3A2510" stroke-width="2"/></svg>`;
+}
+(function buildRays() {
+  let g = '';
+  for (let i = 0; i < 16; i++) {
+    const a1 = (i * 22.5 - 6) * Math.PI / 180, a2 = (i * 22.5 + 6) * Math.PI / 180;
+    g += `<path d="M100 100 L${100 + 100 * Math.cos(a1)} ${100 + 100 * Math.sin(a1)} L${100 + 100 * Math.cos(a2)} ${100 + 100 * Math.sin(a2)} Z" fill="${i % 2 ? '#FFD95E' : '#FFB347'}" opacity="0.8"/>`;
+  }
+  const el = document.getElementById('raysG'); if (el) el.innerHTML = g;
+})();
+function confetti() {
+  const box = $('confetti'); box.innerHTML = '';
+  const colors = ['#E5463B', '#2F7BD9', '#F6C343', '#3FA34D', '#FF8AB3', '#8B4FD6'];
+  for (let i = 0; i < 34; i++) {
+    const c = document.createElement('i');
+    c.style.left = (Math.random() * 100) + '%';
+    c.style.background = colors[i % colors.length];
+    c.style.animationDelay = (Math.random() * 0.6) + 's';
+    c.style.animationDuration = (1.5 + Math.random() * 1.2) + 's';
+    c.style.transform = `rotate(${Math.random() * 180}deg)`;
+    box.appendChild(c);
+  }
+}
+let celeQueue = [], celeOpen = false;
+function celebrate(item) { celeQueue.push(item); if (!celeOpen) nextCele(); }
+function nextCele() {
+  const it = celeQueue.shift();
+  if (!it) { celeOpen = false; return; }
+  celeOpen = true;
+  const m = $('levelModal');
+  $('celeIcon').innerHTML = it.icon;
+  $('luTitle').textContent = it.title;
+  $('luBody').innerHTML = it.lines.map(t => `<div>${t}</div>`).join('');
+  m.classList.remove('show', 'closing'); void m.offsetWidth;
+  m.classList.add('show');
+  confetti();
+  haptic('success');
+}
+function closeCele() {
+  const m = $('levelModal');
+  m.classList.add('closing');
+  setTimeout(() => { m.classList.remove('show', 'closing'); setTimeout(nextCele, 120); }, 300);
+}
 function showLevelUp() {
-  if (!pendingLevels.length) return false;
+  if (!pendingLevels.length) { if (celeQueue.length && !celeOpen) nextCele(); return false; }
   const all = pendingLevels; pendingLevels = [];
   const last = all[all.length - 1];
   const energy = all.reduce((s, x) => s + x.energy, 0), coins = all.reduce((s, x) => s + x.coins, 0);
   const extras = all.filter(x => x.text).map(x => x.text);
-  $('luTitle').textContent = 'Уровень ' + last.level + '!';
-  $('luBody').innerHTML = `<div>⚡ +${energy} энергии</div><div>🪙 +${coins} монет</div>` + extras.map(t => `<div>🎁 ${t}</div>`).join('');
-  $('levelModal').classList.add('show');
-  haptic('success');
+  celeQueue.unshift({ icon: medalSvg(last.level), title: 'Уровень ' + last.level + '!', lines: [`⚡ +${energy} энергии`, `🪙 +${coins} монет`].concat(extras.map(t => '🎁 ' + t)) });
+  if (!celeOpen) nextCele();
   return true;
 }
+// достижения копятся во время улова и показываются после карточки
+let pendingAch = [];
+function achievement(title, lines) { pendingAch.push({ icon: cupSvg(), title, lines }); }
+function flushAch() { while (pendingAch.length) celeQueue.push(pendingAch.shift()); }
 
 /* --- ежедневное: серия входов и пропуск --- */
 function dailyCheck() {
@@ -928,13 +1179,13 @@ function dailyCheck() {
   if (save.streak.day !== t) {
     save.streak.count = save.streak.day === y ? save.streak.count + 1 : 1;
     save.streak.day = t;
-    if (save.streak.count % 7 === 0) { save.pearls += 10; msgs.push('7 дней подряд! +10 жемчуга'); }
+    if (save.streak.count % 7 === 0) { save.pearls += 10; celebrate({ icon: cupSvg(), title: save.streak.count + ' дней подряд!', lines: ['🔥 Ты рыбачишь каждый день', '⚪ +10 жемчуга'] }); }
   }
   if (save.passUntil > gameNow() && save.passDay !== t) {
     save.passDay = t;
-    save.inv.motyl = (save.inv.motyl || 0) + 1;
+    save.inv.zhivets = (save.inv.zhivets || 0) + 1;
     save.inv.gb_bread = (save.inv.gb_bread || 0) + 1;
-    msgs.push('Пропуск: «Мотыль» и «Хлебная» в рюкзаке');
+    msgs.push('Пропуск: «Живец» и «Хлебная» в рюкзаке');
   }
   if (msgs.length) { persist(); toast(msgs.join(' · ')); }
 }
@@ -945,6 +1196,9 @@ function toast(msg) {
   clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2600);
 }
 function refreshProgress() {
+  if ($('baitBtn')) refreshBaitBtn();
+  if (save.locs && save.lst && $('locBtn')) refreshLocBtn();
+  if (typeof achCheck === 'function' && save.ach) setTimeout(achCheck, 0);
   updateEnergy();
   const need = needXp(save.level);
   $('lvl').textContent = save.level;
@@ -958,7 +1212,6 @@ function refreshProgress() {
   const fx = [];
   const bt = biteTime(); if (bt) fx.push(`<span class="fx gold">☀ ${bt.name}: опыт ×${bt.mult}</span>`);
   const gb = gbActive(); if (gb) fx.push(`<span class="fx">${gb.icon} ${fmtTime(save.gb.until - gameNow())}</span>`);
-  const b = baitActive(); if (b) fx.push(`<span class="fx">${b.icon} ${b.name.replace('Наживка ', '')}: ${save.baitLeft[b.id]}</span>`);
   if (save.passUntil > gameNow()) fx.push('<span class="fx gold">🎫 Пропуск: ' + passLeft() + '</span>');
   const fxh = fx.join(''); if (fxh !== refreshProgress._fx) { refreshProgress._fx = fxh; $('fxBar').innerHTML = fxh; }
 }
@@ -994,7 +1247,7 @@ function buy(id) {
   const it = ITEM[id];
   if (it.type === 'energy' && save.energyBuyDay === todayStr()) { toast('Полную энергию можно купить раз в сутки'); return; }
   if (!canPay(it)) { toast(it.cur === 'coin' ? 'Не хватает монет' : 'Не хватает жемчуга'); haptic('error'); return; }
-  if (it.cur === 'coin') save.coins = Math.round((save.coins - it.price) * 100) / 100; else save.pearls -= it.price;
+  if (it.cur === 'coin') { save.coins = Math.round((save.coins - it.price) * 100) / 100; qEvent('buycoin'); } else save.pearls -= it.price;
   if (it.type === 'gear') { save.gear[id] = true; toast(it.name + ' — теперь твоя'); }
   else if (it.type === 'energy') { save.energyBuyDay = todayStr(); updateEnergy(); save.energy = Math.max(save.energy, maxEnergy(save.level)); toast('Энергия полная!'); }
   else if (it.type === 'pass') { save.passUntil = Math.max(gameNow(), save.passUntil) + it.days * 86400000; save.passDay = ''; dailyCheck(); toast('Пропуск активен до ' + fmtDate(save.passUntil)); }
@@ -1015,7 +1268,7 @@ function openBag() {
   // пропуск
   if (save.passUntil > gameNow()) {
     rows.push('<div class="sec">Пропуск</div>');
-    rows.push(`<div class="row act"><div class="ic">🎫</div><div class="tx"><b>Рыбацкий пропуск</b><span>Каждый день 1 «Мотыль» и 1 прикормка «Хлебная», монеты за улов ×1,2</span><span class="st">Активен до ${fmtDate(save.passUntil)} · осталось ${passLeft()}</span></div></div>`);
+    rows.push(`<div class="row act"><div class="ic">🎫</div><div class="tx"><b>Рыбацкий пропуск</b><span>Каждый день 1 «Живец» и 1 прикормка «Хлебная», монеты за улов ×1,2</span><span class="st">Активен до ${fmtDate(save.passUntil)} · осталось ${passLeft()}</span></div></div>`);
   }
   // прикормки
   const gbA = gbActive();
@@ -1034,7 +1287,7 @@ function openBag() {
   const bA = baitActive();
   const baits = ITEMS.filter(it => it.type === 'bait' && ((save.inv[it.id] || 0) > 0 || (save.baitLeft[it.id] || 0) > 0));
   rows.push('<div class="sec">Наживки</div>');
-  if (!baits.length) rows.push('<div class="empty">Нет наживки — ловишь на простую. Купи в магазине 🛒</div>');
+  rows.push(row(WORM, !bA, 0, !bA ? 'На крючке · бесконечно' : 'Бесконечно', !bA ? '' : btn('Насадить', 'baitoff:' + (bA ? bA.id : ''))));
   baits.forEach(it => {
     const on = bA && bA.id === it.id, n = save.inv[it.id] || 0, left = save.baitLeft[it.id] || 0;
     const st = on ? `На крючке: осталось ${left} забросов` : (left ? `Снята, осталось ${left} забросов` : '');
@@ -1065,8 +1318,8 @@ function useGb(id) {
     save.inv[id]--; save.gb.until += it.minutes * 60000; toast(it.name + ': +' + it.minutes + ' минут');
   } else {
     if (cur) pauseGb();                            // другая прикормка не сгорает — ставится на паузу
-    if (gbLeftMs(id) > 0) { save.gb = { id, until: gameNow() + save.gbLeft[id] }; save.gbLeft[id] = 0; toast(it.name + ' — снова действует'); }
-    else { if (!save.inv[id]) return; save.inv[id]--; save.gb = { id, until: gameNow() + it.minutes * 60000 }; toast(it.name + ' — клюёт быстрее!'); }
+    if (gbLeftMs(id) > 0) { save.gb = { id, until: gameNow() + save.gbLeft[id], started: gameNow() }; save.gbLeft[id] = 0; toast(it.name + ' — снова действует'); }
+    else { if (!save.inv[id]) return; save.inv[id]--; save.gb = { id, until: gameNow() + it.minutes * 60000, started: gameNow() }; toast(it.name + ' — клюёт быстрее!'); qEvent('gb'); }
   }
   haptic('light'); persist(); refreshProgress(); openBag();
 }
@@ -1075,8 +1328,8 @@ function toggleBait(id) {
   const cur = baitActive();
   if (cur && cur.id === id) { save.bait = null; toast('Наживка снята, остаток забросов сохранён'); }
   else {
-    if (!(save.baitLeft[id] > 0)) { if (!save.inv[id]) return; save.inv[id]--; save.baitLeft[id] = 10; }
-    save.bait = { id }; toast(ITEM[id].name + ' на крючке');
+    if (!(save.baitLeft[id] > 0)) { if (!save.inv[id]) return; save.inv[id]--; save.baitLeft[id] = ITEM[id].casts || 10; }
+    save.bait = { id }; toast(ITEM[id].name + ' на крючке'); qEvent('bait');
   }
   haptic('light'); persist(); refreshProgress(); openBag();
 }
@@ -1086,22 +1339,90 @@ function toggleGear(id) {
   haptic('light'); persist(); openBag();
 }
 function setBait(id) { toggleBait(id); }
+const WORM = { id: 'worm', icon: '🪱', name: 'Наживка «Червь»', desc: 'Стартовая наживка: всегда с собой, бесконечная. На червя клюёт любая рыба' };
+function canChangeBait() { return state === 'idle' || state === 'result'; }
+function refreshBaitBtn() {
+  const b = baitActive();
+  $('baitBtn').querySelector('.bi').textContent = b ? b.icon : '🪱';
+  $('baitName').textContent = b ? b.name.replace('Наживка ', '').replace(/[«»]/g, '') : 'Червь';
+  $('baitLeftTxt').textContent = b ? 'осталось ' + save.baitLeft[b.id] : 'бесконечно';
+}
+function openBaitPicker() {
+  const b = baitActive();
+  const rows = [WORM].concat(ITEMS.filter(it => it.type === 'bait' && ((save.inv[it.id] || 0) > 0 || (save.baitLeft[it.id] || 0) > 0)));
+  $('baitList').innerHTML = rows.map(it => {
+    const on = it.id === 'worm' ? !b : (b && b.id === it.id);
+    const packs = save.inv[it.id] || 0, left = save.baitLeft[it.id] || 0;
+    const st = it.id === 'worm' ? 'Бесконечно' : (left ? 'В начатой пачке ' + left + ' забросов' : '') + (packs ? (left ? ' · ' : '') + 'пачек: ' + packs + ' по ' + (it.casts || 10) : '');
+    const bt = on ? '<button class="buy" disabled>На крючке ✓</button>' : `<button class="buy go" data-pick="${it.id}">Насадить</button>`;
+    return `<div class="row${on ? ' act' : ''}"><div class="ic">${it.icon}</div><div class="tx"><b>${it.name.replace('Наживка ', '').replace(/[«»]/g, '')}</b><span>${it.desc}</span>${st ? `<span class="st">${st}</span>` : ''}</div>${bt}</div>`;
+  }).join('') + (rows.length === 1 ? '<div class="empty">Другой наживки пока нет — купи в магазине 🛒</div>' : '');
+  $('baitModal').classList.add('show');
+}
+/* ================= Водоёмы ================= */
+const SCENES = { river: `<defs><linearGradient id="skyrf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FD0F0"/><stop offset="1" stop-color="#E4F4FB"/></linearGradient><linearGradient id="watrf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6CC0DE"/><stop offset="1" stop-color="#2A7FA6"/></linearGradient></defs><rect width="400" height="240" fill="url(#skyrf)"/><g fill="#FFFFFF" opacity="0.9"><ellipse cx="70" cy="95" rx="40" ry="12"/><ellipse cx="92" cy="87" rx="24" ry="13"/></g><g fill="#FFFFFF" opacity="0.9"><ellipse cx="290" cy="115" rx="48.0" ry="14.399999999999999"/><ellipse cx="316.4" cy="105.4" rx="28.799999999999997" ry="15.6"/></g><path d="M0,212 Q60,178 120,196 Q180,170 240,192 Q300,168 400,196 L400,240 L0,240 Z" fill="#5E9A55"/><path d="M0,222 Q100,206 200,214 Q300,204 400,218 L400,232 L0,232 Z" fill="#4E8A48"/><rect x="0" y="226" width="400" height="374" fill="#7BB062"/><g fill="#6FA552" opacity="0.6"><ellipse cx="60" cy="330" rx="60" ry="24"/><ellipse cx="350" cy="300" rx="50" ry="20"/><ellipse cx="370" cy="430" rx="40" ry="30"/></g><path d="M12,176 L25.5,205.7 L18.48,205.7 L29.28,230 L-5.280000000000001,230 L5.5200000000000005,205.7 L-1.5,205.7 Z" fill="#2F6B3A"/><path d="M34,186 L45.0,210.2 L39.28,210.2 L48.08,230 L19.92,230 L28.72,210.2 L23.0,210.2 Z" fill="#2F6B3A"/><path d="M58,172 L72.5,203.9 L64.96,203.9 L76.56,230 L39.44,230 L51.04,203.9 L43.5,203.9 Z" fill="#2F6B3A"/><path d="M318,178 L331.0,206.6 L324.24,206.6 L334.64,230 L301.36,230 L311.76,206.6 L305.0,206.6 Z" fill="#2F6B3A"/><path d="M342,170 L357.0,203.0 L349.2,203.0 L361.2,230 L322.8,230 L334.8,203.0 L327.0,203.0 Z" fill="#2F6B3A"/><path d="M370,182 L382.0,208.4 L375.76,208.4 L385.36,230 L354.64,230 L364.24,208.4 L358.0,208.4 Z" fill="#2F6B3A"/><path d="M394,174 L408.0,204.8 L400.72,204.8 L411.92,230 L376.08,230 L387.28,204.8 L380.0,204.8 Z" fill="#2F6B3A"/><ellipse cx="96" cy="192.12" rx="12.88" ry="16.56" fill="#5A9440"/><ellipse cx="98.76" cy="188.44" rx="10.12" ry="12.88" fill="#6FA84E"/><rect x="94.39" y="200.4" width="3.22" height="27.599999999999998" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="94.39" y="222.4" width="1.8" height="2" fill="#2E2E2E"/><rect x="94.39" y="215.4" width="1.8" height="2" fill="#2E2E2E"/><rect x="94.39" y="208.8" width="1.8" height="2" fill="#2E2E2E"/><rect x="94.39" y="205.1" width="1.8" height="2" fill="#2E2E2E"/><ellipse cx="128" cy="198.36" rx="10.64" ry="13.68" fill="#5A9440"/><ellipse cx="130.28" cy="195.32" rx="8.36" ry="10.64" fill="#6FA84E"/><rect x="126.67" y="205.2" width="2.66" height="22.8" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="126.67" y="222.4" width="1.5" height="2" fill="#2E2E2E"/><rect x="126.67" y="219.6" width="1.5" height="2" fill="#2E2E2E"/><rect x="126.67" y="214.8" width="1.5" height="2" fill="#2E2E2E"/><rect x="126.67" y="209.5" width="1.5" height="2" fill="#2E2E2E"/><ellipse cx="270" cy="189.0" rx="14.000000000000002" ry="18.0" fill="#5A9440"/><ellipse cx="273.0" cy="185.0" rx="11.0" ry="14.000000000000002" fill="#6FA84E"/><rect x="268.25" y="198.0" width="3.5000000000000004" height="30.0" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="268.25" y="220.1" width="2.0" height="2" fill="#2E2E2E"/><rect x="268.25" y="215.8" width="2.0" height="2" fill="#2E2E2E"/><rect x="268.25" y="210.7" width="2.0" height="2" fill="#2E2E2E"/><rect x="268.25" y="203.3" width="2.0" height="2" fill="#2E2E2E"/><ellipse cx="298" cy="195.24" rx="11.760000000000002" ry="15.12" fill="#5A9440"/><ellipse cx="300.52" cy="191.88" rx="9.24" ry="11.760000000000002" fill="#6FA84E"/><rect x="296.53" y="202.8" width="2.9400000000000004" height="25.2" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="296.53" y="223.3" width="1.7" height="2" fill="#2E2E2E"/><rect x="296.53" y="217.2" width="1.7" height="2" fill="#2E2E2E"/><rect x="296.53" y="212.8" width="1.7" height="2" fill="#2E2E2E"/><rect x="296.53" y="207.4" width="1.7" height="2" fill="#2E2E2E"/><path d="M182,226 C200,226 214,228 220,234 C232,250 196,262 200,284 C206,314 300,330 330,380 C360,430 340,520 400,560 L400,600 L-10,600 C40,540 20,470 70,420 C120,370 150,330 142,296 C134,262 170,246 172,234 C174,228 176,226 182,226 Z" fill="#D8C79A" transform="translate(200 400) scale(1.05 1.02) translate(-200 -400)"/><path d="M182,226 C200,226 214,228 220,234 C232,250 196,262 200,284 C206,314 300,330 330,380 C360,430 340,520 400,560 L400,600 L-10,600 C40,540 20,470 70,420 C120,370 150,330 142,296 C134,262 170,246 172,234 C174,228 176,226 182,226 Z" fill="url(#watrf)"/><path d="M160,236 Q198.0,218 236,236" stroke="#7A5230" stroke-width="5" fill="none"/><line x1="160.0" y1="236.0" x2="160.0" y2="226.0" stroke="#7A5230" stroke-width="2"/><line x1="160.0" y1="236.0" x2="160.0" y2="250.0" stroke="#5A3E22" stroke-width="2.4"/><line x1="172.7" y1="226.0" x2="172.7" y2="216.0" stroke="#7A5230" stroke-width="2"/><line x1="172.7" y1="226.0" x2="172.7" y2="250.0" stroke="#5A3E22" stroke-width="2.4"/><line x1="185.3" y1="220.0" x2="185.3" y2="210.0" stroke="#7A5230" stroke-width="2"/><line x1="185.3" y1="220.0" x2="185.3" y2="250.0" stroke="#5A3E22" stroke-width="2.4"/><line x1="198.0" y1="218.0" x2="198.0" y2="208.0" stroke="#7A5230" stroke-width="2"/><line x1="198.0" y1="218.0" x2="198.0" y2="250.0" stroke="#5A3E22" stroke-width="2.4"/><line x1="210.7" y1="220.0" x2="210.7" y2="210.0" stroke="#7A5230" stroke-width="2"/><line x1="210.7" y1="220.0" x2="210.7" y2="250.0" stroke="#5A3E22" stroke-width="2.4"/><line x1="223.3" y1="226.0" x2="223.3" y2="216.0" stroke="#7A5230" stroke-width="2"/><line x1="223.3" y1="226.0" x2="223.3" y2="250.0" stroke="#5A3E22" stroke-width="2.4"/><line x1="236.0" y1="236.0" x2="236.0" y2="226.0" stroke="#7A5230" stroke-width="2"/><line x1="236.0" y1="236.0" x2="236.0" y2="250.0" stroke="#5A3E22" stroke-width="2.4"/><path d="M160,226 Q198.0,208 236,226" stroke="#8C6A42" stroke-width="2" fill="none"/><path d="M180,270 q10.0,-3 20,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/><path d="M240,320 q17.0,-3 34,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/><path d="M110,380 q20.0,-3 40,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/><path d="M260,400 q22.0,-3 44,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/><path d="M160,460 q25.0,-3 50,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/><path d="M60,520 q23.0,-3 46,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/><path d="M280,520 q28.0,-3 56,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/><path d="M262,352 m-11.0,0 a11.0,4.4 0 1,0 22.0,0 a11.0,4.4 0 1,0 -22.0,0" fill="#4E8A3E"/><path d="M262,352 l9.9,-2.2" stroke="#2F6B3A" stroke-width="1.2"/><g><ellipse cx="259.8" cy="348.7" rx="3.3000000000000003" ry="2.2" fill="#FFFFFF"/><ellipse cx="264.2" cy="348.7" rx="3.3000000000000003" ry="2.2" fill="#F6D6E4"/><circle cx="262" cy="347.6" r="1.6500000000000001" fill="#FFD36B"/></g><path d="M282,366 m-9.0,0 a9.0,3.6 0 1,0 18.0,0 a9.0,3.6 0 1,0 -18.0,0" fill="#4E8A3E"/><path d="M282,366 l8.1,-1.8" stroke="#2F6B3A" stroke-width="1.2"/><path d="M96,404 m-10,0 a10,4 0 1,0 20,0 a10,4 0 1,0 -20,0" fill="#4E8A3E"/><path d="M96,404 l9,-2" stroke="#2F6B3A" stroke-width="1.2"/><path d="M78,420 m-12.0,0 a12.0,4.8 0 1,0 24.0,0 a12.0,4.8 0 1,0 -24.0,0" fill="#4E8A3E"/><path d="M78,420 l10.799999999999999,-2.4" stroke="#2F6B3A" stroke-width="1.2"/><g><ellipse cx="75.6" cy="416.4" rx="3.5999999999999996" ry="2.4" fill="#FFFFFF"/><ellipse cx="80.4" cy="416.4" rx="3.5999999999999996" ry="2.4" fill="#F6D6E4"/><circle cx="78" cy="415.2" r="1.7999999999999998" fill="#FFD36B"/></g><path d="M318,470 m-10,0 a10,4 0 1,0 20,0 a10,4 0 1,0 -20,0" fill="#4E8A3E"/><path d="M318,470 l9,-2" stroke="#2F6B3A" stroke-width="1.2"/><ellipse cx="312" cy="360" rx="10" ry="5.5" fill="#8A8E96"/><ellipse cx="314.0" cy="361.5" rx="8.0" ry="3.5" fill="#5E626A" opacity="0.5"/><ellipse cx="309.0" cy="358.0" rx="3.0" ry="1.2" fill="#FFFFFF" opacity="0.35"/><ellipse cx="84" cy="436" rx="12" ry="6.6000000000000005" fill="#8A8E96"/><ellipse cx="86.4" cy="437.8" rx="9.600000000000001" ry="4.199999999999999" fill="#5E626A" opacity="0.5"/><ellipse cx="80.4" cy="433.6" rx="3.5999999999999996" ry="1.44" fill="#FFFFFF" opacity="0.35"/><ellipse cx="330" cy="470" rx="9" ry="4.95" fill="#8A8E96"/><ellipse cx="331.8" cy="471.35" rx="7.2" ry="3.15" fill="#5E626A" opacity="0.5"/><ellipse cx="327.3" cy="468.2" rx="2.6999999999999997" ry="1.08" fill="#FFFFFF" opacity="0.35"/><ellipse cx="40" cy="540" rx="14" ry="7.700000000000001" fill="#8A8E96"/><ellipse cx="42.8" cy="542.1" rx="11.200000000000001" ry="4.8999999999999995" fill="#5E626A" opacity="0.5"/><ellipse cx="35.8" cy="537.2" rx="4.2" ry="1.68" fill="#FFFFFF" opacity="0.35"/><ellipse cx="30" cy="273.84" rx="20.160000000000004" ry="25.919999999999998" fill="#5A9440"/><ellipse cx="34.32" cy="268.08" rx="15.84" ry="20.160000000000004" fill="#6FA84E"/><rect x="27.48" y="286.8" width="5.040000000000001" height="43.199999999999996" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="27.48" y="320.1" width="2.9" height="2" fill="#2E2E2E"/><rect x="27.48" y="310.4" width="2.9" height="2" fill="#2E2E2E"/><rect x="27.48" y="303.6" width="2.9" height="2" fill="#2E2E2E"/><rect x="27.48" y="293.3" width="2.9" height="2" fill="#2E2E2E"/><ellipse cx="372" cy="248.51999999999998" rx="18.48" ry="23.759999999999998" fill="#5A9440"/><ellipse cx="375.96" cy="243.24" rx="14.52" ry="18.48" fill="#6FA84E"/><rect x="369.69" y="260.4" width="4.62" height="39.6" fill="#F4F1E8" stroke="#8A877E" stroke-width="0.6"/><rect x="369.69" y="291.0" width="2.6" height="2" fill="#2E2E2E"/><rect x="369.69" y="282.1" width="2.6" height="2" fill="#2E2E2E"/><rect x="369.69" y="276.2" width="2.6" height="2" fill="#2E2E2E"/><rect x="369.69" y="265.9" width="2.6" height="2" fill="#2E2E2E"/><g><ellipse cx="228" cy="262" rx="17.6" ry="11.200000000000001" fill="#4E8A3E"/><ellipse cx="218.4" cy="257.2" rx="10.4" ry="8.8" fill="#5E9A4A"/><ellipse cx="236.8" cy="255.6" rx="9.600000000000001" ry="8.0" fill="#5E9A4A"/></g><g><ellipse cx="150" cy="262" rx="15.399999999999999" ry="9.799999999999999" fill="#4E8A3E"/><ellipse cx="141.6" cy="257.8" rx="9.1" ry="7.699999999999999" fill="#5E9A4A"/><ellipse cx="157.7" cy="256.4" rx="8.399999999999999" ry="7.0" fill="#5E9A4A"/></g><g><ellipse cx="92" cy="320" rx="24.200000000000003" ry="15.400000000000002" fill="#4E8A3E"/><ellipse cx="78.8" cy="313.4" rx="14.3" ry="12.100000000000001" fill="#5E9A4A"/><ellipse cx="104.1" cy="311.2" rx="13.200000000000001" ry="11.0" fill="#5E9A4A"/></g><g><ellipse cx="118" cy="350" rx="19.8" ry="12.6" fill="#4E8A3E"/><ellipse cx="107.2" cy="344.6" rx="11.700000000000001" ry="9.9" fill="#5E9A4A"/><ellipse cx="127.9" cy="342.8" rx="10.8" ry="9.0" fill="#5E9A4A"/></g><g><ellipse cx="300" cy="300" rx="22" ry="14" fill="#4E8A3E"/><ellipse cx="288" cy="294" rx="13" ry="11" fill="#5E9A4A"/><ellipse cx="311" cy="292" rx="12" ry="10" fill="#5E9A4A"/></g><g><ellipse cx="352" cy="350" rx="24.200000000000003" ry="15.400000000000002" fill="#4E8A3E"/><ellipse cx="338.8" cy="343.4" rx="14.3" ry="12.100000000000001" fill="#5E9A4A"/><ellipse cx="364.1" cy="341.2" rx="13.200000000000001" ry="11.0" fill="#5E9A4A"/></g><g><ellipse cx="20" cy="420" rx="26.4" ry="16.8" fill="#4E8A3E"/><ellipse cx="5.600000000000001" cy="412.8" rx="15.6" ry="13.2" fill="#5E9A4A"/><ellipse cx="33.2" cy="410.4" rx="14.399999999999999" ry="12.0" fill="#5E9A4A"/></g><g><ellipse cx="372" cy="400" rx="28.6" ry="18.2" fill="#4E8A3E"/><ellipse cx="356.4" cy="392.2" rx="16.900000000000002" ry="14.3" fill="#5E9A4A"/><ellipse cx="386.3" cy="389.6" rx="15.600000000000001" ry="13.0" fill="#5E9A4A"/></g><path d="M60,300 l-4,-12 M60,300 l0,-15 M60,300 l4,-12 M60,300 l8,-8 M60,300 l-8,-8" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><path d="M110,290 l-3.2,-9.600000000000001 M110,290 l0,-12.0 M110,290 l3.2,-9.600000000000001 M110,290 l6.4,-6.4 M110,290 l-6.4,-6.4" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><path d="M250,290 l-3.2,-9.600000000000001 M250,290 l0,-12.0 M250,290 l3.2,-9.600000000000001 M250,290 l6.4,-6.4 M250,290 l-6.4,-6.4" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><path d="M320,330 l-4,-12 M320,330 l0,-15 M320,330 l4,-12 M320,330 l8,-8 M320,330 l-8,-8" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><path d="M30,380 l-4.4,-13.200000000000001 M30,380 l0,-16.5 M30,380 l4.4,-13.200000000000001 M30,380 l8.8,-8.8 M30,380 l-8.8,-8.8" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><path d="M366,380 l-4,-12 M366,380 l0,-15 M366,380 l4,-12 M366,380 l8,-8 M366,380 l-8,-8" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><path d="M16,470 l-4.8,-14.399999999999999 M16,470 l0,-18.0 M16,470 l4.8,-14.399999999999999 M16,470 l9.6,-9.6 M16,470 l-9.6,-9.6" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><path d="M390,470 l-4.8,-14.399999999999999 M390,470 l0,-18.0 M390,470 l4.8,-14.399999999999999 M390,470 l9.6,-9.6 M390,470 l-9.6,-9.6" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><path d="M60,360 l-3.6,-10.8 M60,360 l0,-13.5 M60,360 l3.6,-10.8 M60,360 l7.2,-7.2 M60,360 l-7.2,-7.2" stroke="#4E8A3E" stroke-width="2" stroke-linecap="round"/><g><circle cx="70" cy="340" r="2.6" fill="#FFFFFF"/><circle cx="70" cy="340" r="1" fill="#FFE27A"/></g><g><circle cx="82" cy="334" r="2.6" fill="#F6C343"/><circle cx="82" cy="334" r="1" fill="#FFE27A"/></g><g><circle cx="130" cy="300" r="2.6" fill="#E06AA0"/><circle cx="130" cy="300" r="1" fill="#FFE27A"/></g><g><circle cx="250" cy="300" r="2.6" fill="#FFFFFF"/><circle cx="250" cy="300" r="1" fill="#FFE27A"/></g><g><circle cx="340" cy="330" r="2.6" fill="#F6C343"/><circle cx="340" cy="330" r="1" fill="#FFE27A"/></g><g><circle cx="352" cy="316" r="2.6" fill="#E06AA0"/><circle cx="352" cy="316" r="1" fill="#FFE27A"/></g><g><circle cx="40" cy="400" r="2.6" fill="#FFFFFF"/><circle cx="40" cy="400" r="1" fill="#FFE27A"/></g><g><circle cx="380" cy="420" r="2.6" fill="#F6C343"/><circle cx="380" cy="420" r="1" fill="#FFE27A"/></g><g><circle cx="110" cy="330" r="2.6" fill="#9FB8F0"/><circle cx="110" cy="330" r="1" fill="#FFE27A"/></g><path d="M12.951858508367565,500 Q12.17158950765604,468.60063909945416 10.35096183932915,447.6677318324236" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M21.415680154384777,500 Q18.808853309823654,467.3489361289003 12.72625733918104,445.5815602148338" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="11.095199620701413" y="443.5815602148338" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M26.052671966219496,500 Q24.608796052187543,464.0964748989984 21.23975225277965,440.16079149833064" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M33.937323844186785,500 Q33.75890488932147,461.6668953265593 33.34259399463575,436.11149221093217" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M43.345845805097554,500 Q44.18025464836253,469.64321471437825 46.12720861598079,449.405357857297" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="43.34907233489247" y="447.405357857297" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M388.4916067795588,370 Q390.262768172953,342.0224983740261 394.39547809087276,323.37083062337683" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M382.7698011351082,370 Q385.3037511151007,342.04606578724565 391.21630106841656,323.4101096454094" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="387.8716510750857" y="321.4101096454094" width="5" height="16" rx="2.5" fill="#7A5230"/><path d="M372.11602091313443,370 Q374.7761612151243,345.46902927336123 380.98315525310073,329.1150487889354" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M367.5958982125477,370 Q365.27513400046655,340.03676186295223 359.8600175056106,320.06126977158704" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M268.90682343752417,330 Q266.6648088294293,312.27147574199245 261.4334414105414,300.4524595699874" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M277.81926769148646,330 Q276.30391360106097,318.5866660700346 272.76808739006816,310.977776783391" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M285.99651415665033,330 Q286.847724767083,317.69233705039983 288.83388285809247,309.48722841733303" stroke="#3F7A3A" stroke-width="3" fill="none" stroke-linecap="round"/><g transform="translate(195,330)"><rect x="-1.5" y="-24" width="3" height="14" rx="1.5" fill="#E8261C"/><path d="M-10,0 C-10,-9 -6,-13 0,-13 C6,-13 10,-9 10,0 Z" fill="#E8261C" stroke="#8A1A10" stroke-width="1.2"/><path d="M-10,0 L10,0 C10,6 6,10 0,12 C-6,10 -10,6 -10,0 Z" fill="#FFFFFF" stroke="#8A1A10" stroke-width="1.2"/><ellipse cx="0" cy="2" rx="22" ry="5" fill="none" stroke="#FFFFFF" stroke-width="1.6" opacity="0.6"/></g><path d="M300,90 Q250,200 195,306" stroke="#FFFFFF" stroke-width="1.3" fill="none" opacity="0.85"/><path d="M426.7,557.8 L301.6,89.6 L298.4,90.4 L409.3,562.2 Z" fill="#D9B86A" stroke="#6B4E1E" stroke-width="1.5" stroke-linejoin="round"/><line x1="418.7" y1="549.8" x2="302.9" y2="99.3" stroke="#FFF3C8" stroke-width="2" opacity="0.6"/><line x1="390.0" y1="417.2" x2="375.2" y2="420.8" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="388.7" y1="414.5" x2="375.1" y2="417.9" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="364.9" y1="323.5" x2="353.1" y2="326.5" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="363.6" y1="320.8" x2="353.0" y2="323.5" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="342.4" y1="239.2" x2="333.1" y2="241.6" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="341.1" y1="236.6" x2="333.0" y2="238.6" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="322.4" y1="164.3" x2="315.4" y2="166.1" stroke="#8A6A2E" stroke-width="2.2" stroke-linecap="round"/><line x1="321.1" y1="161.7" x2="315.3" y2="163.1" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><path d="M428.2,557.4 L409.3,482.2 L388.9,487.4 L407.8,562.6 Z" fill="#B98A5A" stroke="#5A3A1A" stroke-width="1.5"/><path d="M407.6,482.7 L400.7,456.9 L384.6,461.0 L390.7,486.9 Z" fill="#8A1A10" stroke="#3A0A06" stroke-width="0.8"/><line x1="407.3" y1="481.5" x2="390.4" y2="485.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.9" y1="480.3" x2="390.1" y2="484.6" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.6" y1="479.2" x2="389.8" y2="483.4" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.3" y1="478.0" x2="389.6" y2="482.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.0" y1="476.8" x2="389.3" y2="481.0" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.7" y1="475.7" x2="389.0" y2="479.8" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.4" y1="474.5" x2="388.7" y2="478.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.1" y1="473.3" x2="388.4" y2="477.5" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.8" y1="472.1" x2="388.2" y2="476.3" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.4" y1="471.0" x2="387.9" y2="475.1" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.1" y1="469.8" x2="387.6" y2="473.9" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.8" y1="468.6" x2="387.3" y2="472.8" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.5" y1="467.5" x2="387.1" y2="471.6" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.2" y1="466.3" x2="386.8" y2="470.4" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.9" y1="465.1" x2="386.5" y2="469.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.6" y1="463.9" x2="386.2" y2="468.1" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.3" y1="462.8" x2="386.0" y2="466.9" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.9" y1="461.6" x2="385.7" y2="465.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.6" y1="460.4" x2="385.4" y2="464.5" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.3" y1="459.3" x2="385.1" y2="463.3" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.0" y1="458.1" x2="384.8" y2="462.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><path d="M368.7,337.6 L366.2,328.2 L354.2,331.2 L356.4,340.6 Z" fill="#8A1A10" stroke="#3A0A06" stroke-width="0.6"/><circle cx="300.6" cy="92.4" r="2.2" fill="none" stroke="#555" stroke-width="1.2"/>`, lake: `<defs><linearGradient id="skymn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1430"/><stop offset="1" stop-color="#28365E"/></linearGradient><linearGradient id="watmn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C3550"/><stop offset="1" stop-color="#060E1C"/></linearGradient></defs><rect width="400" height="252" fill="url(#skymn)"/><circle cx="130" cy="80" r="0.8" fill="#FFFFFF" opacity="0.54"/><circle cx="214" cy="103" r="0.8" fill="#FFFFFF" opacity="0.95"/><circle cx="86" cy="73" r="1.7" fill="#FFFFFF" opacity="0.53"/><circle cx="36" cy="109" r="0.8" fill="#FFFFFF" opacity="0.97"/><circle cx="252" cy="126" r="0.8" fill="#FFFFFF" opacity="0.79"/><circle cx="159" cy="167" r="0.8" fill="#FFFFFF" opacity="0.78"/><circle cx="53" cy="108" r="0.8" fill="#FFFFFF" opacity="0.79"/><circle cx="224" cy="136" r="0.8" fill="#FFFFFF" opacity="0.79"/><circle cx="256" cy="103" r="0.8" fill="#FFFFFF" opacity="0.78"/><circle cx="248" cy="117" r="1.7" fill="#FFFFFF" opacity="0.89"/><circle cx="186" cy="162" r="1.3" fill="#FFFFFF" opacity="0.65"/><circle cx="318" cy="138" r="1" fill="#FFFFFF" opacity="0.54"/><circle cx="120" cy="116" r="1.3" fill="#FFFFFF" opacity="0.86"/><circle cx="115" cy="168" r="0.8" fill="#FFFFFF" opacity="0.76"/><circle cx="66" cy="100" r="1.7" fill="#FFFFFF" opacity="0.71"/><circle cx="385" cy="72" r="1.3" fill="#FFFFFF" opacity="0.67"/><circle cx="140" cy="117" r="1.7" fill="#FFFFFF" opacity="0.53"/><circle cx="37" cy="93" r="0.8" fill="#FFFFFF" opacity="0.53"/><circle cx="281" cy="133" r="1.7" fill="#FFFFFF" opacity="0.64"/><circle cx="154" cy="135" r="0.8" fill="#FFFFFF" opacity="0.97"/><circle cx="142" cy="129" r="1.7" fill="#FFFFFF" opacity="0.53"/><circle cx="307" cy="78" r="1" fill="#FFFFFF" opacity="0.70"/><circle cx="367" cy="117" r="1" fill="#FFFFFF" opacity="0.72"/><circle cx="220" cy="158" r="1.7" fill="#FFFFFF" opacity="0.93"/><circle cx="111" cy="108" r="1.3" fill="#FFFFFF" opacity="0.84"/><circle cx="152" cy="88" r="0.8" fill="#FFFFFF" opacity="0.59"/><circle cx="93" cy="89" r="1.7" fill="#FFFFFF" opacity="0.92"/><circle cx="73" cy="94" r="1" fill="#FFFFFF" opacity="0.71"/><circle cx="148" cy="124" r="1" fill="#FFFFFF" opacity="0.85"/><circle cx="206" cy="129" r="0.8" fill="#FFFFFF" opacity="0.73"/><circle cx="348" cy="165" r="1.7" fill="#FFFFFF" opacity="0.70"/><circle cx="158" cy="115" r="1.7" fill="#FFFFFF" opacity="0.53"/><circle cx="27" cy="86" r="1" fill="#FFFFFF" opacity="0.55"/><circle cx="240" cy="75" r="1" fill="#FFFFFF" opacity="0.77"/><circle cx="380" cy="129" r="0.8" fill="#FFFFFF" opacity="0.94"/><circle cx="246" cy="80" r="1.3" fill="#FFFFFF" opacity="0.98"/><circle cx="241" cy="114" r="0.8" fill="#FFFFFF" opacity="0.92"/><circle cx="397" cy="113" r="1.7" fill="#FFFFFF" opacity="0.66"/><circle cx="58" cy="143" r="1.3" fill="#FFFFFF" opacity="0.74"/><circle cx="277" cy="119" r="1" fill="#FFFFFF" opacity="0.98"/><circle cx="211" cy="80" r="0.8" fill="#FFFFFF" opacity="0.88"/><circle cx="119" cy="132" r="0.8" fill="#FFFFFF" opacity="0.85"/><circle cx="104" cy="103" r="1" fill="#FFFFFF" opacity="0.68"/><circle cx="89" cy="121" r="1.3" fill="#FFFFFF" opacity="0.82"/><circle cx="245" cy="148" r="1" fill="#FFFFFF" opacity="0.90"/><circle cx="327" cy="142" r="1" fill="#FFFFFF" opacity="0.60"/><circle cx="197" cy="141" r="0.8" fill="#FFFFFF" opacity="0.90"/><circle cx="189" cy="85" r="1.3" fill="#FFFFFF" opacity="0.72"/><circle cx="375" cy="169" r="1.3" fill="#FFFFFF" opacity="0.54"/><circle cx="41" cy="114" r="1.3" fill="#FFFFFF" opacity="0.60"/><circle cx="250" cy="159" r="0.8" fill="#FFFFFF" opacity="0.74"/><circle cx="261" cy="149" r="0.8" fill="#FFFFFF" opacity="0.92"/><circle cx="48" cy="105" r="1" fill="#FFFFFF" opacity="0.74"/><circle cx="71" cy="148" r="1.3" fill="#FFFFFF" opacity="0.54"/><circle cx="378" cy="141" r="1.7" fill="#FFFFFF" opacity="0.70"/><circle cx="379" cy="141" r="1" fill="#FFFFFF" opacity="1.00"/><circle cx="11" cy="127" r="1.7" fill="#FFFFFF" opacity="0.90"/><circle cx="58" cy="152" r="1.7" fill="#FFFFFF" opacity="0.83"/><circle cx="140" cy="122" r="1" fill="#FFFFFF" opacity="0.51"/><circle cx="320" cy="141" r="0.8" fill="#FFFFFF" opacity="0.76"/><circle cx="373" cy="110" r="1" fill="#FFFFFF" opacity="0.91"/><circle cx="84" cy="91" r="1.3" fill="#FFFFFF" opacity="0.75"/><circle cx="305" cy="99" r="1.7" fill="#FFFFFF" opacity="0.92"/><circle cx="24" cy="142" r="1.7" fill="#FFFFFF" opacity="0.83"/><circle cx="326" cy="119" r="1" fill="#FFFFFF" opacity="0.77"/><circle cx="209" cy="66" r="1.7" fill="#FFFFFF" opacity="0.89"/><circle cx="243" cy="146" r="1" fill="#FFFFFF" opacity="0.59"/><circle cx="189" cy="141" r="0.8" fill="#FFFFFF" opacity="0.66"/><circle cx="207" cy="123" r="0.8" fill="#FFFFFF" opacity="0.94"/><circle cx="23" cy="84" r="0.8" fill="#FFFFFF" opacity="0.89"/><circle cx="245" cy="100" r="36" fill="#FFF6D0" opacity="0.12"/><circle cx="245" cy="100" r="24" fill="#FFF6D0" opacity="0.18"/><circle cx="245" cy="100" r="16" fill="#F4EFD6"/><circle cx="240" cy="96" r="3" fill="#D9D2B4"/><circle cx="250" cy="104" r="2.2" fill="#D9D2B4"/><g fill="#3A4868" opacity="0.6"><ellipse cx="90" cy="120" rx="60" ry="8"/><ellipse cx="220" cy="96" rx="50" ry="6"/></g><path d="M-50.0,230 L60,110 L170.0,230 Z" fill="#2E3A54"/><path d="M60,110 L170.0,230 L77.6,230 Z" fill="#1E2840" opacity="0.55"/><path d="M60,110 L22.6,150.8 L37.6,156.7 L52.5,151.5 L67.5,157.8 L82.4,151.8 L97.4,150.8 Z" fill="#B8C4D8"/><path d="M60,110 L97.4,150.8 L66.6,156.8 Z" fill="#C9D6E6" opacity="0.7"/><path d="M210.0,230 L330,100 L450.0,230 Z" fill="#2E3A54"/><path d="M330,100 L450.0,230 L349.2,230 Z" fill="#1E2840" opacity="0.55"/><path d="M330,100 L289.2,144.2 L305.5,150.1 L321.8,142.7 L338.2,151.4 L354.5,143.0 L370.8,144.2 Z" fill="#B8C4D8"/><path d="M330,100 L370.8,144.2 L337.2,150.20000000000002 Z" fill="#C9D6E6" opacity="0.7"/><path d="M60.0,238 L190,70 L320.0,238 Z" fill="#263248"/><path d="M190,70 L320.0,238 L210.8,238 Z" fill="#18202F" opacity="0.55"/><path d="M190,70 L145.8,127.1 L163.5,136.1 L181.2,128.8 L198.8,137.5 L216.5,129.8 L234.2,127.1 Z" fill="#C8D2E4"/><path d="M190,70 L234.2,127.1 L197.8,133.12 Z" fill="#C9D6E6" opacity="0.7"/><path d="M0,250 L0,170 L40,150 L80,180 L110,250 Z" fill="#1E2636"/><path d="M40,150 L80,180 L70,250 L30,250 Z" fill="#141A26" opacity="0.6"/><path d="M120,244 Q240,230 400,240 L400,252 L110,252 Z" fill="#16261E"/><rect x="128.74" y="243.7" width="2.52" height="6.3" fill="#5A3E22"/><path d="M115.72,244.96 L130,229.0 L144.28,244.96 Z" fill="#12241A"/><path d="M118.66,233.20000000000002 L130,217.24 L141.34,233.20000000000002 Z" fill="#0E1C14"/><path d="M121.6,223.12 L130,207.16 L138.4,223.12 Z" fill="#12241A"/><path d="M124.54,214.72 L130,198.76 L135.46,214.72 Z" fill="#0E1C14"/><rect x="158.74" y="243.7" width="2.52" height="6.3" fill="#5A3E22"/><path d="M145.72,244.96 L160,229.0 L174.28,244.96 Z" fill="#12241A"/><path d="M148.66,233.20000000000002 L160,217.24 L171.34,233.20000000000002 Z" fill="#0E1C14"/><path d="M151.6,223.12 L160,207.16 L168.4,223.12 Z" fill="#12241A"/><path d="M154.54,214.72 L160,198.76 L165.46,214.72 Z" fill="#0E1C14"/><rect x="188.74" y="243.7" width="2.52" height="6.3" fill="#5A3E22"/><path d="M175.72,244.96 L190,229.0 L204.28,244.96 Z" fill="#12241A"/><path d="M178.66,233.20000000000002 L190,217.24 L201.34,233.20000000000002 Z" fill="#0E1C14"/><path d="M181.6,223.12 L190,207.16 L198.4,223.12 Z" fill="#12241A"/><path d="M184.54,214.72 L190,198.76 L195.46,214.72 Z" fill="#0E1C14"/><rect x="338.74" y="243.7" width="2.52" height="6.3" fill="#5A3E22"/><path d="M325.72,244.96 L340,229.0 L354.28,244.96 Z" fill="#12241A"/><path d="M328.66,233.20000000000002 L340,217.24 L351.34,233.20000000000002 Z" fill="#0E1C14"/><path d="M331.6,223.12 L340,207.16 L348.4,223.12 Z" fill="#12241A"/><path d="M334.54,214.72 L340,198.76 L345.46,214.72 Z" fill="#0E1C14"/><rect x="366.47" y="242.35" width="3.06" height="7.6499999999999995" fill="#5A3E22"/><path d="M350.66,243.88 L368,224.5 L385.34,243.88 Z" fill="#12241A"/><path d="M354.23,229.6 L368,210.22 L381.77,229.6 Z" fill="#0E1C14"/><path d="M357.8,217.35999999999999 L368,197.98 L378.2,217.35999999999999 Z" fill="#12241A"/><path d="M361.37,207.16 L368,187.78 L374.63,207.16 Z" fill="#0E1C14"/><rect x="394.65" y="243.25" width="2.6999999999999997" height="6.75" fill="#5A3E22"/><path d="M380.7,244.6 L396,227.5 L411.3,244.6 Z" fill="#12241A"/><path d="M383.85,232.0 L396,214.9 L408.15,232.0 Z" fill="#0E1C14"/><path d="M387.0,221.2 L396,204.1 L405.0,221.2 Z" fill="#12241A"/><path d="M390.15,212.2 L396,195.1 L401.85,212.2 Z" fill="#0E1C14"/><path d="M0,252 Q200,246 400,252 L400,600 L0,600 Z" fill="url(#watmn)"/><g fill="#F4EFD6"><rect x="215" y="262" width="60" height="3" rx="1.5" opacity="0.55"/><rect x="207" y="276" width="76" height="3" rx="1.5" opacity="0.45"/><rect x="221" y="292" width="48" height="3" rx="1.5" opacity="0.4"/><rect x="203" y="310" width="84" height="3" rx="1.5" opacity="0.3"/><rect x="225" y="330" width="40" height="3" rx="1.5" opacity="0.28"/><rect x="211" y="352" width="68" height="3" rx="1.5" opacity="0.2"/><rect x="229" y="378" width="32" height="3" rx="1.5" opacity="0.15"/></g><path d="M70,310 q23.0,-3 46,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.12" stroke-linecap="round"/><path d="M150,410 q30.0,-3 60,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.12" stroke-linecap="round"/><path d="M40,470 q25.0,-3 50,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.12" stroke-linecap="round"/><path d="M200,500 q28.0,-3 56,0" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.12" stroke-linecap="round"/><g fill="#8FA3C8" opacity="0.18"><ellipse cx="120" cy="258" rx="170" ry="12"/><ellipse cx="200" cy="284" rx="200" ry="9"/></g><path d="M0,430 L40,420 L80,450 L96,520 L120,600 L0,600 Z" fill="#262C38"/><path d="M40,420 L80,450 L60,600 L0,600 L0,430 Z" fill="#1A1F28" opacity="0.6"/><path d="M40,420 L80,450" stroke="#8FA3C8" stroke-width="1.5" opacity="0.35"/><path d="M400,470 C350,480 330,540 320,600 L400,600 Z" fill="#1C2A22"/><ellipse cx="350" cy="520" rx="18" ry="9.9" fill="#3A4250"/><ellipse cx="353.6" cy="522.7" rx="14.4" ry="6.3" fill="#1E242E" opacity="0.5"/><ellipse cx="344.6" cy="516.4" rx="5.3999999999999995" ry="2.16" fill="#FFFFFF" opacity="0.35"/><ellipse cx="380" cy="570" rx="14" ry="7.700000000000001" fill="#3A4250"/><ellipse cx="382.8" cy="572.1" rx="11.200000000000001" ry="4.8999999999999995" fill="#1E242E" opacity="0.5"/><ellipse cx="375.8" cy="567.2" rx="4.2" ry="1.68" fill="#FFFFFF" opacity="0.35"/><ellipse cx="120" cy="560" rx="12" ry="6.6000000000000005" fill="#3A4250"/><ellipse cx="122.4" cy="561.8" rx="9.600000000000001" ry="4.199999999999999" fill="#1E242E" opacity="0.5"/><ellipse cx="116.4" cy="557.6" rx="3.5999999999999996" ry="1.44" fill="#FFFFFF" opacity="0.35"/><rect x="367.48" y="457.4" width="5.04" height="12.6" fill="#5A3E22"/><path d="M341.44,459.92 L370,428.0 L398.56,459.92 Z" fill="#12241A"/><path d="M347.32,436.40000000000003 L370,404.48 L392.68,436.40000000000003 Z" fill="#0E1C14"/><path d="M353.2,416.24 L370,384.32 L386.8,416.24 Z" fill="#12241A"/><path d="M359.08,399.44 L370,367.52 L380.92,399.44 Z" fill="#0E1C14"/><g fill="#D8F27A"><circle cx="340" cy="450" r="1.6" opacity="0.8"/><circle cx="340" cy="450" r="4" opacity="0.15"/><circle cx="360" cy="500" r="1.6" opacity="0.8"/><circle cx="360" cy="500" r="4" opacity="0.15"/><circle cx="90" cy="470" r="1.6" opacity="0.8"/><circle cx="90" cy="470" r="4" opacity="0.15"/><circle cx="130" cy="520" r="1.6" opacity="0.8"/><circle cx="130" cy="520" r="4" opacity="0.15"/></g><g transform="translate(195,330)"><rect x="-1.5" y="-24" width="3" height="14" rx="1.5" fill="#E8261C"/><path d="M-10,0 C-10,-9 -6,-13 0,-13 C6,-13 10,-9 10,0 Z" fill="#E8261C" stroke="#8A1A10" stroke-width="1.2"/><path d="M-10,0 L10,0 C10,6 6,10 0,12 C-6,10 -10,6 -10,0 Z" fill="#FFFFFF" stroke="#8A1A10" stroke-width="1.2"/><ellipse cx="0" cy="2" rx="22" ry="5" fill="none" stroke="#FFFFFF" stroke-width="1.6" opacity="0.6"/></g><path d="M300,90 Q250,200 195,306" stroke="#FFFFFF" stroke-width="1.3" fill="none" opacity="0.85"/><path d="M426.7,557.8 L301.6,89.6 L298.4,90.4 L409.3,562.2 Z" fill="#B8975A" stroke="#6B4E1E" stroke-width="1.5" stroke-linejoin="round"/><line x1="418.7" y1="549.8" x2="302.9" y2="99.3" stroke="#FFF3C8" stroke-width="2" opacity="0.6"/><line x1="390.0" y1="417.2" x2="375.2" y2="420.8" stroke="#6E4E1A" stroke-width="2.2" stroke-linecap="round"/><line x1="388.7" y1="414.5" x2="375.1" y2="417.9" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="364.9" y1="323.5" x2="353.1" y2="326.5" stroke="#6E4E1A" stroke-width="2.2" stroke-linecap="round"/><line x1="363.6" y1="320.8" x2="353.0" y2="323.5" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="342.4" y1="239.2" x2="333.1" y2="241.6" stroke="#6E4E1A" stroke-width="2.2" stroke-linecap="round"/><line x1="341.1" y1="236.6" x2="333.0" y2="238.6" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><line x1="322.4" y1="164.3" x2="315.4" y2="166.1" stroke="#6E4E1A" stroke-width="2.2" stroke-linecap="round"/><line x1="321.1" y1="161.7" x2="315.3" y2="163.1" stroke="#F3DFA6" stroke-width="1" opacity="0.8"/><path d="M428.2,557.4 L409.3,482.2 L388.9,487.4 L407.8,562.6 Z" fill="#8E6A44" stroke="#5A3A1A" stroke-width="1.5"/><path d="M407.6,482.7 L400.7,456.9 L384.6,461.0 L390.7,486.9 Z" fill="#2B5DA8" stroke="#3A0A06" stroke-width="0.8"/><line x1="407.3" y1="481.5" x2="390.4" y2="485.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.9" y1="480.3" x2="390.1" y2="484.6" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.6" y1="479.2" x2="389.8" y2="483.4" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.3" y1="478.0" x2="389.6" y2="482.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="406.0" y1="476.8" x2="389.3" y2="481.0" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.7" y1="475.7" x2="389.0" y2="479.8" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.4" y1="474.5" x2="388.7" y2="478.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="405.1" y1="473.3" x2="388.4" y2="477.5" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.8" y1="472.1" x2="388.2" y2="476.3" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.4" y1="471.0" x2="387.9" y2="475.1" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="404.1" y1="469.8" x2="387.6" y2="473.9" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.8" y1="468.6" x2="387.3" y2="472.8" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.5" y1="467.5" x2="387.1" y2="471.6" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="403.2" y1="466.3" x2="386.8" y2="470.4" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.9" y1="465.1" x2="386.5" y2="469.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.6" y1="463.9" x2="386.2" y2="468.1" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="402.3" y1="462.8" x2="386.0" y2="466.9" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.9" y1="461.6" x2="385.7" y2="465.7" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.6" y1="460.4" x2="385.4" y2="464.5" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.3" y1="459.3" x2="385.1" y2="463.3" stroke="#000000" stroke-width="0.5" opacity="0.35"/><line x1="401.0" y1="458.1" x2="384.8" y2="462.2" stroke="#000000" stroke-width="0.5" opacity="0.35"/><path d="M368.7,337.6 L366.2,328.2 L354.2,331.2 L356.4,340.6 Z" fill="#2B5DA8" stroke="#3A0A06" stroke-width="0.6"/><circle cx="300.6" cy="92.4" r="2.2" fill="none" stroke="#555" stroke-width="1.2"/>` };
+function setLoc(id, silent) {
+  const L = LOCS.find(x => x.id === id); if (!L) return;
+  const bg = $('sceneBg');
+  if (!SCENES.pond) SCENES.pond = bg.innerHTML;
+  bg.innerHTML = SCENES[id];
+  CUR_LOC = id; save.loc = id; JUNK_CHANCE = L.junk;
+  FISH.length = 0; FISH.push(...L.fish);
+  JUNK_LIST.length = 0; JUNK_LIST.push(...L.junkList);
+  if (!save.lst[id]) save.lst[id] = { fish: 0, junk: 0 };
+  refreshLocBtn();
+  if (!silent) { persist(); refreshTop(); toast(L.icon + ' ' + L.name); haptic('light'); }
+}
+function refreshLocBtn() {
+  const L = curLoc();
+  $('locBtn').querySelector('.bi').textContent = L.icon;
+  $('locName').textContent = L.short;
+  const ready = LOCS.some(x => !save.locs[x.id] && save.level >= x.lvl);
+  $('locSub').textContent = ready ? 'можно открыть!' : 'сменить';
+}
+function openLocPicker() {
+  $('locList').innerHTML = LOCS.map(L => {
+    const here = L.id === CUR_LOC, open = save.locs[L.id], lvlOk = save.level >= L.lvl;
+    let bt, st;
+    if (here) { bt = '<button class="buy" disabled>Вы здесь ✓</button>'; st = 'Сейчас рыбачишь здесь'; }
+    else if (open) { bt = `<button class="buy go" data-loc="${L.id}">Перейти</button>`; st = 'Открыто'; }
+    else if (!lvlOk) { bt = `<button class="buy" disabled>🔒 ${L.lvl} ур.</button>`; st = '<span class="need">Нужен ' + L.lvl + ' уровень, чтобы перейти</span> · открытие 🪙 ' + L.cost; }
+    else { bt = `<button class="buy${save.coins >= L.cost ? '' : ' poor'}" data-unlock="${L.id}">🪙 ${L.cost}</button>`; st = 'Уровень подходит — открой за 🪙 ' + L.cost; }
+    return `<div class="row${here ? ' act' : ''}${!open && !lvlOk ? ' lock' : ''}"><div class="ic loc">${L.icon}</div><div class="tx"><b>${L.name}</b><span>${L.desc}</span><span class="st">${st}</span></div>${bt}</div>`;
+  }).join('');
+  $('locModal').classList.add('show');
+}
+function goLoc(id) {
+  if (!canChangeBait()) { toast('Сменить водоём можно, когда удочка не в воде'); return; }
+  setLoc(id); $('locModal').classList.remove('show');
+}
+function unlockLoc(id) {
+  const L = LOCS.find(x => x.id === id);
+  if (save.level < L.lvl) { toast('Нужен ' + L.lvl + ' уровень'); return; }
+  if (save.coins < L.cost) { toast('Не хватает монет: нужно ' + L.cost); haptic('error'); return; }
+  if (!canChangeBait()) { toast('Сменить водоём можно, когда удочка не в воде'); return; }
+  save.coins = Math.round((save.coins - L.cost) * 100) / 100;
+  save.locs[id] = true;
+  setLoc(id); $('locModal').classList.remove('show');
+  achievement('Новый водоём!', [L.icon + ' ' + L.name + ' открыт']); flushAch(); showLevelUp();
+}
+function pickBait(id) {
+  if (!canChangeBait()) { toast('Сменить наживку можно, когда удочка не в воде'); return; }
+  if (id === 'worm') { save.bait = null; toast('На крючке червь'); }
+  else {
+    if (!(save.baitLeft[id] > 0)) { if (!save.inv[id]) return; save.inv[id]--; save.baitLeft[id] = ITEM[id].casts || 10; }
+    save.bait = { id }; toast(ITEM[id].name + ' на крючке'); qEvent('bait');
+  }
+  haptic('light'); persist(); refreshProgress(); openBaitPicker();
+}
 
 /* --- влияние на рыбалку --- */
-let castHeavy = false;
-function fishMultiplier(f) {
-  let m = 1;
-  const gb = gbActive(), b = baitActive();
-  if (gb && gb.boost && gb.boost[f.r]) m *= gb.boost[f.r];
-  if (b && b.boost && b.boost[f.r]) m *= b.boost[f.r];
-  if (b && b.boostIds && b.boostIds[f.id]) m *= b.boostIds[f.id];
-  return m;
-}
+let castHeavy = false, lastCastBait = false;
 function consumeBait() {
   const b = baitActive();
   if (!b) return null;
   save.baitLeft[b.id]--;
-  if (save.baitLeft[b.id] <= 0) { save.baitLeft[b.id] = 0; if (save.inv[b.id]) { save.inv[b.id]--; save.baitLeft[b.id] = 10; } else { save.bait = null; toast(b.name + ' закончилась'); } }
+  if (save.baitLeft[b.id] <= 0) { save.baitLeft[b.id] = 0; if (save.inv[b.id]) { save.inv[b.id]--; save.baitLeft[b.id] = b.casts || 10; } else { save.bait = null; toast(b.name + ' закончилась'); } }
   return b;
 }
 function waitTime() {
@@ -1113,12 +1434,455 @@ function waitTime() {
 function catchXp(f, isNew, firstTrophy) {
   if (f.r === 'junk') return { xp: 0, lines: [] };
   const bt = biteTime();
-  let base = XP_BY_R[f.r] * (bt ? bt.mult : 1);
+  const lm = curLoc().xp, raw = XP_BY_R[f.r] * lm * (bt ? bt.mult : 1);
+  let base = Math.floor(raw) + (Math.random() < raw - Math.floor(raw) ? 1 : 0);
   let xp = base;
-  const lines = ['+' + base + ' опыта' + (bt ? ' (зорька ×' + bt.mult + ')' : '')];
+  const lines = ['+' + base + ' опыта' + (bt ? ' (зорька ×' + bt.mult + ')' : '') + (lm !== 1 ? ' (водоём ×' + String(lm).replace('.', ',') + ')' : '')];
   if (isNew) { xp += FIRST_XP[f.r]; lines.push('+' + FIRST_XP[f.r] + ' за новый вид'); }
-  if (firstTrophy) { xp += PROG.TROPHY_XP; lines.push('+' + PROG.TROPHY_XP + ' за трофей'); save.pearls += 5; lines.push('+5 жемчуга за первый трофей'); }
+  if (firstTrophy) { xp += PROG.TROPHY_XP; lines.push('+' + PROG.TROPHY_XP + ' за трофей'); save.pearls += 5; lines.push('+5 жемчуга за первый трофей'); achievement('Трофей закрыт!', ['🏆 ' + f.name, '✨ +' + PROG.TROPHY_XP + ' опыта', '⚪ +5 жемчуга']); }
   return { xp, lines };
+}
+
+/* ================= Задания: ежедневные и недельные =================
+   Время — серверное, по Москве: ежедневные обновляются в 0:00, недельные — в 0:00 понедельника.
+   Набор заданий одинаковый у всех игроков (выбирается по номеру дня/недели). */
+const MSK = 3 * 3600000, DAY = 86400000;
+function dayKey() { return Math.floor((gameNow() + MSK) / DAY); }
+function weekKey() { return Math.floor((dayKey() + 3) / 7); }          // 1 янв 1970 — четверг, неделя с понедельника
+function msToNextDay() { return DAY - ((gameNow() + MSK) % DAY); }
+function msToNextWeek() { const d = dayKey(); const dow = (d + 3) % 7; return (6 - dow) * DAY + msToNextDay(); }  // dow 0 = понедельник
+
+const KARAS = ['karas_serebr', 'karas_zolot'];
+// t — тип события; n — сколько нужно; f — условие на рыбу; r — награда
+const QD = [
+  { id: 'd1',  g: 'cast',  text: 'Сделай 10 забросов', t: 'cast', n: 10, r: { coins: 10, xp: 8 } },
+  { id: 'd2',  g: 'cast',  text: 'Сделай 20 забросов', t: 'cast', n: 20, r: { coins: 18, xp: 12 } },
+  { id: 'd3',  g: 'cast',  text: 'Сделай 30 забросов', t: 'cast', n: 30, r: { coins: 25, xp: 16 } },
+  { id: 'd4',  g: 'catch', text: 'Поймай 5 рыб', t: 'catch', n: 5, r: { coins: 10, xp: 8 } },
+  { id: 'd5',  g: 'catch', text: 'Поймай 10 рыб', t: 'catch', n: 10, r: { coins: 18, xp: 12 } },
+  { id: 'd6',  g: 'catch', text: 'Поймай 15 рыб', t: 'catch', n: 15, r: { coins: 25, xp: 16 } },
+  { id: 'd7',  g: 'rar',   text: 'Поймай 8 обычных рыб', t: 'catch', n: 8, f: { r: ['common'] }, r: { coins: 12, xp: 10 } },
+  { id: 'd8',  g: 'rar',   text: 'Поймай 3 необычные рыбы', t: 'catch', n: 3, f: { r: ['uncommon'] }, r: { coins: 15, xp: 12 } },
+  { id: 'd9',  g: 'rar',   text: 'Поймай 5 необычных рыб', t: 'catch', n: 5, f: { r: ['uncommon'] }, r: { coins: 22, xp: 16 } },
+  { id: 'd10', g: 'rar',   text: 'Поймай 1 редкую рыбу', t: 'catch', n: 1, f: { r: ['rare', 'epic', 'legendary'] }, r: { coins: 20, xp: 15 } },
+  { id: 'd11', g: 'rar',   text: 'Поймай 2 редкие рыбы', t: 'catch', n: 2, f: { r: ['rare', 'epic', 'legendary'] }, r: { coins: 30, xp: 20 } },
+  { id: 'd12', g: 'kind',  text: 'Поймай 3 карася', t: 'catch', n: 3, f: { ids: KARAS }, r: { coins: 12, xp: 10 } },
+  { id: 'd13', g: 'kind',  text: 'Поймай 3 плотвы', t: 'catch', n: 3, f: { ids: ['plotva'] }, r: { coins: 12, xp: 10 } },
+  { id: 'd14', g: 'kind',  text: 'Поймай 3 окуня', t: 'catch', n: 3, f: { ids: ['okun'] }, r: { coins: 12, xp: 10 } },
+  { id: 'd15', g: 'kind',  text: 'Поймай 3 ерша', t: 'catch', n: 3, f: { ids: ['ersh'] }, r: { coins: 12, xp: 10 } },
+  { id: 'd16', g: 'kind',  text: 'Поймай 3 уклейки', t: 'catch', n: 3, f: { ids: ['ukleyka'] }, r: { coins: 12, xp: 10 } },
+  { id: 'd17', g: 'kind',  text: 'Поймай 2 линя', t: 'catch', n: 2, f: { ids: ['lin'] }, r: { coins: 18, xp: 14 } },
+  { id: 'd18', g: 'kind',  text: 'Поймай 2 леща', t: 'catch', n: 2, f: { ids: ['leshch'] }, r: { coins: 18, xp: 14 } },
+  { id: 'd19', g: 'kind',  text: 'Поймай 1 карпа', t: 'catch', n: 1, f: { ids: ['karp', 'karp_zerk'] }, r: { coins: 15, xp: 12 } },
+  { id: 'd20', g: 'kind',  text: 'Поймай 1 щуку', t: 'catch', n: 1, f: { ids: ['shchuka', 'tsar_shchuka'] }, r: { coins: 25, xp: 18 } },
+  { id: 'd21', g: 'kind',  text: 'Поймай 1 судака', t: 'catch', n: 1, f: { ids: ['sudak'] }, r: { coins: 25, xp: 18 } },
+  { id: 'd22', g: 'perf',  text: 'Сделай 3 точных заброса (в зелёную зону)', t: 'perfect', n: 3, r: { coins: 10, xp: 8 } },
+  { id: 'd23', g: 'perf',  text: 'Сделай 5 точных забросов', t: 'perfect', n: 5, r: { coins: 15, xp: 12 } },
+  { id: 'd24', g: 'perf',  text: 'Сделай 8 точных забросов', t: 'perfect', n: 8, r: { coins: 22, xp: 16 } },
+  { id: 'd25', g: 'kg',    text: 'Поймай рыбу весом от 1 кг', t: 'catch', n: 1, f: { minW: 1 }, r: { coins: 12, xp: 10 } },
+  { id: 'd26', g: 'kg',    text: 'Поймай 3 рыбы весом от 0,5 кг', t: 'catch', n: 3, f: { minW: 0.5 }, r: { coins: 15, xp: 12 } },
+  { id: 'd27', g: 'kg',    text: 'Поймай рыбу весом от 2 кг', t: 'catch', n: 1, f: { minW: 2 }, r: { coins: 20, xp: 15 } },
+  { id: 'd28', g: 'coins', text: 'Заработай на рыбе 20 монет', t: 'coins', n: 20, r: { coins: 10, xp: 10 } },
+  { id: 'd29', g: 'coins', text: 'Заработай на рыбе 40 монет', t: 'coins', n: 40, r: { coins: 18, xp: 14 } },
+  { id: 'd30', g: 'coins', text: 'Заработай на рыбе 60 монет', t: 'coins', n: 60, r: { coins: 25, xp: 18 } },
+  { id: 'd31', g: 'xp',    text: 'Получи 30 опыта за рыбу', t: 'xp', n: 30, r: { coins: 12, xp: 10 } },
+  { id: 'd32', g: 'xp',    text: 'Получи 60 опыта за рыбу', t: 'xp', n: 60, r: { coins: 20, xp: 15 } },
+  { id: 'd33', g: 'junk',  text: 'Вытащи что-нибудь из мусора (сапог, банку или корягу)', t: 'junk', n: 1, r: { coins: 10, xp: 8 } },
+  { id: 'd34', g: 'strk',  text: 'Поймай 3 рыбы подряд без сходов', t: 'streak', n: 3, r: { coins: 12, xp: 10 } },
+  { id: 'd35', g: 'strk',  text: 'Поймай 5 рыб подряд без сходов', t: 'streak', n: 5, r: { coins: 20, xp: 15 } },
+  { id: 'd36', g: 'bait',  text: 'Насади любую наживку', t: 'bait', n: 1, r: { coins: 10, xp: 8 } },
+  { id: 'd37', g: 'bait',  text: 'Поймай 5 рыб на наживку', t: 'catch', n: 5, f: { bait: true }, r: { coins: 18, xp: 14 } },
+  { id: 'd38', g: 'gb',    text: 'Высыпь любую прикормку', t: 'gb', n: 1, r: { coins: 12, xp: 10 } },
+  { id: 'd39', g: 'gb',    text: 'Поймай 3 рыбы, пока действует прикормка', t: 'catch', n: 3, f: { gb: true }, r: { coins: 15, xp: 12 } },
+  { id: 'd40', g: 'dawn',  text: 'Поймай рыбу на утренней или вечерней зорьке', t: 'catch', n: 1, f: { dawn: true }, r: { coins: 15, xp: 12 } },
+  { id: 'd41', g: 'fast',  text: 'Подсеки 3 раза быстрее чем за полсекунды', t: 'fasthook', n: 3, r: { coins: 15, xp: 12 } },
+  { id: 'd42', g: 'spec',  text: 'Поймай 4 разных вида рыб', t: 'species', n: 4, r: { coins: 15, xp: 12 } },
+  { id: 'd43', g: 'spec',  text: 'Поймай 6 разных видов рыб', t: 'species', n: 6, r: { coins: 25, xp: 18 } },
+  { id: 'd44', g: 'shop',  text: 'Купи что-нибудь в магазине за монеты', t: 'buycoin', n: 1, r: { coins: 10, xp: 8 } },
+  { id: 'd45', g: 'rars',  text: 'Поймай рыбу трёх разных редкостей', t: 'rarities', n: 3, r: { coins: 20, xp: 15 } },
+];
+const QW = [
+  { id: 'w1',  g: 'cast',  text: 'Сделай 200 забросов', t: 'cast', n: 200, r: { coins: 120, pearls: 10 } },
+  { id: 'w2',  g: 'catch', text: 'Поймай 100 рыб', t: 'catch', n: 100, r: { coins: 120, pearls: 10 } },
+  { id: 'w3',  g: 'catch', text: 'Поймай 150 рыб', t: 'catch', n: 150, r: { coins: 180, pearls: 15 } },
+  { id: 'w4',  g: 'rar',   text: 'Поймай 20 необычных рыб', t: 'catch', n: 20, f: { r: ['uncommon'] }, r: { coins: 120, pearls: 10 } },
+  { id: 'w5',  g: 'rar',   text: 'Поймай 8 редких рыб', t: 'catch', n: 8, f: { r: ['rare', 'epic', 'legendary'] }, r: { coins: 150, pearls: 12 } },
+  { id: 'w6',  g: 'epic',  text: 'Поймай эпическую рыбу (сом или зеркальный карп)', t: 'catch', n: 1, f: { r: ['epic', 'legendary'] }, r: { coins: 150, pearls: 15 } },
+  { id: 'w7',  g: 'coins', text: 'Заработай на рыбе 500 монет', t: 'coins', n: 500, r: { coins: 100, pearls: 10 } },
+  { id: 'w8',  g: 'coins', text: 'Заработай на рыбе 1000 монет', t: 'coins', n: 1000, r: { coins: 200, pearls: 15 } },
+  { id: 'w9',  g: 'xp',    text: 'Получи 800 опыта за рыбу', t: 'xp', n: 800, r: { coins: 150, pearls: 12 } },
+  { id: 'w10', g: 'perf',  text: 'Сделай 50 точных забросов', t: 'perfect', n: 50, r: { coins: 120, pearls: 10 } },
+  { id: 'w11', g: 'spec',  text: 'Поймай все 5 видов обычных рыб', t: 'species', n: 5, f: { r: ['common'] }, r: { coins: 100, pearls: 10 } },
+  { id: 'w12', g: 'spec',  text: 'Поймай 10 разных видов рыб', t: 'species', n: 10, r: { coins: 180, pearls: 15 } },
+  { id: 'w13', g: 'daily', text: 'Выполни 10 ежедневных заданий', t: 'dailyDone', n: 10, r: { coins: 150, pearls: 15 } },
+  { id: 'w14', g: 'kg',    text: 'Поймай 5 рыб весом от 3 кг', t: 'catch', n: 5, f: { minW: 3 }, r: { coins: 150, pearls: 12 } },
+  { id: 'w15', g: 'days',  text: 'Заходи в игру 5 разных дней', t: 'days', n: 5, r: { coins: 100, pearls: 15 } },
+];
+const QALL = Object.fromEntries(QD.concat(QW).map(q => [q.id, q]));
+
+function seededPick(pool, seed, n) {
+  let x = (seed * 2654435761) >>> 0;
+  const rnd = () => { x ^= x << 13; x >>>= 0; x ^= x >> 17; x ^= x << 5; x >>>= 0; return x / 4294967296; };
+  const out = [], groups = new Set(), arr = pool.slice();
+  while (out.length < n && arr.length) {
+    const i = Math.floor(rnd() * arr.length), q = arr.splice(i, 1)[0];
+    if (groups.has(q.g)) continue;                     // разные по смыслу задания
+    groups.add(q.g); out.push(q);
+  }
+  return out;
+}
+function questsInit() {
+  if (!save.q) save.q = {};
+  const q = save.q, dk = dayKey(), wk = weekKey();
+  if (q.dayKey !== dk) {
+    q.dayKey = dk;
+    q.daily = seededPick(QD, dk, 3).map(d => ({ id: d.id, p: 0, claimed: false }));
+    q.dSpecies = []; q.dRar = []; q.streak = 0;
+  }
+  if (q.weekKey !== wk) {
+    q.weekKey = wk;
+    q.weekly = seededPick(QW, wk * 31 + 7, 3).map(d => ({ id: d.id, p: 0, claimed: false }));
+    q.wSpecies = []; q.wDays = [];
+  }
+  if (!q.wDays.includes(dk)) { q.wDays.push(dk); qEvent('days'); }
+}
+function fishOk(f, cond, ctx) {
+  if (!cond) return true;
+  if (cond.r && !cond.r.includes(f.r)) return false;
+  if (cond.ids && !cond.ids.includes(f.id)) return false;
+  if (cond.minW && !(ctx.w >= cond.minW)) return false;
+  if (cond.bait && !ctx.bait) return false;
+  if (cond.gb && !ctx.gb) return false;
+  if (cond.dawn && !ctx.dawn) return false;
+  return true;
+}
+// событие игры → прогресс заданий
+function qEvent(type, ctx) {
+  ctx = ctx || {};
+  achStat(type, ctx);
+  if (!save.q || !save.q.daily) { achCheck(); return; }
+  const q = save.q;
+  if (type === 'catch') {
+    if (!q.dSpecies.includes(ctx.f.id)) q.dSpecies.push(ctx.f.id);
+    if (!q.wSpecies.includes(ctx.f.id)) q.wSpecies.push(ctx.f.id);
+    if (!q.dRar.includes(ctx.f.r)) q.dRar.push(ctx.f.r);
+    q.streak++;
+  }
+  if (type === 'escape') q.streak = 0;
+  let changed = false;
+  for (const list of [q.daily, q.weekly]) {
+    for (const st of list) {
+      const d = QALL[st.id]; if (!d || st.p >= d.n) continue;
+      const before = st.p;
+      const isW = list === q.weekly;
+      if (d.t === type && ['cast', 'perfect', 'junk', 'bait', 'gb', 'fasthook', 'buycoin', 'dailyDone', 'days'].includes(type)) st.p += 1;
+      else if (d.t === 'catch' && type === 'catch' && fishOk(ctx.f, d.f, ctx)) st.p += 1;
+      else if (d.t === 'coins' && type === 'coins') st.p = Math.round((st.p + ctx.n) * 100) / 100;
+      else if (d.t === 'xp' && type === 'xp') st.p += ctx.n;
+      else if (d.t === 'streak' && (type === 'catch' || type === 'escape')) st.p = Math.max(st.p, q.streak);
+      else if (d.t === 'species' && type === 'catch') {
+        const pool = isW ? q.wSpecies : q.dSpecies;
+        st.p = d.f && d.f.r ? pool.filter(id => { const F = ALL_FISH.find(x => x.id === id); return F && d.f.r.includes(F.r); }).length : pool.length;
+      }
+      else if (d.t === 'rarities' && type === 'catch') st.p = q.dRar.length;
+      if (st.p > d.n) st.p = d.n;
+      if (st.p !== before) { changed = true; if (st.p >= d.n && before < d.n) toast('✅ Задание выполнено: ' + d.text); }
+    }
+  }
+  if (changed) refreshQuestBadge();
+  achCheck();
+}
+function questLocTag(d) {
+  if (!d.f || !d.f.ids) return '';
+  // маленькая подсказка, где водится рыба; засчитывается на любом водоёме
+  const L = LOCS.find(L => L.fish.some(f => f.id === d.f.ids[0]));
+  return L && L.id !== CUR_LOC ? '<span class="qloc">💡 водится: ' + L.name + '</span>' : '';
+}
+function claimable() {
+  if (!save.q || !save.q.daily) return 0;
+  return save.q.daily.concat(save.q.weekly).filter(st => !st.claimed && st.p >= QALL[st.id].n).length;
+}
+function refreshQuestBadge() { const n = claimable(); const b = $('qBadge'); if (b) { b.textContent = n; b.style.display = n ? 'flex' : 'none'; } }
+function rewardText(r) {
+  const p = [];
+  if (r.coins) p.push('🪙 ' + r.coins); if (r.xp) p.push('✨ ' + r.xp + ' опыта'); if (r.pearls) p.push('<span class="pearl"></span> ' + r.pearls);
+  if (r.items) for (const id in r.items) p.push((ITEM[id] ? ITEM[id].icon : '🎁') + ' ×' + r.items[id]);
+  return p.join(' · ');
+}
+let questTab = 'daily';
+function fmtLong(ms) { const h = Math.floor(ms / 3600000), m = Math.floor(ms % 3600000 / 60000); return h >= 24 ? Math.floor(h / 24) + ' д ' + (h % 24) + ' ч' : h + ' ч ' + m + ' мин'; }
+function openQuests(tab) {
+  if (tab) questTab = tab;
+  questsInit();
+  const q = save.q, list = questTab === 'daily' ? q.daily : q.weekly;
+  $('qTabs').innerHTML = `<button class="tab${questTab === 'daily' ? ' on' : ''}" data-qtab="daily">Ежедневные</button><button class="tab${questTab === 'weekly' ? ' on' : ''}" data-qtab="weekly">Недельные</button>`;
+  const left = questTab === 'daily' ? msToNextDay() : msToNextWeek();
+  let html = `<div class="note">🕛 Новые задания через ${fmtLong(left)} (${questTab === 'daily' ? 'каждый день в 0:00' : 'в понедельник в 0:00'} по Москве)</div>`;
+  html += list.map(st => {
+    const d = QALL[st.id], done = st.p >= d.n, pct = Math.min(100, st.p / d.n * 100);
+    const shown = d.t === 'coins' ? fmtCoins(st.p) : st.p;
+    const b = st.claimed ? '<button class="buy" disabled>✓ Получено</button>' : done ? `<button class="buy go" data-claim="${st.id}">Забрать</button>` : '';
+    return `<div class="row${st.claimed ? '' : done ? ' act' : ''}"><div class="tx"><b>${d.text}</b><div class="qbar"><i style="width:${pct}%"></i></div><span>${shown} / ${d.n} · Награда: ${rewardText(d.r)}</span>${questLocTag(d)}</div>${b}</div>`;
+  }).join('');
+  $('qList').innerHTML = html;
+  $('questModal').classList.add('show');
+}
+function claimQuest(id) {
+  const q = save.q, st = q.daily.concat(q.weekly).find(x => x.id === id), d = QALL[id];
+  if (!st || st.claimed || st.p < d.n) return;
+  st.claimed = true;
+  const r = d.r;
+  if (r.coins) save.coins = Math.round((save.coins + r.coins) * 100) / 100;
+  if (r.pearls) save.pearls += r.pearls;
+  if (r.items) for (const k in r.items) save.inv[k] = (save.inv[k] || 0) + r.items[k];
+  if (r.xp) { questXp = true; addXp(r.xp); questXp = false; }
+  if (save.st) save.st.quests++;
+  if (q.daily.includes(st)) qEvent('dailyDone'); else { if (save.st) save.st.weekly++; achCheck(); }
+  haptic('success'); toast('Награда получена: ' + rewardText(r).replace(/<[^>]+>/g, '⚪'));
+  persist(); refreshTop(); refreshProgress(); refreshQuestBadge(); openQuests();
+  if (pendingLevels.length) { $('questModal').classList.remove('show'); showLevelUp(); }
+}
+let questXp = false;
+setInterval(() => { if (save && save.q && (save.q.dayKey !== dayKey() || save.q.weekKey !== weekKey())) { questsInit(); persist(); refreshQuestBadge(); } }, 5000);
+
+/* ================= Достижения (навсегда, копятся всю игру) =================
+   Общие — по всем водоёмам вместе. У каждого водоёма — свой набор (коллекция, трофеи, каждый вид рыбы, улов здесь). */
+// Водоёмы. Сейчас открыт только пруд; новые добавляются сюда со своим списком рыб.
+const A = (id, g, name, text, v, n, r) => ({ id, g, name, text, v, n, r });
+const ACH_GEN = [
+  A('g1', 'Улов', 'Первая поклёвка', 'Поймай первую рыбу', 'fish', 1, { coins: 10 }),
+  A('g2', 'Улов', 'Рыбак-любитель', 'Поймай 50 рыб', 'fish', 50, { coins: 50 }),
+  A('g3', 'Улов', 'Бывалый рыбак', 'Поймай 250 рыб', 'fish', 250, { pearls: 5 }),
+  A('g4', 'Улов', 'Мастер улова', 'Поймай 1000 рыб', 'fish', 1000, { pearls: 15 }),
+  A('g5', 'Улов', 'Легенда водоёмов', 'Поймай 5000 рыб', 'fish', 5000, { pearls: 40 }),
+  A('g6', 'Улов', 'Рыбный магнат', 'Поймай 10 000 рыб', 'fish', 10000, { pearls: 60 }),
+  A('g7', 'Улов', 'Повелитель клёва', 'Поймай 25 000 рыб', 'fish', 25000, { pearls: 250 }),
+  A('g8', 'Забросы', 'Первые шаги', 'Сделай 100 забросов', 'casts', 100, { coins: 30 }),
+  A('g9', 'Забросы', 'Неутомимый', 'Сделай 1000 забросов', 'casts', 1000, { pearls: 10 }),
+  A('g10', 'Забросы', 'Железная рука', 'Сделай 5000 забросов', 'casts', 5000, { pearls: 30 }),
+  A('g11', 'Забросы', 'Вечный двигатель', 'Сделай 10 000 забросов', 'casts', 10000, { pearls: 50 }),
+  A('g12', 'Забросы', 'Рука-катапульта', 'Сделай 25 000 забросов', 'casts', 25000, { pearls: 80 }),
+  A('g13', 'Точность', 'Меткий глаз', 'Сделай 25 точных забросов', 'perfect', 25, { coins: 30 }),
+  A('g14', 'Точность', 'Снайпер', 'Сделай 250 точных забросов', 'perfect', 250, { pearls: 10 }),
+  A('g15', 'Точность', 'Ювелир', 'Сделай 1000 точных забросов', 'perfect', 1000, { pearls: 25 }),
+  A('g16', 'Точность', 'В яблочко', 'Сделай 5000 точных забросов', 'perfect', 5000, { pearls: 50 }),
+  A('g17', 'Подсечка', 'Быстрая рука', 'Подсеки 50 раз быстрее чем за полсекунды', 'fast', 50, { pearls: 10 }),
+  A('g18', 'Подсечка', 'Молния', 'Подсеки 500 раз быстрее чем за полсекунды', 'fast', 500, { pearls: 30 }),
+  A('g19', 'Редкости', 'Удача улыбнулась', 'Поймай первую редкую рыбу', 'rare', 1, { coins: 30 }),
+  A('g20', 'Редкости', 'Охотник за редкостями', 'Поймай 50 редких рыб или ценнее', 'rare', 50, { pearls: 15 }),
+  A('g21', 'Редкости', 'Коллекционер редкостей', 'Поймай 250 редких рыб или ценнее', 'rare', 250, { pearls: 30 }),
+  A('g22', 'Эпические', 'Эпический улов', 'Поймай первую эпическую рыбу', 'epic', 1, { pearls: 10 }),
+  A('g23', 'Эпические', 'Эпическая десятка', 'Поймай 10 эпических рыб', 'epic', 10, { pearls: 15 }),
+  A('g24', 'Эпические', 'Эпос', 'Поймай 25 эпических рыб', 'epic', 25, { pearls: 30 }),
+  A('g25', 'Эпические', 'Сказитель', 'Поймай 50 эпических рыб', 'epic', 50, { pearls: 50 }),
+  A('g26', 'Эпические', 'Эпическая сотня', 'Поймай 100 эпических рыб', 'epic', 100, { pearls: 80 }),
+  A('g27', 'Эпические', 'Былинный рыбак', 'Поймай 250 эпических рыб', 'epic', 250, { pearls: 150 }),
+  A('g28', 'Эпические', 'Эпический трофей', 'Поймай эпическую рыбу трофейного веса', 'epicTr', 1, { pearls: 25 }),
+  A('g29', 'Эпические', 'Трофейный эпос', 'Поймай 10 эпических рыб трофейного веса', 'epicTr', 10, { pearls: 60 }),
+  A('g30', 'Легендарные', 'Легенда на крючке', 'Поймай первую легендарную рыбу', 'legend', 1, { pearls: 20 }),
+  A('g31', 'Легендарные', 'Пять легенд', 'Поймай 5 легендарных рыб', 'legend', 5, { pearls: 25 }),
+  A('g32', 'Легендарные', 'Живая легенда', 'Поймай 10 легендарных рыб', 'legend', 10, { pearls: 50 }),
+  A('g33', 'Легендарные', 'Ловец легенд', 'Поймай 25 легендарных рыб', 'legend', 25, { pearls: 100 }),
+  A('g34', 'Легендарные', 'Сказочник', 'Поймай 50 легендарных рыб', 'legend', 50, { pearls: 150 }),
+  A('g35', 'Легендарные', 'Сотня легенд', 'Поймай 100 легендарных рыб', 'legend', 100, { pearls: 300 }),
+  A('g36', 'Легендарные', 'Легендарный трофей', 'Поймай легендарную рыбу трофейного веса', 'legTr', 1, { pearls: 30 }),
+  A('g37', 'Легендарные', 'Зал легенд', 'Поймай 10 легендарных рыб трофейного веса', 'legTr', 10, { pearls: 100 }),
+  A('g38', 'Вес', 'Крупняк', 'Поймай рыбу весом от 2 кг', 'maxW', 2, { coins: 30 }),
+  A('g39', 'Вес', 'Пудовый', 'Поймай рыбу весом от 5 кг', 'maxW', 5, { coins: 50 }),
+  A('g40', 'Вес', 'Тяжеловес', 'Поймай рыбу весом от 10 кг', 'maxW', 10, { pearls: 10 }),
+  A('g41', 'Вес', 'Монстр глубин', 'Поймай рыбу весом от 25 кг', 'maxW', 25, { pearls: 25 }),
+  A('g42', 'Вес', 'Чудище', 'Поймай рыбу весом от 35 кг', 'maxW', 35, { pearls: 35 }),
+  A('g43', 'Вес', 'Рекордсмен', 'Побей свой рекорд веса 25 раз (по любому виду)', 'records', 25, { pearls: 15 }),
+  A('g44', 'Монеты', 'Первая сотня', 'Заработай на рыбе 100 монет', 'earned', 100, { coins: 20 }),
+  A('g45', 'Монеты', 'Копилка', 'Заработай на рыбе 1000 монет', 'earned', 1000, { pearls: 10 }),
+  A('g46', 'Монеты', 'Богач', 'Заработай на рыбе 10 000 монет', 'earned', 10000, { pearls: 30 }),
+  A('g47', 'Монеты', 'Купец', 'Заработай на рыбе 50 000 монет', 'earned', 50000, { pearls: 50 }),
+  A('g48', 'Монеты', 'Рыбный олигарх', 'Заработай на рыбе 100 000 монет', 'earned', 100000, { pearls: 80 }),
+  A('g49', 'Монеты', 'Покупатель', 'Купи что-нибудь за монеты 10 раз', 'buy', 10, { coins: 30 }),
+  A('g50', 'Серии', 'Без осечек', 'Поймай 10 рыб подряд без сходов', 'streak', 10, { coins: 50 }),
+  A('g51', 'Серии', 'Железная хватка', 'Поймай 25 рыб подряд без сходов', 'streak', 25, { pearls: 15 }),
+  A('g52', 'Серии', 'Мёртвая хватка', 'Поймай 50 рыб подряд без сходов', 'streak', 50, { pearls: 30 }),
+  A('g53', 'Серии', 'Ни одной не ушло', 'Поймай 100 рыб подряд без сходов', 'streak', 100, { pearls: 60 }),
+  A('g54', 'Уровень', 'Набираю опыт', 'Достигни 5 уровня', 'level', 5, { pearls: 10 }),
+  A('g55', 'Уровень', 'Опытный рыбак', 'Достигни 10 уровня', 'level', 10, { pearls: 15 }),
+  A('g56', 'Уровень', 'Знаток снастей', 'Достигни 15 уровня', 'level', 15, { pearls: 20 }),
+  A('g57', 'Уровень', 'Мастер рыбалки', 'Достигни 20 уровня', 'level', 20, { pearls: 25 }),
+  A('g58', 'Уровень', 'Четверть сотни', 'Достигни 25 уровня', 'level', 25, { pearls: 30 }),
+  A('g59', 'Уровень', 'Гроза водоёмов', 'Достигни 30 уровня', 'level', 30, { pearls: 35 }),
+  A('g60', 'Уровень', 'Рыбацкая душа', 'Достигни 35 уровня', 'level', 35, { pearls: 40 }),
+  A('g61', 'Уровень', 'Бывалый удильщик', 'Достигни 40 уровня', 'level', 40, { pearls: 45 }),
+  A('g62', 'Уровень', 'Старый лис', 'Достигни 45 уровня', 'level', 45, { pearls: 50 }),
+  A('g63', 'Уровень', 'Рыбацкий гуру', 'Достигни 50 уровня', 'level', 50, { pearls: 100 }),
+  A('g64', 'Уровень', 'Хранитель клёва', 'Достигни 55 уровня', 'level', 55, { pearls: 60 }),
+  A('g65', 'Уровень', 'Повелитель удочки', 'Достигни 60 уровня', 'level', 60, { pearls: 65 }),
+  A('g66', 'Уровень', 'Мудрец у воды', 'Достигни 65 уровня', 'level', 65, { pearls: 70 }),
+  A('g67', 'Уровень', 'Почётный рыбак', 'Достигни 70 уровня', 'level', 70, { pearls: 75 }),
+  A('g68', 'Уровень', 'Седой рыбак', 'Достигни 75 уровня', 'level', 75, { pearls: 150 }),
+  A('g69', 'Уровень', 'Рыбацкий патриарх', 'Достигни 80 уровня', 'level', 80, { pearls: 85 }),
+  A('g70', 'Уровень', 'Всевидящий поплавок', 'Достигни 85 уровня', 'level', 85, { pearls: 90 }),
+  A('g71', 'Уровень', 'Великий удильщик', 'Достигни 90 уровня', 'level', 90, { pearls: 95 }),
+  A('g72', 'Уровень', 'Почти сотня', 'Достигни 95 уровня', 'level', 95, { pearls: 100 }),
+  A('g73', 'Уровень', 'Сотый уровень', 'Достигни 100 уровня', 'level', 100, { pearls: 300 }),
+  A('g74', 'Задания', 'Исполнительный', 'Выполни 10 заданий', 'quests', 10, { pearls: 10 }),
+  A('g75', 'Задания', 'Трудоголик', 'Выполни 100 заданий', 'quests', 100, { pearls: 30 }),
+  A('g76', 'Задания', 'Безотказный', 'Выполни 250 заданий', 'quests', 250, { pearls: 50 }),
+  A('g77', 'Задания', 'Мастер на все руки', 'Выполни 500 заданий', 'quests', 500, { pearls: 80 }),
+  A('g78', 'Задания', 'Недельный марафон', 'Выполни 10 недельных заданий', 'weekly', 10, { pearls: 50 }),
+  A('g79', 'Снаряжение', 'Наживляю сам', 'Насади наживку 10 раз', 'bait', 10, { coins: 30 }),
+  A('g80', 'Снаряжение', 'На живца', 'Поймай 100 рыб на наживку', 'baitFish', 100, { pearls: 10 }),
+  A('g81', 'Снаряжение', 'Прикормщик', 'Высыпь прикормку 10 раз', 'gb', 10, { pearls: 10 }),
+  A('g82', 'Снаряжение', 'Кормилец', 'Высыпь прикормку 50 раз', 'gb', 50, { pearls: 20 }),
+  A('g83', 'Разное', 'Чистильщик', 'Вытащи 10 штук мусора', 'junk', 10, { coins: 30 }),
+  A('g84', 'Разное', 'Санитар водоёмов', 'Вытащи 50 штук мусора', 'junk', 50, { pearls: 10 }),
+  A('g85', 'Разное', 'Гроза свалок', 'Вытащи 100 штук мусора', 'junk', 100, { pearls: 20 }),
+  A('g86', 'Разное', 'Ранняя пташка', 'Поймай 25 рыб на зорьке', 'dawn', 25, { pearls: 10 }),
+  A('g87', 'Разное', 'Зоревой рыбак', 'Поймай 100 рыб на зорьке', 'dawn', 100, { pearls: 25 }),
+  A('g88', 'Разное', 'Певец зари', 'Поймай 500 рыб на зорьке', 'dawn', 500, { pearls: 50 }),
+  A('g89', 'Разное', 'Завсегдатай', 'Заходи в игру 7 дней', 'days', 7, { pearls: 10 }),
+  A('g90', 'Разное', 'Старожил', 'Заходи в игру 30 дней', 'days', 30, { pearls: 30 }),
+  A('g91', 'Разное', 'Свой человек', 'Заходи в игру 100 дней', 'days', 100, { pearls: 250 }),
+  A('g92', 'Разное', 'Целый год у воды', 'Заходи в игру 365 дней', 'days', 365, { pearls: 1000 }),
+];
+// Свой набор у каждого водоёма. Цифры для пруда можно править; для новых водоёмов — по этому же шаблону.
+const SP_N = { common: 100, uncommon: 50, rare: 25, epic: 10, legendary: 3 };
+const SP_R = { common: { coins: 30 }, uncommon: { pearls: 10 }, rare: { pearls: 10 }, epic: { pearls: 10 }, legendary: { pearls: 20 } };
+const SP_NAME = { karas_serebr: 'Карасятник', plotva: 'Плотвичник', okun: 'Окунятник', ersh: 'Ершовая уха', ukleyka: 'Серебряный дождь',
+  karas_zolot: 'Золотой запас', lin: 'Линёвая заводь', leshch: 'Лещовый день', karp: 'Карповод', shchuka: 'Щучья гроза', sudak: 'Судачий клык',
+  som: 'Сомятник', karp_zerk: 'Зеркальная коллекция', tsar_shchuka: 'Царская охота', zolotaya: 'Три желания',
+  peskar: 'Пескарная отмель', elets: 'Ельцовый перекат', gustera: 'Густерянка', krasnoperka: 'Красные плавники', golavl: 'Лобастый',
+  yaz: 'Язёвый омут', chekhon: 'Сабля', zherekh: 'Бой жереха', sazan: 'Дикий карп', sterlyad: 'Царская рыба', osetr_stary: 'Древний исполин', yaz_serebr: 'Серебряная легенда',
+  golyan: 'Стайка гольянов', bychok: 'Под камнем', ryapushka: 'Северная сельдь', kharius: 'Знамя хариуса', sig: 'Сиговая тропа', forel_ruch: 'Ручьевой охотник',
+  golets: 'Холодные воды', lenok: 'Пятнистый ленок', kumzha: 'Морская гостья', taymen: 'Таёжный великан', forel_luna: 'Лунный свет', nalim_hoz: 'Хозяин найден' };
+const SP_GEN = { karas_serebr: 'карасей серебряных', plotva: 'плотвы', okun: 'окуней', ersh: 'ершей', ukleyka: 'уклеек', karas_zolot: 'карасей золотых',
+  lin: 'линей', leshch: 'лещей', karp: 'карпов', shchuka: 'щук', sudak: 'судаков', som: 'сомов', karp_zerk: 'зеркальных карпов', tsar_shchuka: 'царь-щуки', zolotaya: 'золотые рыбки',
+  peskar: 'пескарей', elets: 'ельцов', gustera: 'густер', krasnoperka: 'краснопёрок', golavl: 'голавлей', yaz: 'язей', chekhon: 'чехоней', zherekh: 'жерехов', sazan: 'сазанов',
+  sterlyad: 'стерлядей', osetr_stary: 'старых осетра', yaz_serebr: 'серебряных язя',
+  golyan: 'гольянов', bychok: 'бычков-подкаменщиков', ryapushka: 'ряпушек', kharius: 'хариусов', sig: 'сигов', forel_ruch: 'ручьевых форелей', golets: 'гольцов', lenok: 'ленков',
+  kumzha: 'кумж', taymen: 'тайменей', forel_luna: 'лунные форели', nalim_hoz: 'хозяина глубин' };
+const SP_TIERS = { epic: [{ n: 25, r: { pearls: 40 } }, { n: 50, r: { pearls: 80 } }], legendary: [{ n: 10, r: { pearls: 80 } }, { n: 25, r: { pearls: 200 } }] };
+const SP_GEN_MANY = { tsar_shchuka: 'царь-щук', zolotaya: 'золотых рыбок' };
+function locAch(L) {
+  const p = L.id + '_', all = L.fish.length, W = (n, a, b, c) => plural(n, a, b, c);
+  const list = [
+    A(p + 'c1', 'Коллекция', 'Первые знакомства', 'Поймай 5 разных видов рыб здесь', 'loc:species', 5, { coins: 30 }),
+    A(p + 'c2', 'Коллекция', 'Знаток водоёма', 'Поймай 10 разных видов рыб здесь', 'loc:species', 10, { pearls: 10 }),
+    A(p + 'c3', 'Коллекция', 'Полная коллекция', 'Поймай все ' + all + ' видов рыб здесь', 'loc:species', all, { pearls: 50 }),
+    A(p + 't1', 'Трофеи', 'Первый трофей', 'Закрой первый трофей здесь', 'loc:trophy', 1, { coins: 30 }),
+    A(p + 't2', 'Трофеи', 'Трофейщик', 'Закрой 5 трофеев здесь', 'loc:trophy', 5, { pearls: 10 }),
+    A(p + 't3', 'Трофеи', 'Стена трофеев', 'Закрой 10 трофеев здесь', 'loc:trophy', 10, { pearls: 30 }),
+    A(p + 't4', 'Трофеи', 'Зал славы', 'Закрой все ' + all + ' трофеев здесь', 'loc:trophy', all, { pearls: 50 }),
+    A(p + 'f1', 'Улов здесь', 'Прикормил место', 'Поймай здесь 100 рыб', 'loc:fish', 100, { coins: 50 }),
+    A(p + 'f2', 'Улов здесь', 'Местный', 'Поймай здесь 500 рыб', 'loc:fish', 500, { pearls: 15 }),
+    A(p + 'f3', 'Улов здесь', 'Хозяин водоёма', 'Поймай здесь 2000 рыб', 'loc:fish', 2000, { pearls: 40 }),
+    A(p + 'j1', 'Улов здесь', 'Навёл порядок', 'Вытащи здесь 25 штук мусора', 'loc:junk', 25, { coins: 50 }),
+  ];
+  for (const f of L.fish) list.push(A(p + 's_' + f.id, 'Виды рыб', SP_NAME[f.id] || f.name, 'Поймай ' + SP_N[f.r] + ' ' + (SP_GEN[f.id] || f.name), 'sp:' + f.id, SP_N[f.r], SP_R[f.r]));
+  list.push(A(p + 'm', 'Мастер', 'Мастер ' + ({ pond: 'пруда', river: 'речушки', lake: 'озера' }[L.id] || 'водоёма'), 'Получи все остальные достижения этого водоёма', 'loc:all', list.length, { pearls: 100 }));
+  list.forEach(a => a.loc = L.id);
+  return list;
+}
+const ACH = ACH_GEN.concat(...LOCS.map(locAch));
+const ACHM = Object.fromEntries(ACH.map(a => [a.id, a]));
+const ST0 = { fish: 0, perfect: 0, earned: 0, junk: 0, quests: 0, weekly: 0, streak: 0, cur: 0, maxW: 0, rare: 0, epic: 0, legend: 0, dawn: 0, gb: 0, bait: 0, baitFish: 0, fast: 0, buy: 0, records: 0, days: 0, epicTr: 0, legTr: 0, lastDay: -1 };
+
+function locCaught(loc) { return save.caught; }   // пока водоём один; у новых будет свой улов
+function achInit() {
+  if (!save.ach || save.ach.v !== 3) save.ach = { v: 3, done: {}, claimed: {} };   // старые тестовые достижения сбрасываются
+  if (!save.st) {
+    save.st = Object.assign({}, ST0);
+    for (const f of FISH_POND) { const c = save.caught[f.id]; if (!c) continue; const st = save.st; st.fish += c.count; st.maxW = Math.max(st.maxW, c.best);
+      if (f.r === 'rare' || f.r === 'epic' || f.r === 'legendary') st.rare += c.count; if (f.r === 'epic') st.epic += c.count; if (f.r === 'legendary') st.legend += c.count; }
+  }
+  for (const k in ST0) if (save.st[k] === undefined) save.st[k] = ST0[k];
+  if (!save.lst) save.lst = {};
+  for (const L of LOCS) if (!save.lst[L.id]) save.lst[L.id] = { fish: L.id === 'pond' ? save.st.fish : 0, junk: 0 };
+}
+function achVal(a) {
+  const st = save.st;
+  if (a.v.startsWith('tr:')) { const F = LOCS.find(x => x.id === a.loc).fish.find(x => x.id === a.v.slice(3)), c = locCaught(a.loc)[F.id]; return c && c.best >= F.trophy ? 1 : 0; }
+  if (a.v.startsWith('sp:')) { const c = locCaught(a.loc)[a.v.slice(3)]; return c ? c.count : 0; }
+  if (a.v.startsWith('loc:')) {
+    const L = LOCS.find(x => x.id === a.loc), C = locCaught(a.loc), k = a.v.slice(4);
+    if (k === 'species') return L.fish.filter(f => C[f.id]).length;
+    if (k === 'trophy') return L.fish.filter(f => C[f.id] && C[f.id].best >= f.trophy).length;
+    if (k === 'epicAll') return L.fish.filter(f => f.r === 'epic' && C[f.id]).length;
+    if (k === 'legAll') return L.fish.filter(f => f.r === 'legendary' && C[f.id]).length;
+    if (k === 'all') return ACH.filter(x => x.loc === a.loc && x.id !== a.id && save.ach.done[x.id]).length;
+    return save.lst[a.loc][k] || 0;
+  }
+  if (a.v === 'casts') return save.casts || 0;
+  if (a.v === 'level') return save.level;
+  return st[a.v] || 0;
+}
+// события игры → общие счётчики и счётчики водоёма
+function achStat(type, ctx) {
+  if (!save.st) return;
+  const st = save.st, ls = save.lst && save.lst[CUR_LOC];
+  if (type === 'perfect') st.perfect++;
+  else if (type === 'junk') { st.junk++; if (ls) ls.junk++; }
+  else if (type === 'gb') st.gb++;
+  else if (type === 'bait') st.bait++;
+  else if (type === 'fasthook') st.fast++;
+  else if (type === 'buycoin') st.buy++;
+  else if (type === 'coins') st.earned = Math.round((st.earned + ctx.n) * 100) / 100;
+  else if (type === 'escape') st.cur = 0;
+  else if (type === 'catch') {
+    const r = ctx.f.r;
+    st.fish++; st.cur++; st.streak = Math.max(st.streak, st.cur); st.maxW = Math.max(st.maxW, ctx.w || 0);
+    if (r === 'rare' || r === 'epic' || r === 'legendary') st.rare++;
+    if (r === 'epic') st.epic++; if (r === 'legendary') st.legend++;
+    if (ctx.f.trophy && ctx.w >= ctx.f.trophy) { if (r === 'epic') st.epicTr++; if (r === 'legendary') st.legTr++; }
+    if (ctx.dawn) st.dawn++; if (ctx.bait) st.baitFish++; if (ctx.rec) st.records++;
+    if (ls) ls.fish++;
+  }
+  else if (type === 'days') { const d = dayKey(); if (st.lastDay !== d) { st.lastDay = d; st.days++; } }
+}
+function achCheck() {
+  if (!save.ach || !save.st) return;
+  let got = false;
+  for (let pass = 0; pass < 2; pass++)   // второй проход — для «Мастера водоёма»
+    for (const a of ACH) if (!save.ach.done[a.id] && achVal(a) >= a.n) { save.ach.done[a.id] = 1; got = true; toast('🏆 Достижение: «' + a.name + '» — забери награду'); }
+  if (got) persist();
+  refreshAchBadge();
+}
+function achClaimable(loc) { return save.ach ? ACH.filter(a => (loc === undefined || (a.loc || '') === loc) && save.ach.done[a.id] && !save.ach.claimed[a.id]).length : 0; }
+function refreshAchBadge() { const n = achClaimable(), b = $('aBadge'); if (b) { b.textContent = n; b.style.display = n ? 'flex' : 'none'; } }
+function achMedal(state) {   // маленький кубок: золотой — получено, серый — ещё нет
+  const c = state === 'off' ? ['#7C879E', '#5A6580', '#4A5470'] : ['#FFD95E', '#F2A93B', '#C77A1E'];
+  return `<svg viewBox="0 0 40 40" class="amed"><circle cx="20" cy="20" r="18" fill="${state === 'off' ? '#2A3554' : '#3A3320'}" stroke="${c[2]}" stroke-width="2.5"/><path d="M13 11h14v5a7 7 0 0 1-14 0z" fill="${c[0]}" stroke="#3A2510" stroke-width="2"/><path d="M13 13H9.5a3.5 3.5 0 0 0 4 5M27 13h3.5a3.5 3.5 0 0 1-4 5" fill="none" stroke="#3A2510" stroke-width="2"/><path d="M18 23h4v4h-4z" fill="${c[1]}" stroke="#3A2510" stroke-width="1.8"/><rect x="14" y="27" width="12" height="4" rx="1.5" fill="${c[1]}" stroke="#3A2510" stroke-width="1.8"/></svg>`;
+}
+let achTab = '';
+function openAch(tab) {
+  if (tab !== undefined) achTab = tab;
+  achCheck();
+  const tabs = [{ id: '', name: 'Общие' }].concat(LOCS.map(L => ({ id: L.id, name: L.name })));
+  $('aTabs').style.gridTemplateColumns = `repeat(${tabs.length}, 1fr)`;
+  $('aTabs').innerHTML = tabs.map(t => { const n = achClaimable(t.id); return `<button class="tab${achTab === t.id ? ' on' : ''}" data-atab="${t.id}">${t.name}${n ? ' <b class="tcnt">' + n + '</b>' : ''}</button>`; }).join('');
+  const mine = ACH.filter(a => (a.loc || '') === achTab);
+  const done = mine.filter(a => save.ach.done[a.id]).length;
+  const order = a => save.ach.done[a.id] && !save.ach.claimed[a.id] ? 0 : save.ach.claimed[a.id] ? 2 : 1;
+  const list = mine.slice().sort((x, y) => order(x) - order(y));
+  let html = `<div class="note">🏆 Получено ${done} из ${mine.length}. ${achTab ? 'Считается только улов на этом водоёме.' : 'Считается всё, на любом водоёме.'}</div>`;
+  html += list.map(a => {
+    const v = achVal(a), ok = !!save.ach.done[a.id], cl = !!save.ach.claimed[a.id];
+    const shown = Math.min(v, a.n), pct = Math.min(100, shown / a.n * 100);
+    const num = a.v === 'maxW' ? fmtKg(shown) + ' / ' + a.n + ' кг' : a.v === 'earned' ? fmtCoins(shown) + ' / ' + a.n : shown + ' / ' + a.n;
+    const btn = cl ? '<button class="buy" disabled>✓</button>' : ok ? `<button class="buy go" data-ach="${a.id}">Забрать</button>` : '';
+    return `<div class="row${ok && !cl ? ' act' : ''}">${achMedal(ok ? 'on' : 'off')}<div class="tx"><b>${a.name}</b><span>${a.text}</span><div class="qbar"><i style="width:${pct}%"></i></div><span>${num} · Награда: ${rewardText(a.r)}</span></div>${btn}</div>`;
+  }).join('');
+  $('aList').innerHTML = html;
+  $('achModal').classList.add('show');
+}
+function claimAch(id) {
+  const a = ACHM[id];
+  if (!a || !save.ach.done[id] || save.ach.claimed[id]) return;
+  save.ach.claimed[id] = 1;
+  if (a.r.coins) save.coins = Math.round((save.coins + a.r.coins) * 100) / 100;
+  if (a.r.pearls) save.pearls += a.r.pearls;
+  haptic('success'); persist(); refreshTop(); refreshAchBadge();
+  $('achModal').classList.remove('show');
+  const where = a.loc ? LOCS.find(L => L.id === a.loc).name + ': ' : '';
+  celebrate({ icon: cupSvg(), title: a.name, lines: ['🏆 ' + where + a.text, a.r.coins ? '🪙 +' + a.r.coins + ' монет' : '⚪ +' + a.r.pearls + ' жемчуга'] });
 }
 
 /* ================= Управление кнопкой ================= */
@@ -1130,7 +1894,7 @@ function onDown(e) {
       sub.textContent = '+1 через ' + fmtTime(nextEnergyIn()) + ' · или пополни в магазине 🛒';
       haptic('error'); refreshProgress(); return;
     }
-    persist(); refreshProgress(); startPower();
+    qEvent('cast'); persist(); refreshProgress(); startPower();
   }
   else if (state === 'power') releasePower();
   else if (state === 'waiting') { escaped('Рано подсёк — рыба испугалась'); }
@@ -1148,10 +1912,25 @@ action.addEventListener('pointercancel', onUp);
 action.addEventListener('pointerleave', (e) => { if (state === 'reel') onUp(e); });
 action.addEventListener('contextmenu', (e) => e.preventDefault());
 
-$('cAgain').addEventListener('click', () => { $('catchModal').classList.remove('show'); showLevelUp(); });
-$('luOk').addEventListener('click', () => $('levelModal').classList.remove('show'));
+$('cAgain').addEventListener('click', () => { $('catchModal').classList.remove('show'); flushAch(); showLevelUp(); });
+$('luOk').addEventListener('click', closeCele);
 $('shopBtn').addEventListener('click', () => openShop());
+$('baitBtn').addEventListener('click', (e) => { e.stopPropagation(); openBaitPicker(); });
+$('baitClose').addEventListener('click', () => $('baitModal').classList.remove('show'));
+$('locBtn').addEventListener('click', (e) => { e.stopPropagation(); openLocPicker(); });
+$('locClose').addEventListener('click', () => $('locModal').classList.remove('show'));
+$('locList').addEventListener('click', (e) => { const g = e.target.closest('[data-loc]'), u = e.target.closest('[data-unlock]'); if (g) goLoc(g.dataset.loc); else if (u) unlockLoc(u.dataset.unlock); });
+$('baitShop').addEventListener('click', () => { $('baitModal').classList.remove('show'); openShop('Наживки'); });
+$('baitList').addEventListener('click', (e) => { const c = e.target.closest('[data-pick]'); if (c) pickBait(c.dataset.pick); });
 $('pearlBtn').addEventListener('click', () => openShop('Жемчуг'));
+$('questBtn').addEventListener('click', () => openQuests());
+$('achBtn').addEventListener('click', () => openAch());
+$('aTabs').addEventListener('click', (e) => { const t = e.target.closest('[data-atab]'); if (t) openAch(t.dataset.atab); });
+$('aClose').addEventListener('click', () => $('achModal').classList.remove('show'));
+$('aList').addEventListener('click', (e) => { const c = e.target.closest('[data-ach]'); if (c) claimAch(c.dataset.ach); });
+$('qClose').addEventListener('click', () => $('questModal').classList.remove('show'));
+$('qTabs').addEventListener('click', (e) => { const t = e.target.closest('[data-qtab]'); if (t) openQuests(t.dataset.qtab); });
+$('qList').addEventListener('click', (e) => { const c = e.target.closest('[data-claim]'); if (c) claimQuest(c.dataset.claim); });
 $('bagBtn').addEventListener('click', () => { confirmReplace = null; openBag(); });
 $('shopClose').addEventListener('click', () => $('shopModal').classList.remove('show'));
 $('bagClose').addEventListener('click', () => $('bagModal').classList.remove('show'));
@@ -1187,7 +1966,7 @@ function openAlbum() {
   });
   const n = FISH.filter(f => save.caught[f.id]).length;
   const tr = FISH.filter(f => save.caught[f.id] && save.caught[f.id].best >= f.trophy).length;
-  $('albumInfo').textContent = 'Собрано ' + n + ' из ' + FISH.length + ' · Трофеев ' + tr + ' из ' + FISH.length;
+  $('albumInfo').textContent = curLoc().name + ': собрано ' + n + ' из ' + FISH.length + ' · Трофеев ' + tr + ' из ' + FISH.length;
   $('albumModal').classList.add('show');
 }
 $('albumBtn').addEventListener('click', openAlbum);
@@ -1202,7 +1981,8 @@ if (tg) {
 }
 // предзагрузка картинок: держим их в памяти и заранее декодируем, чтобы рыба появлялась мгновенно
 const IMG_CACHE = {};
-FISH.concat(JUNK_LIST).forEach(f => {
+ALL_FISH.concat(JUNK_POND, JUNK_RIVER, JUNK_LAKE).forEach(f => {
+  if (IMG_CACHE[f.id]) return;
   const i = new Image();
   i.src = 'fish/' + f.id + '.svg';
   if (i.decode) i.decode().catch(() => {});
@@ -1212,7 +1992,14 @@ FISH.concat(JUNK_LIST).forEach(f => {
 load(() => syncTime().then(() => {
   migrate();
   initProgress();
+  achInit();
+  if (!save.locs) save.locs = { pond: true };
+  if (save.loc && save.locs[save.loc]) setLoc(save.loc, true);
+  refreshLocBtn();
+  questsInit();
   dailyCheck();
+  refreshQuestBadge();
+  achCheck();
   refreshTop();
   refreshProgress();
   const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
